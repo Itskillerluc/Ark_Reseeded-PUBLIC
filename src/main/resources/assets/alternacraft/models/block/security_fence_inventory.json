@@ -1,0 +1,6 @@
+{
+  "parent": "alternacraft:block/security_fence_post",
+  "textures": {
+    "texture": "alternacraft:block/security_fence"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "X": {
+      "item": "alternacraft:painite"
+    }
+  },
+  "result": {
+    "item": "alternacraft:painite_shovel"
+  }
+}

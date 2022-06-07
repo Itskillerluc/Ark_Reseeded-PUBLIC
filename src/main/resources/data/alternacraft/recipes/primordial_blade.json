@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "X": {
+      "item": "alternacraft:primordial_shard"
+    }
+  },
+  "result": {
+    "item": "alternacraft:primordial_blade"
+  }
+}

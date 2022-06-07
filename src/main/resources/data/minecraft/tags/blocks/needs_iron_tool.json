@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "alternacraft:titanium_ore",
+    "alternacraft:fossil_ore",
+    "alternacraft:dna_extractor",
+    "alternacraft:dna_sequencer",
+    "alternacraft:dna_combinator"
+  ]
+}

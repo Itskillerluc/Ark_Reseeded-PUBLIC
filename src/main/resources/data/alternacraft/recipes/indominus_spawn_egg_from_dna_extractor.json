@@ -1,0 +1,14 @@
+{
+  "type": "alternacraft:dna_extracting",
+  "ingredients": [
+    {
+      "item": "alternacraft:fossil"
+    },
+    {
+      "item": "alternacraft:painite"
+    }
+  ],
+  "output": {
+    "item": "alternacraft:indominus_spawn_egg"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "axis=z": { "model": "alternacraft:block/alterna_portal_ew" },
+    "axis=x": { "model": "alternacraft:block/alterna_portal_ns" }
+  }
+}

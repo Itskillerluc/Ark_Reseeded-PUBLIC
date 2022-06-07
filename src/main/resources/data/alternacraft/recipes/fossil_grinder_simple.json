@@ -1,0 +1,14 @@
+{
+  "type": "alternacraft:fossil_grinder",
+  "ingredients": [
+    {
+      "item": "alternacraft:fossil"
+    },
+    {
+      "item": "alternacraft:dna_syringe"
+    }
+  ],
+  "output": {
+    "item": "alternacraft:dna_syringe"
+  }
+}

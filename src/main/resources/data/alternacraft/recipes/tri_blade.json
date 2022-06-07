@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YXY",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "X": {
+      "item": "alternacraft:painite"
+    },
+    "Y": {
+      "item": "minecraft:emerald"
+    }
+  },
+  "result": {
+    "item": "alternacraft:tri_blade"
+  }
+}

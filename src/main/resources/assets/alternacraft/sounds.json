@@ -1,0 +1,433 @@
+{
+  "spino_roar1": {
+    "category": "entities",
+    "subtitle": "alternacraft.spino_roar1",
+    "sounds": [
+      "alternacraft:spino_roar1"
+    ]
+  },
+  "spino_roar2": {
+    "category": "entities",
+    "subtitle": "alternacraft.spino_roar2",
+    "sounds": [
+      "alternacraft:spino_roar2"
+    ]
+  },
+  "satellite_spino": {
+    "category": "entities",
+    "subtitle": "alternacraft.satellite_spino",
+    "sounds": [
+      "alternacraft:satellite_spino"
+    ]
+  },
+  "spino_roar3": {
+    "category": "entities",
+    "subtitle": "alternacraft.spino_roar3",
+    "sounds": [
+      "alternacraft:spino_roar3"
+    ]
+  },
+  "indominus_rex_roar1": {
+    "category": "entities",
+    "subtitle": "alternacraft.indominus_rex_roar1",
+    "sounds": [
+      "alternacraft:indominus_rex_roar1"
+    ]
+  },
+  "indominus_rex_roar2": {
+    "category": "entities",
+    "subtitle": "alternacraft.indominus_rex_roar2",
+    "sounds": [
+      "alternacraft:indominus_rex_roar2"
+    ]
+  },
+  "indominus_rex_growl": {
+    "category": "entities",
+    "subtitle": "alternacraft.indominus_rex_growl",
+    "sounds": [
+      "alternacraft:indominus_rex_growl"
+    ]
+  },
+  "acro_growl": {
+    "category": "entities",
+    "subtitle": "alternacraft.acro_growl",
+    "sounds": [
+      "alternacraft:acro_growl"
+    ]
+  },
+  "acro_roar1": {
+    "category": "entities",
+    "subtitle": "alternacraft.acro_roar1",
+    "sounds": [
+      "alternacraft:acro_roar1"
+    ]
+  },
+  "acro_roar2": {
+    "category": "entities",
+    "subtitle": "alternacraft.acro_roar2",
+    "sounds": [
+      "alternacraft:acro_roar2"
+    ]
+  },
+
+  "indoraptor_roar_1": {
+    "category": "entities",
+    "subtitle": "alternacraft.indoraptor_roar_1",
+    "sounds": [
+      "alternacraft:indoraptor_roar_1"
+    ]
+  },
+
+  "indoraptor_roar_2": {
+    "category": "entities",
+    "subtitle": "alternacraft.indoraptor_roar_2",
+    "sounds": [
+      "alternacraft:indoraptor_roar_2"
+    ]
+  },
+
+  "indoraptor_roar_3": {
+    "category": "entities",
+    "subtitle": "alternacraft.indoraptor_roar_3",
+    "sounds": [
+      "alternacraft:indoraptor_roar_3"
+    ]
+  },
+  "ceratosuchops_idle_roar": {
+    "category": "entities",
+    "subtitle": "alternacraft.ceratosuchops_idle_roar",
+    "sounds": [
+      "alternacraft:ceratosuchops_idle_roar"
+    ]
+  },
+  "ceratosuchops_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.ceratosuchops_hurt",
+    "sounds": [
+      "alternacraft:ceratosuchops_hurt"
+    ]
+  },
+  "spinosaurus_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.spinosaurus_death",
+    "sounds": [
+      "alternacraft:spinosaurus_death"
+    ]
+  },
+  "spinosaurus_idle_roar": {
+    "category": "entities",
+    "subtitle": "alternacraft.spinosaurus_idle_roar",
+    "sounds": [
+      "alternacraft:spinosaurus_idle_roar"
+    ]
+  },
+  "spinosaurus_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.spinosaurus_hurt",
+    "sounds": [
+      "alternacraft:spinosaurus_hurt"
+    ]
+  },
+  "alternasaurus_idle": {
+    "category": "entities",
+    "subtitle": "alternacraft.alternasaurus_idle",
+    "sounds": [
+      "alternacraft:alternasaurus_idle"
+    ]
+  },
+  "alternasaurus_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.alternasaurus_hurt",
+    "sounds": [
+      "alternacraft:alternasaurus_hurt"
+    ]
+  },
+  "alternasaurus_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.alternasaurus_death",
+    "sounds": [
+      "alternacraft:alternasaurus_death"
+    ]
+  },
+  "t_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.t_ambient",
+    "sounds": [
+      "alternacraft:t_ambient"
+    ]
+  },
+  "t_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.t_hurt",
+    "sounds": [
+      "alternacraft:t_hurt"
+    ]
+  },
+  "t_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.t_death",
+    "sounds": [
+      "alternacraft:t_death"
+    ]
+  },
+  "scorpius_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.scorpius_death",
+    "sounds": [
+      "alternacraft:scorpius_death"
+    ]
+  },
+  "scorpius_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.scorpius_ambient",
+    "sounds": [
+      "alternacraft:scorpius_ambient"
+    ]
+  },
+  "scorpius_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.scorpius_hurt",
+    "sounds": [
+      "alternacraft:scorpius_hurt"
+    ]
+  },
+  "allo_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.allo_hurt",
+    "sounds": [
+      "alternacraft:allo_hurt"
+    ]
+  },
+  "allo_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.allo_ambient",
+    "sounds": [
+      "alternacraft:allo_ambient"
+    ]
+  },
+  "allo_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.allo_death",
+    "sounds": [
+      "alternacraft:allo_death"
+    ]
+  },
+  "bary_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.bary_death",
+    "sounds": [
+      "alternacraft:bary_death"
+    ]
+  },
+  "bary_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.bary_ambient",
+    "sounds": [
+      "alternacraft:bary_ambient"
+    ]
+  },
+  "bary_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.bary_hurt",
+    "sounds": [
+      "alternacraft:bary_hurt"
+    ]
+  },
+  "tylo_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.tylo_death",
+    "sounds": [
+      "alternacraft:tylo_death"
+    ]
+  },
+  "tylo_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.tylo_ambient",
+    "sounds": [
+      "alternacraft:tylo_ambient"
+    ]
+  },
+  "tylo_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.tylo_hurt",
+    "sounds": [
+      "alternacraft:tylo_hurt"
+    ]
+  },
+  "mosa_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.mosa_death",
+    "sounds": [
+      "alternacraft:mosa_death"
+    ]
+  },
+  "mosa_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.mosa_ambient",
+    "sounds": [
+      "alternacraft:mosa_ambient"
+    ]
+  },
+  "mosa_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.mosa_hurt",
+    "sounds": [
+      "alternacraft:mosa_hurt"
+    ]
+  },
+  "alio_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.alio_death",
+    "sounds": [
+      "alternacraft:alio_death"
+    ]
+  },
+  "alio_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.alio_ambient",
+    "sounds": [
+      "alternacraft:alio_ambient"
+    ]
+  },
+  "alio_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.alio_hurt",
+    "sounds": [
+      "alternacraft:alio_hurt"
+    ]
+  },
+  "carcha_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.carcha_death",
+    "sounds": [
+      "alternacraft:carcha_death"
+    ]
+  },
+  "carcha_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.carcha_ambient",
+    "sounds": [
+      "alternacraft:carcha_ambient"
+    ]
+  },
+  "carcha_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.carcha_hurt",
+    "sounds": [
+      "alternacraft:carcha_hurt"
+    ]
+  },
+  "rspino_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.rspino_death",
+    "sounds": [
+      "alternacraft:rspino_death"
+    ]
+  },
+  "rspino_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.rspino_ambient",
+    "sounds": [
+      "alternacraft:rspino_ambient"
+    ]
+  },
+  "rspino_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.rspino_hurt",
+    "sounds": [
+      "alternacraft:rspino_hurt"
+    ]
+  },
+  "yuty_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.yuty_death",
+    "sounds": [
+      "alternacraft:yuty_death"
+    ]
+  },
+  "yuty_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.yuty_ambient",
+    "sounds": [
+      "alternacraft:yuty_ambient"
+    ]
+  },
+  "yuty_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.yuty_hurt",
+    "sounds": [
+      "alternacraft:yuty_hurt"
+    ]
+  },
+  "giga_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.giga_death",
+    "sounds": [
+        "alternacraft:giga_death"
+    ]
+  },
+  "giga_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.giga_ambient",
+    "sounds": [
+      "alternacraft:giga_ambient"
+    ]
+  },
+  "giga_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.giga_hurt",
+    "sounds": [
+      "alternacraft:giga_hurt"
+    ]
+  },
+  "compy_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.compy_death",
+    "sounds": [
+        "alternacraft:compy_death"
+    ]
+  },
+  "compy_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.compy_ambient",
+    "sounds": [
+      "alternacraft:compy_ambient",
+      "alternacraft:compy_ambient2"
+    ]
+  },
+  "compy_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.compy_hurt",
+    "sounds": [
+      "alternacraft:compy_hurt"
+    ]
+  },
+  "blue_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.blue_death",
+    "sounds": [
+        "alternacraft:blue_death"
+    ]
+  },
+  "blue_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.blue_ambient",
+    "sounds": [
+      "alternacraft:blue_ambient"
+    ]
+  },
+  "blue_hurt": {
+    "category": "entities",
+    "subtitle": "alternacraft.blue_hurt",
+    "sounds": [
+      "alternacraft:blue_hurt"
+    ]
+  },
+  "beta_ambient": {
+    "category": "entities",
+    "subtitle": "alternacraft.beta_ambient",
+    "sounds": [
+      "alternacraft:beta_ambient"
+    ]
+  }
+}

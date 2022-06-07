@@ -1,0 +1,6 @@
+{
+  "parent": "alternacraft:item/painite_bow",
+  "textures": {
+    "layer0": "alternacraft:item/painite_bow_pulling_2"
+  }
+}

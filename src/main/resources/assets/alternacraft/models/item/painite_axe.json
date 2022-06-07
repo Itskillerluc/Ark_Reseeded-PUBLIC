@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "alternacraft:item/painite_axe"
+  }
+}

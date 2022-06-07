@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "alternacraft:item/dna_syringe",
+    "layer1": "alternacraft:item/dna/herrerasaurus_dna_overlay"
+  }
+}
