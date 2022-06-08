@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class GigaModel extends AnimatedGeoModel<GigaEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(GigaEntity entity) {
+    public ResourceLocation getAnimationResource(GigaEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/giganotosaurus.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(GigaEntity entity) {
+    public ResourceLocation getModelResource(GigaEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/giganotosaurus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(GigaEntity entity)    {
+    public ResourceLocation getTextureResource(GigaEntity entity)    {
         return GigaRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

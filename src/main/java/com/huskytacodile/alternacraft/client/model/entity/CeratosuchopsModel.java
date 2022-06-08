@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class CeratosuchopsModel extends AnimatedGeoModel<CeratosuchopsEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(CeratosuchopsEntity entity) {
+    public ResourceLocation getAnimationResource(CeratosuchopsEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/ceratosuchops.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(CeratosuchopsEntity entity) {
+    public ResourceLocation getModelResource(CeratosuchopsEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/ceratosuchops.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(CeratosuchopsEntity entity)    {
+    public ResourceLocation getTextureResource(CeratosuchopsEntity entity)    {
         return CeratosuchopsRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

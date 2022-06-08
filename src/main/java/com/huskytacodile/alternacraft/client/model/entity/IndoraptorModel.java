@@ -8,16 +8,16 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class IndoraptorModel extends AnimatedGeoModel<IndoraptorEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(IndoraptorEntity entity) {
+    public ResourceLocation getAnimationResource(IndoraptorEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/indoraptor.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(IndoraptorEntity entity) {
+    public ResourceLocation getModelResource(IndoraptorEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/indoraptor.geo.json");
     }
     @Override
-    public ResourceLocation getTextureLocation(IndoraptorEntity entity)    {
+    public ResourceLocation getTextureResource(IndoraptorEntity entity)    {
         return IndoraptorRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

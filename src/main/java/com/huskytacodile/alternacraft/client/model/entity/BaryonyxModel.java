@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class BaryonyxModel extends AnimatedGeoModel<BaryonyxEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(BaryonyxEntity entity) {
+    public ResourceLocation getAnimationResource(BaryonyxEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/baryonyx.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(BaryonyxEntity entity) {
+    public ResourceLocation getModelResource(BaryonyxEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/baryonyx.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BaryonyxEntity entity)    {
+    public ResourceLocation getTextureResource(BaryonyxEntity entity)    {
         return BaryonyxRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class CompsognathusModel extends AnimatedGeoModel<CompsognathusEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(CompsognathusEntity entity) {
+    public ResourceLocation getAnimationResource(CompsognathusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/compsognathus.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(CompsognathusEntity entity) {
+    public ResourceLocation getModelResource(CompsognathusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/compsognathus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(CompsognathusEntity entity)    {
+    public ResourceLocation getTextureResource(CompsognathusEntity entity)    {
         return CompsognathusRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

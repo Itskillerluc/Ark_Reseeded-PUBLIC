@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class MegaloModel extends AnimatedGeoModel<MegaloEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(MegaloEntity entity) {
+    public ResourceLocation getAnimationResource(MegaloEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/megalo.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(MegaloEntity entity) {
+    public ResourceLocation getModelResource(MegaloEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/megalosaurus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MegaloEntity entity)    {
+    public ResourceLocation getTextureResource(MegaloEntity entity)    {
         return MegaloRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class AllosaurusModel extends AnimatedGeoModel<AllosaurusEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(AllosaurusEntity entity) {
+    public ResourceLocation getAnimationResource(AllosaurusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/allosaurus.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(AllosaurusEntity entity) {
+    public ResourceLocation getModelResource(AllosaurusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/allosaurus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(AllosaurusEntity entity)    {
+    public ResourceLocation getTextureResource(AllosaurusEntity entity)    {
         return AllosaurusRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

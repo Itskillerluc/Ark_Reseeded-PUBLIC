@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class BetaModel extends AnimatedGeoModel<BetaEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(BetaEntity entity) {
+    public ResourceLocation getAnimationResource(BetaEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/blue.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(BetaEntity entity) {
+    public ResourceLocation getModelResource(BetaEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/beta.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BetaEntity entity)    {
+    public ResourceLocation getTextureResource(BetaEntity entity)    {
         return new ResourceLocation(Alternacraft.MOD_ID, "textures/entity/blue.png");
     }
 }

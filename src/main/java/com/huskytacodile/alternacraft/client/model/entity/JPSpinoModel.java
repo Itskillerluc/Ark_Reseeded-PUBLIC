@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class JPSpinoModel extends AnimatedGeoModel<JPSpinoEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(JPSpinoEntity entity) {
+    public ResourceLocation getAnimationResource(JPSpinoEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/jpspino.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(JPSpinoEntity entity) {
+    public ResourceLocation getModelResource(JPSpinoEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/jpspino.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(JPSpinoEntity entity)    {
+    public ResourceLocation getTextureResource(JPSpinoEntity entity)    {
         return JPSpinoRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

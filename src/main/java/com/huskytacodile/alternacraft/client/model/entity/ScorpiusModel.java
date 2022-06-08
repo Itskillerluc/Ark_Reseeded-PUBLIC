@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class ScorpiusModel extends AnimatedGeoModel<ScorpiusEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(ScorpiusEntity entity) {
+    public ResourceLocation getAnimationResource(ScorpiusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/scorpius.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(ScorpiusEntity entity) {
+    public ResourceLocation getModelResource(ScorpiusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/scorpius.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(ScorpiusEntity entity)    {
+    public ResourceLocation getTextureResource(ScorpiusEntity entity)    {
         return ScorpiusRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

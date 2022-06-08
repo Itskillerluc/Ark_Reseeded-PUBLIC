@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class MosasaurusModel extends AnimatedGeoModel<MosasaurusEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(MosasaurusEntity entity) {
+    public ResourceLocation getAnimationResource(MosasaurusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/mosasaurus.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(MosasaurusEntity entity) {
+    public ResourceLocation getModelResource(MosasaurusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/mosasaurus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MosasaurusEntity entity)    {
+    public ResourceLocation getTextureResource(MosasaurusEntity entity)    {
         return MosasaurusRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class CarchaModel extends AnimatedGeoModel<CarchaEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(CarchaEntity entity) {
+    public ResourceLocation getAnimationResource(CarchaEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/carcha.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(CarchaEntity entity) {
+    public ResourceLocation getModelResource(CarchaEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/carcharodontosaurus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(CarchaEntity entity)    {
+    public ResourceLocation getTextureResource(CarchaEntity entity)    {
         return CarchaRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

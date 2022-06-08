@@ -8,17 +8,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class AlioramusModel extends AnimatedGeoModel<AlioramusEntity> {
     @Override
-    public ResourceLocation getAnimationFileLocation(AlioramusEntity entity) {
+    public ResourceLocation getAnimationResource(AlioramusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "animations/alioramus.animation.json");
     }
 
     @Override
-    public ResourceLocation getModelLocation(AlioramusEntity entity) {
+    public ResourceLocation getModelResource(AlioramusEntity entity) {
         return new ResourceLocation(Alternacraft.MOD_ID, "geo/alioramus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(AlioramusEntity entity)    {
+    public ResourceLocation getTextureResource(AlioramusEntity entity)    {
         return AlioramusRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }
