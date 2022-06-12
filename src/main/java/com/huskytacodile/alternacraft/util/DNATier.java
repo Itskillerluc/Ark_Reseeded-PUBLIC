@@ -2,10 +2,12 @@ package com.huskytacodile.alternacraft.util;
 
 import com.huskytacodile.alternacraft.Alternacraft;
 import net.minecraft.ChatFormatting;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.Weight;
 import net.minecraft.util.random.WeightedEntry;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.levelgen.PositionalRandomFactory;
 
 import java.util.Random;
 
@@ -25,7 +27,57 @@ public enum DNATier implements WeightedEntry {
     }
 
     public static DNATier getRandomTierByWeight() {
-        DNATier tier = weightedRandomList.getRandom(new Random()).orElse(COMMON);
+        DNATier tier = weightedRandomList.getRandom(new RandomSource() {
+            @Override
+            public RandomSource fork() {
+                return null;
+            }
+
+            @Override
+            public PositionalRandomFactory forkPositional() {
+                return null;
+            }
+
+            @Override
+            public void setSeed(long p_216342_) {
+
+            }
+
+            @Override
+            public int nextInt() {
+                return 0;
+            }
+
+            @Override
+            public int nextInt(int p_216331_) {
+                return 0;
+            }
+
+            @Override
+            public long nextLong() {
+                return 0;
+            }
+
+            @Override
+            public boolean nextBoolean() {
+                return false;
+            }
+
+            @Override
+            public float nextFloat() {
+                return 0;
+            }
+
+            @Override
+            public double nextDouble() {
+                return 0;
+            }
+
+            @Override
+            public double nextGaussian() {
+                return 0;
+            }
+        }).orElse(COMMON);
         Alternacraft.LOGGER.debug("Chose " + tier);
         return tier;
     }

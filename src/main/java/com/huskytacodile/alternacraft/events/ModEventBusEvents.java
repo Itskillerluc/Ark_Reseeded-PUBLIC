@@ -14,14 +14,18 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.Compsognath
 import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.recipe.FossilGrinderRecipe;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
+
+import javax.annotation.Nonnull;
 
 @Mod.EventBusSubscriber(modid = Alternacraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
@@ -53,7 +57,17 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.MALUSAURUS.get(), MalusaurusEntity.attributes().build());
         event.put(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoEntity.attributes().build());
     }
+    @SubscribeEvent
+    public static void registerModifierSerializers(@Nonnull final RegisterEvent event) {
+        event.register(ForgeRegistries.Keys.LOOT_MODIFIER_SERIALIZERS, helper -> {
 
+        });
+
+        event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
+            helper.register(new ResourceLocation(Alternacraft.MOD_ID, FossilGrinderRecipe.Type.ID),
+                    FossilGrinderRecipe.Type.INSTANCE);
+        });
+    }
     @SubscribeEvent
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         ModItems.onRegisterItems(event.getRegistry());
@@ -62,10 +76,5 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void onRegisterEntities(RegistryEvent.Register<EntityType<?>> event) {
         SpawnEggItem.eggs();
-    }
-
-    @SubscribeEvent
-    public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
-        Registry.register(Registry.RECIPE_TYPE, FossilGrinderRecipe.Type.ID, FossilGrinderRecipe.Type.INSTANCE);
     }
 }

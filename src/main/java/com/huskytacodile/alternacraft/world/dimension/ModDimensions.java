@@ -12,7 +12,7 @@ public class ModDimensions {
     public static final ResourceKey<Level> ALTERNADIM_KEY = ResourceKey.create(Registry.DIMENSION_REGISTRY,
             new ResourceLocation(Alternacraft.MOD_ID, "alternadim"));
     public static final ResourceKey<DimensionType> ALTERNADIM_TYPE =
-            ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, ALTERNADIM_KEY.getRegistryName());
+            ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, new ResourceLocation(Alternacraft.MOD_ID, "alternadim"));
 
     public static void register() {
         System.out.println("Registering ModDimensions for " + Alternacraft.MOD_ID);

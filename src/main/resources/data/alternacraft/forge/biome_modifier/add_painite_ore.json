@@ -1,0 +1,5 @@
+{
+  "type": "alternacraft:ores",
+  "biomes": "#minecraft:is_overworld",
+  "feature": "alternacraft:painite_ore_placed"
+}
