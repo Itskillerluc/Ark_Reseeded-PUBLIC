@@ -11,10 +11,7 @@ import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.*;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -197,22 +194,14 @@ public class ModItems {
             () -> new DNASyringeItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES)));
 
     /* DNA SYRINGES */
-    public static void onRegisterItems(IForgeRegistry<Item> registry) {
+    public static void onRegisterItems(RegisterEvent.RegisterHelper<Item> helper) {
         var resources = Dino.values();
 
         Arrays.stream(resources).filter(d -> d != Dino.EMPTY).forEach(dino -> {
-            Item syringeItem = null;
+            Item syringeItem = new DNASyringeItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES));
+            dino.setSyringeItem(syringeItem);
 
-            if (syringeItem == null) {
-                syringeItem = new DNASyringeItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES));
-            }
-
-            if(syringeItem.getRegistryName() == null) {
-                syringeItem.setRegistryName(new ResourceLocation(Alternacraft.MOD_ID,"dna_syringe_" + dino.getName()));
-                dino.setSyringeItem(syringeItem);
-            }
-
-            registry.register(syringeItem);
+            helper.register(new ResourceLocation(Alternacraft.MOD_ID,"dna_syringe_" + dino.getName()), syringeItem);
         });
     }
 

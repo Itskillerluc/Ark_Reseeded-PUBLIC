@@ -57,6 +57,7 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.MALUSAURUS.get(), MalusaurusEntity.attributes().build());
         event.put(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoEntity.attributes().build());
     }
+
     @SubscribeEvent
     public static void registerModifierSerializers(@Nonnull final RegisterEvent event) {
         event.register(ForgeRegistries.Keys.LOOT_MODIFIER_SERIALIZERS, helper -> {
@@ -67,14 +68,11 @@ public class ModEventBusEvents {
             helper.register(new ResourceLocation(Alternacraft.MOD_ID, FossilGrinderRecipe.Type.ID),
                     FossilGrinderRecipe.Type.INSTANCE);
         });
-    }
-    @SubscribeEvent
-    public static void onRegisterItems(RegistryEvent.Register<Item> event) {
-        ModItems.onRegisterItems(event.getRegistry());
-    }
 
-    @SubscribeEvent
-    public static void onRegisterEntities(RegistryEvent.Register<EntityType<?>> event) {
-        SpawnEggItem.eggs();
+        event.register(ForgeRegistries.Keys.ITEMS, ModItems::onRegisterItems);
+
+        event.register(ForgeRegistries.Keys.ENTITY_TYPES, helper -> {
+            SpawnEggItem.eggs();
+        });
     }
 }
