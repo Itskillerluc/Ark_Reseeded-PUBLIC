@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -148,8 +149,7 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
         Optional<FossilGrinderRecipe> match = level.getRecipeManager()
                 .getRecipeFor(FossilGrinderRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
+        return match.isPresent() && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
     }
 
     private static void craftItem(FossilGrinderBlockEntity entity) {
@@ -168,18 +168,21 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
 
             DNATier tierToCraft = DNATier.getRandomTierByWeight();
 
-            ItemStack toPlace = new ItemStack(Dino.getRandomSyringeByTier(tierToCraft),
-                    entity.itemHandler.getStackInSlot(getNextFreeOutputSlot(inventory)).getCount() + 1);
-            entity.itemHandler.setStackInSlot(getNextFreeOutputSlot(inventory), toPlace);
+            Item toPlace = Dino.getRandomSyringeByTier(tierToCraft);
+            int indexToPlace = getNextFreeOutputSlot(inventory, toPlace);
+            int itemCount = entity.itemHandler.getStackInSlot(indexToPlace).getCount();
+
+            entity.itemHandler.setStackInSlot(indexToPlace, new ItemStack(toPlace,itemCount + 1));
 
             entity.resetProgress();
         }
     }
 
-    private static int getNextFreeOutputSlot(SimpleContainer inventory) {
+    private static int getNextFreeOutputSlot(SimpleContainer inventory, Item item) {
         int toReturn = -1;
         for(int i = 5; i >= 2; i--) {
-            toReturn = inventory.getItem(i).isEmpty() || (inventory.getItem(i).getMaxStackSize() < inventory.getItem(i).getCount() + 1)
+            toReturn = inventory.getItem(i).isEmpty() || 
+                    (inventory.getItem(i).getMaxStackSize() < (inventory.getItem(i).getCount() + 1) && inventory.getItem(i).getItem() == item)
                     ? i : toReturn;
         }
 
@@ -191,22 +194,8 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
-        int nextFreeSlot = getNextFreeOutputSlot(inventory);
+        int nextFreeSlot = getNextFreeOutputSlot(inventory, output.getItem());
 
-        if(nextFreeSlot == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        int nextFreeSlot = getNextFreeOutputSlot(inventory);
-
-        if(nextFreeSlot == -1) {
-            return false;
-        }
-
-        return inventory.getItem(nextFreeSlot).getMaxStackSize() > inventory.getItem(nextFreeSlot).getCount();
+        return nextFreeSlot != -1;
     }
 }

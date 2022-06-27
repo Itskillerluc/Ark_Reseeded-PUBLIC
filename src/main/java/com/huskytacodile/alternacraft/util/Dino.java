@@ -89,7 +89,8 @@ public enum Dino {
 
     public static Item getRandomSyringeByTier(DNATier tier) {
         Random random = new Random();
-        var validValues = Arrays.stream(values()).filter(d -> d.getTier() == tier).toList();
+        var validValues = Arrays.stream(values())
+                .filter(d -> d.getTier() == tier && d != Dino.EMPTY).toList();
 
         return validValues.get(random.nextInt(validValues.size())).syringeItem;
     }

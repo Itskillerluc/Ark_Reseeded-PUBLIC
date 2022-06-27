@@ -14,17 +14,18 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = Alternacraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventClientBusEvents {
-
-    private void clientSetup(final FMLClientSetupEvent event)
-    {
+    @SubscribeEvent
+    public static void clientSetup(final FMLClientSetupEvent event) {
         MenuScreens.register(ModMenuTypes.FOSSIL_GRINDER.get(), FossilGrinderScreen::new);
         MenuScreens.register(ModMenuTypes.DNA_INSERTION_TABLE.get(), DNAInsertionTableScreen::new);
         ModItemProperties.makeBow(ModItems.PAINITE_BOW.get());
+
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.DNA_SEQUENCER.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ALTERNA_RADIATOR.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.DNA_COMBINATOR.get(), RenderType.cutout());
@@ -58,6 +59,5 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.BETA.get(), BetaRenderer::new);
         EntityRenderers.register(ModEntityTypes.MALUSAURUS.get(), MalusaurusRenderer::new);
         EntityRenderers.register(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoRenderer::new);
-
     }
 }

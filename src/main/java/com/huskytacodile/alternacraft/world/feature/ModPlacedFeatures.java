@@ -31,6 +31,7 @@ public class ModPlacedFeatures {
             () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>)(Holder<? extends ConfiguredFeature<?,?>>)
                     ModConfiguredFeature.FOSSIL_ORE, ModOrePlacement.commonOrePlacement(7, // VeinsPerChunk
                     HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
+
     public static void register(IEventBus eventBus) {
         PLACED_FEATURES.register(eventBus);
     }

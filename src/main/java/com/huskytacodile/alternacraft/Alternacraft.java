@@ -14,6 +14,7 @@ import com.huskytacodile.alternacraft.screen.ModMenuTypes;
 import com.huskytacodile.alternacraft.util.ModItemProperties;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 import com.huskytacodile.alternacraft.world.dimension.ModDimensions;
+import com.huskytacodile.alternacraft.world.feature.ModPlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -40,16 +41,23 @@ public class Alternacraft {
 
     public Alternacraft() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModEntityTypes.register(eventBus);
+
         ModSoundEvents.register(eventBus);
         ModEnchantments.register(eventBus);
+
         ModMenuTypes.register(eventBus);
         ModRecipes.register(eventBus);
+
         ModBlockEntities.register(eventBus);
-        ModPOIs.register(eventBus);
         ModDimensions.register();
+
+        ModPOIs.register(eventBus);
+        ModPlacedFeatures.register(eventBus);
+
         eventBus.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
