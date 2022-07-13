@@ -1,5 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos;
 
+import java.util.function.Predicate;
+
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -10,15 +12,12 @@ import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
-
-import java.util.function.Predicate;
 
 public abstract class CarnivoreEntity extends AlternaDinoEntity {
     protected static final EntityDataAccessor<Boolean> ATTACKING =
@@ -33,7 +32,8 @@ public abstract class CarnivoreEntity extends AlternaDinoEntity {
                 || e.getType() == EntityType.COW || e.getType() == EntityType.CHICKEN || e.getType() == EntityType.PIG);
     }
 
-    public boolean isFood(ItemStack stack) {
+    @SuppressWarnings("deprecation")
+	public boolean isFood(ItemStack stack) {
         Item item = stack.getItem();
         return item.isEdible() && item.getFoodProperties().isMeat();
     }
@@ -63,7 +63,8 @@ public abstract class CarnivoreEntity extends AlternaDinoEntity {
         return PlayState.STOP;
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void registerControllers(AnimationData data) {
         super.registerControllers(data);
         data.addAnimationController(new AnimationController

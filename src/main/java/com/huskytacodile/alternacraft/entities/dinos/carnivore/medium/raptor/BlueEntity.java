@@ -1,53 +1,35 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor;
 
+import org.jetbrains.annotations.Nullable;
+
+import com.huskytacodile.alternacraft.entities.ai.CathemeralSleepGoal;
+import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
+import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.RaptorEntity;
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
-import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Pig;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.DismountHelper;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
-import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-
-import java.util.function.Predicate;
 
 public class BlueEntity extends RaptorEntity {
     public BlueEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
@@ -71,18 +53,29 @@ public class BlueEntity extends RaptorEntity {
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new CathemeralSleepGoal(this));
+        this.goalSelector.addGoal(4, new DinoSittingGoal(this));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(Items.NETHERITE_SWORD), false));
         this.goalSelector.addGoal(3, new RandomSwimmingGoal(this,0,1));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false,
                 getPreySelection(this)));
     }
+    
+    public void aiStep() {
+    	super.aiStep();
+    	if (this.isAsleep() || this.isNaturallySitting()) {
+    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
+    	} else {
+    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+    	}
+    }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return ModSoundEvents.BLUE_AMBIENT.get();
+        return this.isAsleep() ? null : ModSoundEvents.BLUE_AMBIENT.get();
     }
 
     @Override

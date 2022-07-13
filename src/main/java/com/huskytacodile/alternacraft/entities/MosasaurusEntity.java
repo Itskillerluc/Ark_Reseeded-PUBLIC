@@ -1,8 +1,14 @@
 
 package com.huskytacodile.alternacraft.entities;
 
+import java.util.function.Predicate;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.huskytacodile.alternacraft.config.AlternacraftConfig;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
+
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -15,18 +21,24 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -35,7 +47,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -43,8 +54,6 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-
-import java.util.function.Predicate;
 
 
 public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
@@ -78,12 +87,15 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
                 entitytype == ModEntityTypes.SCORPIUS.get()||
                 entitytype == ModEntityTypes.ALTERNASAURUS.get();
     };
+    private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(MosasaurusEntity.class, EntityDataSerializers.BOOLEAN);
+    
     protected MosasaurusEntity(EntityType<? extends WaterAnimal> p_i48575_1_, Level p_i48575_2_) {
         super(p_i48575_1_, p_i48575_2_);
         this.moveControl = new MosasaurusEntity.FishMoveControl(this);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
-    public boolean isFood(ItemStack p_70877_1_) {
+    @SuppressWarnings("deprecation")
+	public boolean isFood(ItemStack p_70877_1_) {
         Item item = p_70877_1_.getItem();
         return item.isEdible() && item.getFoodProperties().isMeat();
     }
@@ -91,6 +103,7 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+        this.entityData.define(ASLEEP, false);
     }
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
@@ -105,13 +118,24 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
+        tag.putBoolean("IsAsleep", this.isAsleep());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag p_21815_) {
         super.readAdditionalSaveData(p_21815_);
         this.entityData.set(DATA_ID_TYPE_VARIANT, p_21815_.getInt("Variant"));
+        this.entityData.set(ASLEEP, p_21815_.getBoolean("IsAsleep"));
     }
+    
+    public boolean isAsleep() {
+    	return this.entityData.get(ASLEEP);
+    }
+    
+    private void setAsleep(boolean isAsleep) {
+    	this.entityData.set(ASLEEP, isAsleep);
+    }
+    
     public GenderVariant getVariant() {
         return GenderVariant.byId(this.getTypeVariant() & 255);
     }
@@ -123,7 +147,7 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return ModSoundEvents.MOSA_AMBIENT.get();
+        return this.isAsleep() ? null : ModSoundEvents.MOSA_AMBIENT.get();
     }
 
 
@@ -234,7 +258,8 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
             this.fish = p_27501_;
         }
 
-        public void tick() {
+        @SuppressWarnings("deprecation")
+		public void tick() {
             if (this.fish.isEyeInFluid(FluidTags.WATER)) {
                 this.fish.setDeltaMovement(this.fish.getDeltaMovement().add(0.0D, 0.005D, 0.0D));
             }
@@ -266,8 +291,82 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
         super.registerGoals();
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, false));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new MosasaurusEntity.SleepingRandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new MosasaurusEntity.DiurnalSleepGoal(this));
         this.goalSelector.addGoal(5,new RandomSwimmingGoal(this,0,2));
         this.goalSelector.addGoal(3,new FishSwimGoal(this));
+    }
+    
+    public void aiStep() {
+    	super.aiStep();
+    	if (this.isAsleep()) {
+    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+    	} else {
+    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.65D);
+    	}
+    }
+    
+    public class DiurnalSleepGoal extends Goal {
+    	public MosasaurusEntity entity;
+    	
+    	public DiurnalSleepGoal(MosasaurusEntity sleeper) {
+    		super();
+    		this.entity = sleeper;
+    	}
+    	
+    	@Override
+    	public boolean canUse() {
+    		Level world = entity.level;
+    		if (AlternacraftConfig.sleepingAi = true && world.getDayTime() >= 12000 && world.getDayTime() <= 24000 && entity.getLastHurtByMob() == null && entity.getTarget() == null && entity.isInWater() && !entity.isInPowderSnow) {
+    			return true;
+    		} else return false;
+    	}
+    	
+    	@Override
+    	public boolean canContinueToUse() {
+    		Level world = entity.level;
+    		if (world.getDayTime() >= 0 && world.getDayTime() < 12000 || world.getDayTime() > 23999 || entity.getLastHurtByMob() != null || entity.getTarget() != null || !entity.isInWater() || entity.isInPowderSnow) {
+    			stop();
+    			return false;
+    		} else return true;
+    	}
+    	
+    	@Override
+    	public void start() {
+    		entity.setAsleep(true);
+    		entity.getNavigation().stop();
+    	}
+    	
+    	public void tick() {
+    		super.tick();
+    		Level world = entity.level;
+    		if (world.getDayTime() >= 0 && world.getDayTime() <= 12000 || world.getDayTime() > 23999 || entity.getLastHurtByMob() != null || entity.getTarget() != null || !entity.isInWater() || entity.isInPowderSnow) {
+    			stop();
+    		}
+    	}
+    	
+    	@Override
+    	public void stop() {
+    		entity.setAsleep(false);
+    	}
+    	
+    }
+    
+    public class SleepingRandomLookAroundGoal extends RandomLookAroundGoal {
+    	MosasaurusEntity entity;
+    	
+    	public SleepingRandomLookAroundGoal(MosasaurusEntity entity) {
+    		super(entity);
+    		this.entity = entity;
+    	}
+    	
+    	public boolean canUse() {
+    		return super.canUse() && !entity.isAsleep();
+    	}
+    	
+    	public boolean canContinueToUse() {
+    		return super.canContinueToUse() && !entity.isAsleep();
+    	}
+    	
     }
 }

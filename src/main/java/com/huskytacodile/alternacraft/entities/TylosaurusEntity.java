@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities;
 
+import com.huskytacodile.alternacraft.config.AlternacraftConfig;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 import net.minecraft.Util;
@@ -18,6 +19,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
@@ -47,6 +49,7 @@ import java.util.function.Predicate;
 public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(TylosaurusEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(TylosaurusEntity.class, EntityDataSerializers.BOOLEAN);
     private AnimationFactory factory = new AnimationFactory(this);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_30437_) -> {
         EntityType<?> entitytype = p_30437_.getType();
@@ -80,7 +83,8 @@ public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
         this.moveControl = new TylosaurusEntity.FishMoveControl(this);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
-    public boolean isFood(ItemStack p_70877_1_) {
+    @SuppressWarnings("deprecation")
+	public boolean isFood(ItemStack p_70877_1_) {
         Item item = p_70877_1_.getItem();
         return item.isEdible() && item.getFoodProperties().isMeat();
     }
@@ -97,17 +101,20 @@ public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
     }
     private void setVariant(GenderVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+        this.entityData.set(ASLEEP, false);
     }
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
+        tag.putBoolean("IsAsleep", this.isAsleep());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag p_21815_) {
         super.readAdditionalSaveData(p_21815_);
         this.entityData.set(DATA_ID_TYPE_VARIANT, p_21815_.getInt("Variant"));
+        this.entityData.set(ASLEEP, p_21815_.getBoolean("IsAsleep"));
     }
     public GenderVariant getVariant() {
         return GenderVariant.byId(this.getTypeVariant() & 255);
@@ -116,11 +123,19 @@ public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
     private int getTypeVariant() {
         return this.entityData.get(DATA_ID_TYPE_VARIANT);
     }
+    
+    public boolean isAsleep() {
+    	return this.entityData.get(ASLEEP);
+    }
+    
+    private void setAsleep(boolean isAsleep) {
+    	this.entityData.set(ASLEEP, isAsleep);
+    }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return ModSoundEvents.TYLO_AMBIENT.get();
+        return this.isAsleep() ? null : ModSoundEvents.TYLO_AMBIENT.get();
     }
 
 
@@ -231,7 +246,8 @@ public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
             this.fish = p_27501_;
         }
 
-        public void tick() {
+        @SuppressWarnings("deprecation")
+		public void tick() {
             if (this.fish.isEyeInFluid(FluidTags.WATER)) {
                 this.fish.setDeltaMovement(this.fish.getDeltaMovement().add(0.0D, 0.005D, 0.0D));
             }
@@ -263,8 +279,73 @@ public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
         super.registerGoals();
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, false));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new TylosaurusEntity.SleepingRandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new TylosaurusEntity.NocturnalSleepGoal(this));
         this.goalSelector.addGoal(5,new RandomSwimmingGoal(this,0,2));
         this.goalSelector.addGoal(3,new FishSwimGoal(this));
+    }
+    
+    public class NocturnalSleepGoal extends Goal {
+    	public TylosaurusEntity entity;
+    	
+    	public NocturnalSleepGoal(TylosaurusEntity sleeper) {
+    		super();
+    		this.entity = sleeper;
+    	}
+    	
+    	@Override
+    	public boolean canUse() {
+    		Level world = entity.level;
+    		if (AlternacraftConfig.sleepingAi = true && world.getDayTime() >= 0 && world.getDayTime() <= 12000 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInPowderSnow && entity.isInWater()) {
+    			return true;
+    		} else return false;
+    	}
+    	
+    	@Override
+    	public boolean canContinueToUse() {
+    		Level world = entity.level;
+    		if (world.getDayTime() >= 12000 && world.getDayTime() < 24000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInPowderSnow || !entity.isInWater()) {
+    			stop();
+    			return false;
+    		} else return true;
+    	}
+    	
+    	@Override
+    	public void start() {
+    		entity.setAsleep(true);
+    		entity.getNavigation().stop();
+    	}
+    	
+    	public void tick() {
+    		super.tick();
+    		Level world = entity.level;
+    		if (world.getDayTime() >= 12000 && world.getDayTime() < 24000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInPowderSnow || !entity.isInWater()) {
+    			stop();
+    		}
+    	}
+    	
+    	@Override
+    	public void stop() {
+    		entity.setAsleep(false);
+    	}
+    }
+    
+    public class SleepingRandomLookAroundGoal extends RandomLookAroundGoal {
+    	
+    	TylosaurusEntity entity;
+    	
+    	public SleepingRandomLookAroundGoal(TylosaurusEntity entity) {
+    		super(entity);
+    		this.entity = entity;
+    	}
+    	
+    	public boolean canUse() {
+    		return super.canUse() && !entity.isAsleep();
+    	}
+    	
+    	public boolean canContinueToUse() {
+    		return super.canContinueToUse() && !entity.isAsleep();
+    	}
+
     }
 }

@@ -1,8 +1,14 @@
 package com.huskytacodile.alternacraft.entities;
 
+import java.util.function.Predicate;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.huskytacodile.alternacraft.config.AlternacraftConfig;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
+
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,10 +23,28 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ItemBasedSteering;
+import net.minecraft.world.entity.ItemSteerable;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -37,7 +61,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -45,8 +68,6 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-
-import java.util.function.Predicate;
 
 
 public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, ItemSteerable {
@@ -78,15 +99,17 @@ public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, I
                 entitytype == ModEntityTypes.SCORPIUS.get()||
                 entitytype == ModEntityTypes.ACRO.get();
     };
+    private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(AlternasaurusEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> SITTING =
             SynchedEntityData.defineId(AlternasaurusEntity.class, EntityDataSerializers.BOOLEAN);
-
+    private static final EntityDataAccessor<Boolean> NATURAL_SITTING = SynchedEntityData.defineId(AlternasaurusEntity.class, EntityDataSerializers.BOOLEAN);
 
     protected AlternasaurusEntity(EntityType<? extends TamableAnimal> p_i48575_1_, Level p_i48575_2_) {
         super(p_i48575_1_, p_i48575_2_);
         this.setTame(false);
     }
-    public boolean isFood(ItemStack p_70877_1_) {
+    @SuppressWarnings("deprecation")
+	public boolean isFood(ItemStack p_70877_1_) {
         Item item = p_70877_1_.getItem();
         return item.isEdible() && item.getFoodProperties().isMeat();
     }
@@ -103,12 +126,16 @@ public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, I
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
+        tag.putBoolean("IsAsleep", this.isAsleep());
+        tag.putBoolean("NaturallySitting", this.isNaturallySitting());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag p_21815_) {
         super.readAdditionalSaveData(p_21815_);
         this.entityData.set(DATA_ID_TYPE_VARIANT, p_21815_.getInt("Variant"));
+        this.entityData.set(ASLEEP, p_21815_.getBoolean("IsAsleep"));
+        this.entityData.set(NATURAL_SITTING, p_21815_.getBoolean("NaturallySitting"));
     }
     public GenderVariant getVariant() {
         return GenderVariant.byId(this.getTypeVariant() & 255);
@@ -123,12 +150,30 @@ public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, I
         super.defineSynchedData();
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
         this.entityData.define(SITTING, false);
+        this.entityData.define(ASLEEP, false);
+        this.entityData.define(NATURAL_SITTING, false);
+    }
+    
+    public boolean isAsleep() {
+    	return this.entityData.get(ASLEEP);
+    }
+    
+    private void setAsleep(boolean isAsleep) {
+    	this.entityData.set(ASLEEP, isAsleep);
+    }
+    
+    public boolean isNaturallySitting() {
+    	return this.entityData.get(NATURAL_SITTING);
+    }
+    
+    private void setNaturallySitting(boolean isSitting) {
+    	this.entityData.set(NATURAL_SITTING, isSitting);
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return ModSoundEvents.ALTERNASAURUS_IDLE.get();
+        return this.isAsleep() ? null : ModSoundEvents.ALTERNASAURUS_IDLE.get();
     }
 
 
@@ -199,7 +244,8 @@ public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, I
                 .add(Attributes.FOLLOW_RANGE, 45.0D)
                 .add(Attributes.ATTACK_DAMAGE, 35.0D);
     }
-    public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
+    @SuppressWarnings("deprecation")
+	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         Item item = itemstack.getItem();
         if (this.level.isClientSide) {
@@ -320,6 +366,15 @@ public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, I
         super.travel(p_230267_1_);
 
     }
+    
+    public void aiStep() {
+    	super.aiStep();
+    	if (this.isAsleep() || this.isNaturallySitting()) {
+    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
+    	} else {
+    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+    	}
+    }
 
     @Override
     protected void registerGoals() {
@@ -329,7 +384,9 @@ public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, I
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new AlternasaurusEntity.SleepingRandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new AlternasaurusEntity.CathemeralSleepGoal(this));
+        this.goalSelector.addGoal(4, new AlternasaurusEntity.DinoSittingGoal(this));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(Items.NETHERITE_SWORD), false));
         this.goalSelector.addGoal(3, new RandomSwimmingGoal(this,0,1));
         this.goalSelector.addGoal(1, new FloatGoal(this));
@@ -340,4 +397,111 @@ public class AlternasaurusEntity extends TamableAnimal implements IAnimatable, I
     public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
         return null;
     }
+    
+    public class CathemeralSleepGoal extends Goal {
+    	public AlternasaurusEntity entity;
+    	private int sleepTimer;
+    	
+    	public CathemeralSleepGoal(AlternasaurusEntity sleeper) {
+    		super();
+    		this.entity = sleeper;
+    	}
+    	
+    	@Override
+    	public boolean canUse() {
+    		if (AlternacraftConfig.sleepingAi = true && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isTame() && !entity.isInPowderSnow && !entity.isTame()) {
+    			return true;
+    		} else return false;
+    	}
+    	
+    	@Override
+    	public boolean canContinueToUse() {
+    		if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.isInWater() || entity.getTarget() != null || entity.isInPowderSnow || entity.isTame()) {
+    			stop();
+    			return false;
+    		} else return true;
+    	}
+    	
+    	public void tick() {
+    		super.tick();
+    		sleepTimer++;
+    		if (sleepTimer >= 6000 || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.isInWater() || entity.isInPowderSnow || entity.isTame()) {
+    			stop();
+    		}
+    	}
+    	
+    	@Override
+    	public void start() {
+    		sleepTimer = 0;
+    		entity.setAsleep(true);
+    		entity.setNaturallySitting(false);
+    		entity.getNavigation().stop();
+    	}
+    	
+    	@Override
+    	public void stop() {
+    		entity.setAsleep(false);
+    	}
+    }
+    
+    public class SleepingRandomLookAroundGoal extends RandomLookAroundGoal {
+    	AlternasaurusEntity entity;
+    	
+    	public SleepingRandomLookAroundGoal(AlternasaurusEntity entity) {
+    		super(entity);
+    		this.entity = entity;
+    	}
+    	
+    	public boolean canUse() {
+    		return super.canUse() && !entity.isAsleep();
+    	}
+    	
+    	public boolean canContinueToUse() {
+    		return super.canContinueToUse() && !entity.isAsleep();
+    	}
+    }
+    
+    public class DinoSittingGoal extends Goal {
+		AlternasaurusEntity entity;
+		
+		public DinoSittingGoal(AlternasaurusEntity sitter) {
+			super();
+			this.entity = sitter;
+		}
+		
+		@Override
+		public boolean canUse() {
+			if (!entity.isAsleep() && !entity.isInWater() && !entity.isInPowderSnow && !entity.isTame() && entity.getLastHurtByMob() == null && entity.getTarget() == null && entity.getRandom().nextInt(750) == 0) {
+				return true;
+			} else return false;
+		}
+		
+		@Override
+		public boolean canContinueToUse() {
+			if (entity.isAsleep() || entity.isInWater() || entity.isInPowderSnow || entity.isTame() || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.getRandom().nextInt(750) == 0) {
+				stop();
+				return false;
+			} else return true;
+		}
+		
+		public void tick() {
+			super.tick();
+			if (entity.isAsleep() || entity.isInWater() || entity.isInPowderSnow || entity.isTame() || entity.getLastHurtByMob() != null || entity.getTarget() != null || entity.getRandom().nextInt(750) == 0) {
+				stop();
+			}
+		}
+		
+		@Override
+		public void start() {
+			entity.setNaturallySitting(true);
+			entity.getNavigation().stop();
+		}
+		
+		@Override
+		public void stop() {
+			entity.setNaturallySitting(false);
+		}
+			
+	}
+    
 }

@@ -37,6 +37,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimatable {
+	
+	private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> NATURAL_SITTING = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.BOOLEAN);
+	
     protected AnimationFactory factory = new AnimationFactory(this);
 
     public AlternaDinoEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
@@ -69,7 +73,8 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         return ModItems.TOTEM_OF_HUGO.get();
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         Item item = itemstack.getItem();
@@ -186,12 +191,32 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
+        tag.putBoolean("IsAsleep", this.isAsleep());
+        tag.putBoolean("NaturallySitting", this.isNaturallySitting());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+        this.entityData.set(ASLEEP, tag.getBoolean("IsAsleep"));
+        this.entityData.set(NATURAL_SITTING, tag.getBoolean("NaturallySitting"));
+    }
+    
+    public boolean isAsleep() {
+    	return this.entityData.get(ASLEEP);
+    }
+    
+    public void setAsleep(boolean isAsleep) {
+    	this.entityData.set(ASLEEP, isAsleep);
+    }
+    
+    public boolean isNaturallySitting() {
+    	return this.entityData.get(NATURAL_SITTING);
+    }
+    
+    public void setNaturallySitting(boolean isSitting) {
+    	this.entityData.set(NATURAL_SITTING, isSitting);
     }
 
     public IVariant getVariant() {
@@ -207,6 +232,8 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         super.defineSynchedData();
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
         this.entityData.define(SITTING, false);
+    	this.entityData.define(ASLEEP, false);
+    	this.entityData.define(NATURAL_SITTING, false);
     }
 
     public abstract String getAnimationName();
@@ -234,7 +261,8 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         return PlayState.CONTINUE;
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController
                 (this, "controller", 0, this::predicate));
