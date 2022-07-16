@@ -22,7 +22,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModEntityTypes {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES
-            = DeferredRegister.create(ForgeRegistries.ENTITIES, Alternacraft.MOD_ID);
+            = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Alternacraft.MOD_ID);
 
     public static final RegistryObject<EntityType<SpinoEntity>> SPINO =
             ENTITY_TYPES.register("spino",

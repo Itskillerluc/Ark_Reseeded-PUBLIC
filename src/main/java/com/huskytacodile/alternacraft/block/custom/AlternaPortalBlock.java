@@ -30,11 +30,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 import javax.annotation.Nullable;
 import java.util.Random;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class AlternaPortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -97,8 +99,8 @@ public class AlternaPortalBlock extends Block {
         if (ElementBlock$size.isValid() && ElementBlock$size.portalBlockCount == 0) {
             return ElementBlock$size;
         } else {
-            AlternaPortalBlock.Size KaupenPortalBlock$size1 = new Size(worldIn, pos, Direction.Axis.Z);
-            return KaupenPortalBlock$size1.isValid() && KaupenPortalBlock$size1.portalBlockCount == 0 ? KaupenPortalBlock$size1 : null;
+            AlternaPortalBlock.Size AlternaPortalBlock$size1 = new Size(worldIn, pos, Direction.Axis.Z);
+            return AlternaPortalBlock$size1.isValid() && AlternaPortalBlock$size1.portalBlockCount == 0 ? AlternaPortalBlock$size1 : null;
         }
     }
 

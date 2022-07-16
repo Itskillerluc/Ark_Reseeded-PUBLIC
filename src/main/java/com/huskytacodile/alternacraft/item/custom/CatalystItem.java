@@ -14,6 +14,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class CatalystItem extends Item {
     public CatalystItem() {
         super(new Properties()

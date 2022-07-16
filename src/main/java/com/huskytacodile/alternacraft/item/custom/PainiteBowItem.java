@@ -17,6 +17,8 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Predicate;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class PainiteBowItem extends BowItem implements Vanishable {
     public static final int MAX_DRAW_DURATION = 5;
     public static final int DEFAULT_RANGE = 15;

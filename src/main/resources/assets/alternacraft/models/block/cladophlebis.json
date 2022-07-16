@@ -3,6 +3,7 @@
 		"0": "alternacraft:block/cladophlebis",
 		"particle": "alternacraft:block/cladophlebis"
 	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"from": [7.86159, 1.13972, 4],

@@ -2,5 +2,6 @@
   "parent": "block/cube_all",
   "textures": {
     "all": "alternacraft:block/alterna_radiator"
-  }
+  },
+  "render_type": "cutout"
 }

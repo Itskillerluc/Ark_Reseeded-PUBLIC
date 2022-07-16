@@ -4,6 +4,7 @@
 		"0": "alternacraft:block/dna_extractor",
 		"particle": "alternacraft:block/dna_extractor"
 	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"from": [0, 0, 4],

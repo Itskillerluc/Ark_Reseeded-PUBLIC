@@ -4,6 +4,7 @@
 		"0": "alternacraft:block/dna_combinator",
 		"particle": "alternacraft:block/dna_combinator"
 	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"from": [2.495, -4.38981, 5.44188],

@@ -5,6 +5,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class MalachiteItem extends Item {
 
     public MalachiteItem(Properties p_41383_) {

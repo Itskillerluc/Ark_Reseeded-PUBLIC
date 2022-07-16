@@ -26,14 +26,6 @@ public class ModEventClientBusEvents {
         MenuScreens.register(ModMenuTypes.DNA_INSERTION_TABLE.get(), DNAInsertionTableScreen::new);
         ModItemProperties.makeBow(ModItems.PAINITE_BOW.get());
 
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DNA_SEQUENCER.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ALTERNA_RADIATOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DNA_COMBINATOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DNA_EXTRACTOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.CLADOPHLEBIS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.JW_BANNER.get(),RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ALTERNA_PORTAL.get(), RenderType.translucent());
-
         EntityRenderers.register(ModEntityTypes.JPSPINO.get(), JPSpinoRenderer::new);
         EntityRenderers.register(ModEntityTypes.INDOMINUS.get(), IndominusRenderer::new);
         EntityRenderers.register(ModEntityTypes.ACRO.get(), AcroRenderer::new);

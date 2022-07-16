@@ -56,6 +56,8 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
+
+
 public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(MosasaurusEntity.class, EntityDataSerializers.INT);

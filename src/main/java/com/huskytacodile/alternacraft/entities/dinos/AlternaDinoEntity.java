@@ -247,12 +247,16 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack", true));
             return PlayState.CONTINUE;
         }
-        if (this.isOrderedToSit() || this.getHealth() < 0.01 || this.isDeadOrDying()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".idle", true));
+        if (this.isSitting() || this.getHealth() < 0.01 || this.isDeadOrDying() || this.isNaturallySitting()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".sit", true));
             return PlayState.CONTINUE;
         }
         if (this.isSwimming() && !(animationSpeed > -0.10F && animationSpeed < 0.05F) && !this.isAggressive()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", true));
+            return PlayState.CONTINUE;
+        }
+        if (this.isAsleep() || this.getHealth() < 0.01 || this.isDeadOrDying()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".sleep", true));
             return PlayState.CONTINUE;
         }
 
