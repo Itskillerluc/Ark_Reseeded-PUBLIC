@@ -9,6 +9,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class AlternaRadiatorBlock extends Block {
     public AlternaRadiatorBlock(Properties p_49795_) {
         super(p_49795_);

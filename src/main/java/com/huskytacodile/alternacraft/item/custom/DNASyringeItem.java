@@ -13,6 +13,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class DNASyringeItem extends Item {
     public DNASyringeItem(Properties properties) {
         super(properties);

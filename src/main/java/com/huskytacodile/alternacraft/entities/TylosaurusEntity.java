@@ -46,6 +46,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import java.util.function.Predicate;
 
 
+
 public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(TylosaurusEntity.class, EntityDataSerializers.INT);

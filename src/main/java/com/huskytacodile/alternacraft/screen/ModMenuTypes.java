@@ -13,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModMenuTypes {
 
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.CONTAINERS, Alternacraft.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.MENU_TYPES, Alternacraft.MOD_ID);
 
 
     public static final RegistryObject<MenuType<FossilGrinderMenu>> FOSSIL_GRINDER =

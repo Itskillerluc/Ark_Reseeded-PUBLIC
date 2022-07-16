@@ -3,6 +3,7 @@
 	"textures": {
 		"4": "alternacraft:block/jw_banner"
 	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"from": [7, 0, 7],

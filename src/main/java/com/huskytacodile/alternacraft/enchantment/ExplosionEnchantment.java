@@ -7,6 +7,8 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
+
 public class ExplosionEnchantment extends Enchantment {
 
     protected ExplosionEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {

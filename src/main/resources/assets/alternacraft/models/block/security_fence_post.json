@@ -5,6 +5,7 @@
     "0": "alternacraft:block/security_fence",
     "particle": "alternacraft:block/security_fence"
   },
+  "render_type": "cutout",
   "elements": [
     {
       "from": [6, 0, 6],

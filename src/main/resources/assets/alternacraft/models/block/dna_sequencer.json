@@ -4,6 +4,7 @@
 		"0": "alternacraft:block/dna_sequencer",
 		"particle": "alternacraft:block/dna_sequencer"
 	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"from": [0.499, 7.04118, 0.9354],

@@ -25,10 +25,10 @@ public class DNAInsertionTableScreen extends AbstractContainerScreen<DNAInsertio
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight, 246, 167);
+        blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight, 248, 248);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 43, y + 48, 1, 213, menu.getScaledProgress(), 11);
+            blit(pPoseStack, x + 42, y + 42, 1, 213, menu.getScaledProgress(), 11);
         }
     }
 
