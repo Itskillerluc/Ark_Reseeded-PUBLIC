@@ -1,5 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid;
 
+import com.huskytacodile.alternacraft.entities.ModEntityTypes;
+import net.minecraft.world.entity.ai.goal.*;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ai.CrepuscularSleepGoal;
@@ -24,13 +26,6 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -64,6 +59,7 @@ public class IndoraptorEntity extends HybridEntity {
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal(this));
         this.goalSelector.addGoal(4, new DinoSittingGoal(this));
+        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new CrepuscularSleepGoal(this));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(Items.NETHERITE_SWORD), false));
         this.goalSelector.addGoal(3, new RandomSwimmingGoal(this,0,1));
@@ -71,7 +67,7 @@ public class IndoraptorEntity extends HybridEntity {
         this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false,
                 getPreySelection(this)));
     }
-    
+
     public void aiStep() {
     	super.aiStep();
     	if (this.isAsleep() || this.isNaturallySitting()) {
@@ -123,7 +119,7 @@ public class IndoraptorEntity extends HybridEntity {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return null;
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob p_146744_) {
+        return ModEntityTypes.INDORAPTOR.get().create(serverLevel);
     }
 }

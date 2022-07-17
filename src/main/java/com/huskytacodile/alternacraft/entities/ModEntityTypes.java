@@ -3,9 +3,11 @@ package com.huskytacodile.alternacraft.entities;
 import com.huskytacodile.alternacraft.Alternacraft;
 
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.*;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.AlternasaurusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndominusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.ScorpiusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.BlueEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
@@ -169,12 +171,6 @@ public class ModEntityTypes {
                     () -> EntityType.Builder.of(BlueEntity::new,
                                     MobCategory.CREATURE).sized(2f, 2f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "blue").toString()));
-
-    public static final RegistryObject<EntityType<BetaEntity>> BETA =
-            ENTITY_TYPES.register("beta",
-                    () -> EntityType.Builder.of(BetaEntity::new,
-                                    MobCategory.CREATURE).sized(1.2f, 1.2f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "beta").toString()));
 
 
     public static void register(IEventBus eventBus) {

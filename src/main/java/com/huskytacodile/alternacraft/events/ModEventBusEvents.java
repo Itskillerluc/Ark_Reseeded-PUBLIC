@@ -4,21 +4,19 @@ import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.entities.*;
 
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.*;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.AlternasaurusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndominusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.ScorpiusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.BlueEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.recipe.FossilGrinderRecipe;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -53,7 +51,6 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.MEGALO.get(), MegaloEntity.attributes().build());
         event.put(ModEntityTypes.GIGA.get(), GigaEntity.attributes().build());
         event.put(ModEntityTypes.BLUE.get(), BlueEntity.attributes().build());
-        event.put(ModEntityTypes.BETA.get(), BetaEntity.attributes().build());
         event.put(ModEntityTypes.MALUSAURUS.get(), MalusaurusEntity.attributes().build());
         event.put(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoEntity.attributes().build());
     }

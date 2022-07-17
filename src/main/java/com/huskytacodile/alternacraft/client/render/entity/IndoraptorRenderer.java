@@ -37,6 +37,13 @@ public class IndoraptorRenderer extends GeoEntityRenderer<IndoraptorEntity>
                                     @Nullable MultiBufferSource multiBufferSource, VertexConsumer vertexConsumer, int packedLightIn,
                                     ResourceLocation textureLocation)
     {
+        if(animatable.isBaby()) {
+            stack.scale(0.2F, 0.2F, 0.2F);
+            this.shadowRadius = 1.0F;
+        } else {
+            stack.scale(1.0F, 1.0F, 1.0F);
+            this.shadowRadius = 4.0F;
+        }
         return RenderType.entityTranslucent(getTextureLocation(animatable));
     }
     @Override

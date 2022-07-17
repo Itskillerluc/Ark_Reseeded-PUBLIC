@@ -18,7 +18,7 @@ public class ModBlockEntities {
                             ModBlocks.FOSSIL_GRINDER.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<DNAInsertionTableBlockEntity>> DNA_INSERTION_TABLE =
-            BLOCK_ENTITIES.register("dna_inseration_table", () ->
+            BLOCK_ENTITIES.register("dna_insertion_table", () ->
                     BlockEntityType.Builder.of(DNAInsertionTableBlockEntity::new,
                             ModBlocks.DNA_INSERTION_TABLE.get()).build(null));
 

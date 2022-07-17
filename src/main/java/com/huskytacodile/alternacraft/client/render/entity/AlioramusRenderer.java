@@ -1,9 +1,8 @@
 package com.huskytacodile.alternacraft.client.render.entity;
 
 import com.google.common.collect.Maps;
-import com.huskytacodile.alternacraft.client.model.entity.AcroModel;
 import com.huskytacodile.alternacraft.client.model.entity.AlioramusModel;
-import com.huskytacodile.alternacraft.entities.AlioramusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
