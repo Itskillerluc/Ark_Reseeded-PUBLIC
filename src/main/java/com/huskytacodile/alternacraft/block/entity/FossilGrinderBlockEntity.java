@@ -166,7 +166,7 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.extractItem(1,1, false);
 
-            DNATier tierToCraft = DNATier.getRandomTierByWeight();
+            DNATier tierToCraft = DNATier.getRandomTierByWeight(level.random);
 
             Item toPlace = Dino.getRandomSyringeByTier(tierToCraft);
             int indexToPlace = getNextFreeOutputSlot(inventory, toPlace);

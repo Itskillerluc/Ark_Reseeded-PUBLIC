@@ -26,58 +26,8 @@ public enum DNATier implements WeightedEntry {
         this.weight = weight;
     }
 
-    public static DNATier getRandomTierByWeight() {
-        DNATier tier = weightedRandomList.getRandom(new RandomSource() {
-            @Override
-            public RandomSource fork() {
-                return null;
-            }
-
-            @Override
-            public PositionalRandomFactory forkPositional() {
-                return null;
-            }
-
-            @Override
-            public void setSeed(long p_216342_) {
-
-            }
-
-            @Override
-            public int nextInt() {
-                return 0;
-            }
-
-            @Override
-            public int nextInt(int p_216331_) {
-                return 0;
-            }
-
-            @Override
-            public long nextLong() {
-                return 0;
-            }
-
-            @Override
-            public boolean nextBoolean() {
-                return false;
-            }
-
-            @Override
-            public float nextFloat() {
-                return 0;
-            }
-
-            @Override
-            public double nextDouble() {
-                return 0;
-            }
-
-            @Override
-            public double nextGaussian() {
-                return 0;
-            }
-        }).orElse(COMMON);
+    public static DNATier getRandomTierByWeight(RandomSource random) {
+        DNATier tier = weightedRandomList.getRandom(random).orElse(COMMON);
         Alternacraft.LOGGER.debug("Chose " + tier);
         return tier;
     }
