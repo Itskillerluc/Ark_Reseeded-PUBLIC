@@ -5,6 +5,7 @@ import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.item.custom.*;
 
 import com.huskytacodile.alternacraft.util.Dino;
+import com.huskytacodile.alternacraft.util.DinoEgg;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
@@ -189,15 +190,25 @@ public class ModItems {
     public static final RegistryObject<Item> EMPTY_SYRINGE = ITEMS.register("dna_syringe",
             () -> new DNASyringeItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES)));
 
+    public static final RegistryObject<Item> EMPTY_DINO_EGG = ITEMS.register("dino_egg",
+            () -> new DinoEggItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES)));
+
     /* DNA SYRINGES */
     public static void onRegisterItems(RegisterEvent.RegisterHelper<Item> helper) {
         var resources = Dino.values();
+        var resources1 = DinoEgg.values();
 
         Arrays.stream(resources).filter(d -> d != Dino.EMPTY).forEach(dino -> {
             Item syringeItem = new DNASyringeItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES));
             dino.setSyringeItem(syringeItem);
 
             helper.register(new ResourceLocation(Alternacraft.MOD_ID,"dna_syringe_" + dino.getName()), syringeItem);
+        });
+        Arrays.stream(resources1).filter(d -> d != DinoEgg.EMPTY).forEach(dinoEgg -> {
+            Item dinoEggItem = new DinoEggItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES));
+            dinoEgg.setDinoEggItem(dinoEggItem);
+
+            helper.register(new ResourceLocation(Alternacraft.MOD_ID,"dino_egg_" + dinoEgg.getName()), dinoEgg);
         });
     }
 
