@@ -11,8 +11,10 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.Scor
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.BlueEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.recipe.FossilGrinderRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +55,8 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.BLUE.get(), BlueEntity.attributes().build());
         event.put(ModEntityTypes.MALUSAURUS.get(), MalusaurusEntity.attributes().build());
         event.put(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoEntity.attributes().build());
+        event.put(ModEntityTypes.MOROS.get(), MorosEntity.attributes().build());
+        event.put(ModEntityTypes.DEINONYCHUS.get(), DeinonychusEntity.attributes().build());
     }
 
     @SubscribeEvent

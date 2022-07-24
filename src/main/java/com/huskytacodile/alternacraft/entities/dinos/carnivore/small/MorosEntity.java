@@ -1,40 +1,23 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.small;
 
+import com.huskytacodile.alternacraft.entities.dinos.SmallCarnivoreEntity;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoGeckoMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoNocturnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSleepingRandomLookAroundGoal;
-import org.jetbrains.annotations.Nullable;
-
-import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
-import com.huskytacodile.alternacraft.entities.ai.NocturnalSleepGoal;
-import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
-import com.huskytacodile.alternacraft.entities.dinos.SmallCarnivoreEntity;
+import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
-import com.huskytacodile.alternacraft.entities.variant.MultiVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
-
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -43,19 +26,20 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.Nullable;
 
-public class CompsognathusEntity extends SmallCarnivoreEntity {
-	public CompsognathusEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
+public class MorosEntity extends SmallCarnivoreEntity {
+	public MorosEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
 		super(entityType, level);
 		this.setTame(false);
 	}
 
 	public static AttributeSupplier.Builder attributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 12.00D)
-				.add(Attributes.MOVEMENT_SPEED, 0.15D)
-				.add(Attributes.FOLLOW_RANGE, 16.0D)
-				.add(Attributes.ATTACK_DAMAGE, 3.0D);
+				.add(Attributes.MAX_HEALTH, 24.00D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D)
+				.add(Attributes.FOLLOW_RANGE, 12.0D)
+				.add(Attributes.ATTACK_DAMAGE, 5.0D);
 	}
 
 	@Override
@@ -81,19 +65,19 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 		if (this.isAsleep() || this.isNaturallySitting()) {
 			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.15D);
+			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		}
 	}
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-		MultiVariant variant = Util.getRandom(MultiVariant.values(), this.random);
+		GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
 		setVariant(variant);
 		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
 	}
 
 	public IVariant getVariant() {
-		return MultiVariant.byId(this.getTypeVariant() & 255);
+		return GenderVariant.byId(this.getTypeVariant() & 255);
 	}
 
 	@Override
@@ -116,7 +100,7 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 
 	@Override
 	public String getAnimationName() {
-		return "compsognathus";
+		return "moros";
 	}
 
 	@Override

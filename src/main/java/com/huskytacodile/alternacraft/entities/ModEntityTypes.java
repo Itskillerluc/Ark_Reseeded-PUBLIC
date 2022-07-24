@@ -10,8 +10,10 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.Scor
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.BlueEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraft.world.entity.EntityType;
@@ -148,6 +150,12 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(0.7f, 0.7f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "compy").toString()));
 
+    public static final RegistryObject<EntityType<MorosEntity>> MOROS =
+            ENTITY_TYPES.register("moros",
+                    () -> EntityType.Builder.of(MorosEntity::new,
+                                    MobCategory.CREATURE).sized(0.7f, 0.7f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "moros").toString()));
+
     public static final RegistryObject<EntityType<MegaloEntity>> MEGALO =
             ENTITY_TYPES.register("megalo",
                     () -> EntityType.Builder.of(MegaloEntity::new,
@@ -172,6 +180,11 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(2f, 2f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "blue").toString()));
 
+    public static final RegistryObject<EntityType<DeinonychusEntity>> DEINONYCHUS =
+            ENTITY_TYPES.register("deinonychus",
+                    () -> EntityType.Builder.of(DeinonychusEntity::new,
+                                    MobCategory.CREATURE).sized(1.8f, 1.8f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "deinonychus").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

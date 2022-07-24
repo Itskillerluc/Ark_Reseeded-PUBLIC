@@ -1,51 +1,43 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor;
 
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
-import com.huskytacodile.alternacraft.entities.variant.IVariant;
-import net.minecraft.Util;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.level.ServerLevelAccessor;
-import org.jetbrains.annotations.Nullable;
-
 import com.huskytacodile.alternacraft.entities.ai.CathemeralSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.RaptorEntity;
+import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
+import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
-
+import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.Nullable;
 
-public class BlueEntity extends RaptorEntity {
-    public BlueEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
+public class DeinonychusEntity extends RaptorEntity {
+    public DeinonychusEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
         this.setTame(false);
     }
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 46.00D)
-                .add(Attributes.MOVEMENT_SPEED, 0.4D)
+                .add(Attributes.MAX_HEALTH, 38.00D)
+                .add(Attributes.MOVEMENT_SPEED, 0.45D)
                 .add(Attributes.FOLLOW_RANGE, 20.0D)
-                .add(Attributes.ATTACK_DAMAGE, 6.0D);
+                .add(Attributes.ATTACK_DAMAGE, 5.0D);
     }
 
     @Override
@@ -71,11 +63,10 @@ public class BlueEntity extends RaptorEntity {
     	if (this.isAsleep() || this.isNaturallySitting()) {
     		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
     	} else {
-    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.45D);
     	}
     }
 
-    @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
         GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
         setVariant(variant);
@@ -85,7 +76,6 @@ public class BlueEntity extends RaptorEntity {
     public IVariant getVariant() {
         return GenderVariant.byId(this.getTypeVariant() & 255);
     }
-
 
     @Override
     protected SoundEvent getAmbientSound()
@@ -107,7 +97,7 @@ public class BlueEntity extends RaptorEntity {
 
     @Override
     public String getAnimationName() {
-        return "blue";
+        return "deinonychus";
     }
 
     @Nullable

@@ -84,10 +84,10 @@ public class AlioramusEntity extends MediumCarnivoreEntity {
 
 	public static AttributeSupplier.Builder attributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 36.00D)
+				.add(Attributes.MAX_HEALTH, 52.00D)
 				.add(Attributes.MOVEMENT_SPEED, 0.3D)
 				.add(Attributes.FOLLOW_RANGE, 20.0D)
-				.add(Attributes.ATTACK_DAMAGE, 4.0D);
+				.add(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
 
 	@Override

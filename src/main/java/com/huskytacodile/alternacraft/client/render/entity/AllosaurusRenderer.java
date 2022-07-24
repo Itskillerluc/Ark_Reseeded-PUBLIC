@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.huskytacodile.alternacraft.client.model.entity.AllosaurusModel;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.QuadVariant;
+import com.huskytacodile.alternacraft.entities.variant.RarityVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -22,12 +23,21 @@ public class AllosaurusRenderer extends GeoEntityRenderer<AllosaurusEntity>
         super(entityRendererProvider, new AllosaurusModel());
         this.shadowRadius = 3.85F;
     }
-    public static final Map<QuadVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(QuadVariant.class), (p_114874_) -> {
-                p_114874_.put(QuadVariant.MALE, new ResourceLocation("alternacraft:textures/entity/allosaurus_male.png"));
-                p_114874_.put(QuadVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/allosaurus_female.png"));
-                p_114874_.put(QuadVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/allosaurus_female2.png"));
-                p_114874_.put(QuadVariant.MALE2, new ResourceLocation("alternacraft:textures/entity/allosaurus_male2.png"));
+    public static final Map<RarityVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(RarityVariant.class), (p_114874_) -> {
+                p_114874_.put(RarityVariant.MALE, new ResourceLocation("alternacraft:textures/entity/allo_male.png"));
+                p_114874_.put(RarityVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/allo_female.png"));
+                p_114874_.put(RarityVariant.MALE2, new ResourceLocation("alternacraft:textures/entity/allo_male.png"));
+                p_114874_.put(RarityVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/allo_female.png"));
+                p_114874_.put(RarityVariant.MALE3, new ResourceLocation("alternacraft:textures/entity/allo_male.png"));
+                p_114874_.put(RarityVariant.FEMALE3, new ResourceLocation("alternacraft:textures/entity/allo_female.png"));
+                p_114874_.put(RarityVariant.MALE4, new ResourceLocation("alternacraft:textures/entity/allo_male.png"));
+                p_114874_.put(RarityVariant.FEMALE4, new ResourceLocation("alternacraft:textures/entity/allo_female.png"));
+                p_114874_.put(RarityVariant.MALE5, new ResourceLocation("alternacraft:textures/entity/allo_male.png"));
+                p_114874_.put(RarityVariant.FEMALE5, new ResourceLocation("alternacraft:textures/entity/allo_female.png"));
+                p_114874_.put(RarityVariant.MALE6, new ResourceLocation("alternacraft:textures/entity/allo_male.png"));
+                p_114874_.put(RarityVariant.FEMALE6, new ResourceLocation("alternacraft:textures/entity/allo_female.png"));
+                p_114874_.put(RarityVariant.AETHER, new ResourceLocation("alternacraft:textures/entity/aether_allo.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(AllosaurusEntity entity) {
