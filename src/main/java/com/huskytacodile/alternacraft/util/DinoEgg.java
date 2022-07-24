@@ -45,7 +45,7 @@ public enum DinoEgg {
     ;
 
     private final String name;
-    private Item eggItem;
+    private Item dinoEggItem;
     private final boolean isHybrid;
     private final EggTier tier;
 
@@ -70,17 +70,17 @@ public enum DinoEgg {
     }
 
     public void setDinoEggItem(Item item) {
-        this.eggItem = item;
+        this.dinoEggItem = item;
     }
 
-    public Item geteggItem() {
-        return this.eggItem;
+    public Item getEggItem() {
+        return this.dinoEggItem;
     }
 
     public static DinoEgg getDinoByItem(Item item) {
-        for (DinoEgg dino : Arrays.stream(values()).filter(dino -> dino != DinoEgg.EMPTY).toList()) {
-            if(dino.geteggItem() == item) {
-                return dino;
+        for (DinoEgg dinoEgg : Arrays.stream(values()).filter(dinoEgg -> dinoEgg != DinoEgg.EMPTY).toList()) {
+            if(dinoEgg.getEggItem() == item) {
+                return dinoEgg;
             }
         }
         return DinoEgg.EMPTY;

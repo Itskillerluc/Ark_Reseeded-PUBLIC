@@ -208,7 +208,7 @@ public class ModItems {
             Item dinoEggItem = new DinoEggItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES));
             dinoEgg.setDinoEggItem(dinoEggItem);
 
-            helper.register(new ResourceLocation(Alternacraft.MOD_ID,"dino_egg_" + dinoEgg.getName()), dinoEgg);
+            helper.register(new ResourceLocation(Alternacraft.MOD_ID,"dino_egg_" + dinoEgg.getName()), dinoEggItem);
         });
     }
 
