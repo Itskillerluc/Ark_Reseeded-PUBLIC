@@ -13,6 +13,7 @@ import com.huskytacodile.alternacraft.screen.ModMenuTypes;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 import com.huskytacodile.alternacraft.world.dimension.ModDimensions;
 import com.huskytacodile.alternacraft.world.feature.ModPlacedFeatures;
+import com.huskytacodile.alternacraft.world.structure.ModStructures;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,6 +44,7 @@ public class Alternacraft {
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModEntityTypes.register(eventBus);
+        ModStructures.register(eventBus);
 
         ModSoundEvents.register(eventBus);
         ModEnchantments.register(eventBus);
