@@ -15,15 +15,17 @@ public class ModStructures {
      * We are using the Deferred Registry system to register our structure as this is the preferred way on Forge.
      * This will handle registering the base structure for us at the correct time so we don't have to handle it ourselves.
      */
-    public static final DeferredRegister<StructureType<?>> DEFERRED_REGISTRY_STRUCTURE
+    public static final DeferredRegister<StructureType<?>> DEFERRED_REGISTER
             = DeferredRegister.create(Registry.STRUCTURE_TYPE_REGISTRY, Alternacraft.MOD_ID);
 
     /**
      * Registers the base structure itself and sets what its path is. In this case,
      * this base structure will have the resourcelocation of structure_tutorial:sky_structures.
      */
-    public static final RegistryObject<StructureType<?>> SKY_STRUCTURES =
-            DEFERRED_REGISTRY_STRUCTURE.register("sky_structures", () -> typeConvert(SkyStructures.CODEC));
+
+    public static final RegistryObject<StructureType> RAPTOR_DEN = DEFERRED_REGISTER.register("raptor_den", () -> () -> RaptorDen.CODEC);
+
+    public static final RegistryObject<StructureType> CARCHAR_CAGE = DEFERRED_REGISTER.register("carchar_cage", () -> () -> CarcharCage.CODEC);
 
     // Helper method to register since compiler will complain about typing if we did () -> SkyStructures.CODEC directly.
     private static <S extends Structure> StructureType<S> typeConvert(Codec<S> codec) {
@@ -31,6 +33,6 @@ public class ModStructures {
     }
 
     public static void register(IEventBus eventBus) {
-        DEFERRED_REGISTRY_STRUCTURE.register(eventBus);
+        DEFERRED_REGISTER.register(eventBus);
     }
 }

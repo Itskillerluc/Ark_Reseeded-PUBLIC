@@ -4,12 +4,12 @@
   "structures": [
     {
       "structure": "alternacraft:raptor_den",
-      "weight": 1
+      "weight": 2
     }
   ],
   "placement": {
     // Make sure this is unique and does not match any other structure set's salt
-    "salt": 1642136473,
+    "salt": 100,
 
     // The average distance apart in chunks for spawn attempts
     "spacing": 40,

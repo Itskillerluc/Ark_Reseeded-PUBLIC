@@ -1,6 +1,6 @@
 {
   // The base structure class to use for the behavior of the structure. (Like extra terrain checks and such)
-  "type": "minecraft:jigsaw",
+  "type": "alternacraft:raptor_den",
 
   // the path to the template pool json file to use
   "start_pool": "alternacraft:raptor_den/start_pool",
