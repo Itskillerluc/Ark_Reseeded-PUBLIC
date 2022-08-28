@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "alternacraft:test",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+    "salt": 101,
+
+    "spacing": 1000,
+
+    "separation": 1
+  }
+}
