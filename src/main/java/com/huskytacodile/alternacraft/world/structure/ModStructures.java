@@ -27,6 +27,8 @@ public class ModStructures {
 
     public static final RegistryObject<StructureType> CARCHAR_CAGE = DEFERRED_REGISTER.register("carchar_cage", () -> () -> CarcharCage.CODEC);
 
+    public static final RegistryObject<StructureType> RUNDOWN_INDORAPTOR_ARENA = DEFERRED_REGISTER.register("rundown_indoraptor_arena", () -> () -> RundownIndoraptorArena.CODEC);
+
     // Helper method to register since compiler will complain about typing if we did () -> SkyStructures.CODEC directly.
     private static <S extends Structure> StructureType<S> typeConvert(Codec<S> codec) {
         return () -> codec;

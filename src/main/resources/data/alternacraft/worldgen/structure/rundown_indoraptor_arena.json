@@ -1,13 +1,13 @@
 {
-  "type": "alternacraft:carchar_cage",
+  "type": "alternacraft:rundown_indoraptor_arena",
 
-  "start_pool": "alternacraft:carchar_cage/start_pool",
+  "start_pool": "alternacraft:rundown_indoraptor_arena/start_pool",
 
   "size": 1,
 
   "max_distance_from_center": 80,
 
-  "biomes": "#alternacraft:has_structure/carchar_cage",
+  "biomes": "#alternacraft:has_structure/rundown_indoraptor_arena",
 
   "step": "surface_structures",
 
