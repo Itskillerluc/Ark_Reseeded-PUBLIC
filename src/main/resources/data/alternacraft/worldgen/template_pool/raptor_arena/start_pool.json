@@ -1,5 +1,5 @@
 {
-  "name": "alternacraft:raptor_den/start_pool",
+  "name": "alternacraft:raptor_arena/start_pool",
 
   "fallback": "minecraft:empty",
 
@@ -8,7 +8,7 @@
       "weight": 1,
       "element": {
 
-        "location": "alternacraft:raptor_den",
+        "location": "alternacraft:raptor_arena",
 
         "processors": "minecraft:empty",
 

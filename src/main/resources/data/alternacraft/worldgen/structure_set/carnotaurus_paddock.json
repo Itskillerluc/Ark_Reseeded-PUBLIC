@@ -1,16 +1,16 @@
 {
   "structures": [
     {
-      "structure": "alternacraft:rundown_indoraptor_arena",
+      "structure": "alternacraft:carnotaurus_paddock",
       "weight": 1
     }
   ],
   "placement": {
     "type": "minecraft:random_spread",
 
-    "salt": 102,
+    "salt": 104,
 
-    "spacing": 1200,
+    "spacing": 800,
 
     "separation": 1
   }

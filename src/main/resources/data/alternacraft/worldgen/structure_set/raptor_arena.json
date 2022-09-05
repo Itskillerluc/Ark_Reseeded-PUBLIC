@@ -1,12 +1,12 @@
 {
   "structures": [
     {
-      "structure": "alternacraft:raptor_den",
+      "structure": "alternacraft:raptor_arena",
       "weight": 1
     }
   ],
   "placement": {
-    "salt": 100,
+    "salt": 103,
 
     "spacing": 400,
 
