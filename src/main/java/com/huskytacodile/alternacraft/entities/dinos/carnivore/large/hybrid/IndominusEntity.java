@@ -7,7 +7,7 @@ import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.HybridEntity;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
-import com.huskytacodile.alternacraft.entities.variant.QuintiVariant;
+import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 
 import net.minecraft.Util;
@@ -73,7 +73,7 @@ public class IndominusEntity extends HybridEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-        QuintiVariant variant = Util.getRandom(QuintiVariant.values(), this.random);
+        GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
@@ -89,7 +89,7 @@ public class IndominusEntity extends HybridEntity {
 
     @Override
     public IVariant getVariant() {
-        return QuintiVariant.byId(this.getTypeVariant() & 255);
+        return GenderVariant.byId(this.getTypeVariant() & 255);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class IndominusEntity extends HybridEntity {
 
     @Override
     public String getAnimationName() {
-        return "indo";
+        return "indominus";
     }
 
     @Nullable

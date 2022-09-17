@@ -3,14 +3,14 @@ package com.huskytacodile.alternacraft.entities;
 import com.huskytacodile.alternacraft.Alternacraft;
 
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.*;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.AlternasaurusEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndominusEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.ScorpiusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.DryptoEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.BlueEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.AtrociraptorEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.VelociraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.PyroraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
@@ -103,10 +103,16 @@ public class ModEntityTypes {
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "indominus").toString()));
 
     public static final RegistryObject<EntityType<IndoraptorEntity>> INDORAPTOR =
-            ENTITY_TYPES.register("indoraptor",
+            ENTITY_TYPES.register("indoraptor_alterna",
                     () -> EntityType.Builder.of(IndoraptorEntity::new,
                                     MobCategory.CREATURE).sized(3f, 3f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "indoraptor").toString()));
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "indoraptor_alterna").toString()));
+
+    public static final RegistryObject<EntityType<IndoraptorGen2Entity>> INDORAPTOR_GEN2 =
+            ENTITY_TYPES.register("indoraptor_gen2",
+                    () -> EntityType.Builder.of(IndoraptorGen2Entity::new,
+                                    MobCategory.CREATURE).sized(3f, 3f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "indoraptor_gen2").toString()));
 
     public static final RegistryObject<EntityType<AcroEntity>> ACRO =
             ENTITY_TYPES.register("acro",
@@ -162,6 +168,12 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(3f, 3f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "megalo").toString()));
 
+    public static final RegistryObject<EntityType<DryptoEntity>> DRYPTO =
+            ENTITY_TYPES.register("drypto",
+                    () -> EntityType.Builder.of(DryptoEntity::new,
+                                    MobCategory.CREATURE).sized(3f, 3f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "drypto").toString()));
+
     public static final RegistryObject<EntityType<GigaEntity>> GIGA =
             ENTITY_TYPES.register("giga",
                     () -> EntityType.Builder.of(GigaEntity::new,
@@ -174,11 +186,23 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(4.3f, 4.3f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "malusaurus").toString()));
 
-    public static final RegistryObject<EntityType<BlueEntity>> BLUE =
-            ENTITY_TYPES.register("blue",
-                    () -> EntityType.Builder.of(BlueEntity::new,
+    public static final RegistryObject<EntityType<VelociraptorEntity>> VELOCIRAPTOR =
+            ENTITY_TYPES.register("velociraptor",
+                    () -> EntityType.Builder.of(VelociraptorEntity::new,
+                                    MobCategory.CREATURE).sized(1.7f, 1.7f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "velociraptor").toString()));
+
+    public static final RegistryObject<EntityType<AtrociraptorEntity>> ATROCI =
+            ENTITY_TYPES.register("atroci",
+                    () -> EntityType.Builder.of(AtrociraptorEntity::new,
                                     MobCategory.CREATURE).sized(2f, 2f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "blue").toString()));
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "atroci").toString()));
+
+    public static final RegistryObject<EntityType<PyroraptorEntity>> PYRO =
+            ENTITY_TYPES.register("pyro",
+                    () -> EntityType.Builder.of(PyroraptorEntity::new,
+                                    MobCategory.CREATURE).sized(2f, 2f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "pyro").toString()));
 
     public static final RegistryObject<EntityType<DeinonychusEntity>> DEINONYCHUS =
             ENTITY_TYPES.register("deinonychus",

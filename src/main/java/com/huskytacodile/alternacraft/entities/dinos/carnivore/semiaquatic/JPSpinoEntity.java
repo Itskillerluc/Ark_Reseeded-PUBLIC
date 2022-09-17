@@ -115,7 +115,7 @@ public class JPSpinoEntity extends SemiAquaticEntity {
 
     @Override
     public String getAnimationName() {
-        return "jpspinosaurus";
+        return "spinosaurus";
     }
 
     @Override

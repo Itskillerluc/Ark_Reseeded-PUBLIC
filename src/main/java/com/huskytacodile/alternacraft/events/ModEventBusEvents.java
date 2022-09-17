@@ -6,12 +6,15 @@ import com.huskytacodile.alternacraft.entities.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.AlternasaurusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndominusEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorGen2Entity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.ScorpiusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.DryptoEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.BlueEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.AtrociraptorEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.VelociraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.PyroraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
@@ -35,7 +38,8 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.INDOMINUS.get(), IndominusEntity.attributes().build());
         event.put(ModEntityTypes.ACRO.get(), AcroEntity.attributes().build());
         event.put(ModEntityTypes.OXALAIA.get(), SuchomimusEntity.attributes().build());
-        event.put(ModEntityTypes.INDORAPTOR.get(), IndoraptorEntity.attributes().build());
+        event.put(ModEntityTypes.INDORAPTOR.get(), IndoraptorGen2Entity.attributes().build());
+        event.put(ModEntityTypes.INDORAPTOR_GEN2.get(), IndoraptorGen2Entity.attributes().build());
         event.put(ModEntityTypes.CERATOSUCHOPS.get(), CeratosuchopsEntity.attributes().build());
         event.put(ModEntityTypes.ALTERNASAURUS.get(), AlternasaurusEntity.attributes().build());
         event.put(ModEntityTypes.TYLOSAURUS.get(), TylosaurusEntity.attributes().build());
@@ -52,11 +56,14 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.COMPY.get(), CompsognathusEntity.attributes().build());
         event.put(ModEntityTypes.MEGALO.get(), MegaloEntity.attributes().build());
         event.put(ModEntityTypes.GIGA.get(), GigaEntity.attributes().build());
-        event.put(ModEntityTypes.BLUE.get(), BlueEntity.attributes().build());
+        event.put(ModEntityTypes.VELOCIRAPTOR.get(), VelociraptorEntity.attributes().build());
         event.put(ModEntityTypes.MALUSAURUS.get(), MalusaurusEntity.attributes().build());
         event.put(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoEntity.attributes().build());
         event.put(ModEntityTypes.MOROS.get(), MorosEntity.attributes().build());
         event.put(ModEntityTypes.DEINONYCHUS.get(), DeinonychusEntity.attributes().build());
+        event.put(ModEntityTypes.DRYPTO.get(), DryptoEntity.attributes().build());
+        event.put(ModEntityTypes.ATROCI.get(), AtrociraptorEntity.attributes().build());
+        event.put(ModEntityTypes.PYRO.get(), PyroraptorEntity.attributes().build());
     }
 
     @SubscribeEvent

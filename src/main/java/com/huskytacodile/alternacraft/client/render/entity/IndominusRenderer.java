@@ -5,7 +5,7 @@ import com.huskytacodile.alternacraft.client.model.entity.IndominusModel;
 
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndominusEntity;
 
-import com.huskytacodile.alternacraft.entities.variant.QuintiVariant;
+import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -24,13 +24,10 @@ public class IndominusRenderer extends GeoEntityRenderer<IndominusEntity>
         super(entityRendererProvider, new IndominusModel());
         this.shadowRadius = 4.0F;
     }
-    public static final Map<QuintiVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(QuintiVariant.class), (p_114874_) -> {
-                p_114874_.put(QuintiVariant.MALE, new ResourceLocation("alternacraft:textures/entity/indominus_male.png"));
-                p_114874_.put(QuintiVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/indominus_female.png"));
-                p_114874_.put(QuintiVariant.MALE2, new ResourceLocation("alternacraft:textures/entity/indominus_male2.png"));
-                p_114874_.put(QuintiVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/indominus_female2.png"));
-                p_114874_.put(QuintiVariant.FEMALE3, new ResourceLocation("alternacraft:textures/entity/indominus_female3.png"));
+    public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
+                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/indominus_male.png"));
+                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/indominus_female.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(IndominusEntity entity) {

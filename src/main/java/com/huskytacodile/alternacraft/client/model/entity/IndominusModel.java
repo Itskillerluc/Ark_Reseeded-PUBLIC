@@ -14,7 +14,7 @@ public class IndominusModel extends AnimatedGeoModel<IndominusEntity> {
 
     @Override
     public ResourceLocation getModelResource(IndominusEntity entity) {
-        return new ResourceLocation(Alternacraft.MOD_ID, "geo/indominus_rex.geo.json");
+        return new ResourceLocation(Alternacraft.MOD_ID, "geo/indominus.geo.json");
     }
 
     @Override

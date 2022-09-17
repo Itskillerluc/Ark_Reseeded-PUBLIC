@@ -1,9 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid;
 
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
-import net.minecraft.world.entity.ai.goal.*;
-import org.jetbrains.annotations.Nullable;
-
 import com.huskytacodile.alternacraft.entities.ai.CrepuscularSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
@@ -11,21 +8,16 @@ import com.huskytacodile.alternacraft.entities.dinos.HybridEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
-
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -34,6 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.Nullable;
 
 public class IndoraptorEntity extends HybridEntity {
     public IndoraptorEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
@@ -109,7 +102,7 @@ public class IndoraptorEntity extends HybridEntity {
 
     @Override
     public String getAnimationName() {
-        return "indoraptor";
+        return "indoraptor_alterna";
     }
 
     @Override
@@ -120,6 +113,6 @@ public class IndoraptorEntity extends HybridEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob p_146744_) {
-        return ModEntityTypes.INDORAPTOR.get().create(serverLevel);
+        return ModEntityTypes.INDORAPTOR_GEN2.get().create(serverLevel);
     }
 }

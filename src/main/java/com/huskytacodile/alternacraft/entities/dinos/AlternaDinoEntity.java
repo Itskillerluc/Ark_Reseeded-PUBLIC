@@ -220,7 +220,7 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
     }
 
     public IVariant getVariant() {
-        return GenderVariant.byId(this.getTypeVariant() & 255);
+        return null;
     }
 
     protected int getTypeVariant() {

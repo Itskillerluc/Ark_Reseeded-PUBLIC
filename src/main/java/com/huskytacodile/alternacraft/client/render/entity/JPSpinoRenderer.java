@@ -28,8 +28,8 @@ public class JPSpinoRenderer extends GeoEntityRenderer<JPSpinoEntity>
     }
     public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/jpmalespino.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/jpfemalespino.png"));
+                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/spino_alterna.png"));
+                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/spino_alterna.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(JPSpinoEntity entity) {

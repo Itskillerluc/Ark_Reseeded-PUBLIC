@@ -1,7 +1,6 @@
 package com.huskytacodile.alternacraft.events;
 
 import com.huskytacodile.alternacraft.Alternacraft;
-import com.huskytacodile.alternacraft.block.ModBlocks;
 import com.huskytacodile.alternacraft.client.render.entity.*;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.item.ModItems;
@@ -10,8 +9,6 @@ import com.huskytacodile.alternacraft.screen.FossilGrinderScreen;
 import com.huskytacodile.alternacraft.screen.ModMenuTypes;
 import com.huskytacodile.alternacraft.util.ModItemProperties;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,6 +28,7 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.ACRO.get(), AcroRenderer::new);
         EntityRenderers.register(ModEntityTypes.OXALAIA.get(), OxalaiaRenderer::new);
         EntityRenderers.register(ModEntityTypes.INDORAPTOR.get(), IndoraptorRenderer::new);
+        EntityRenderers.register(ModEntityTypes.INDORAPTOR_GEN2.get(), IndoraptorGen2Renderer::new);
         EntityRenderers.register(ModEntityTypes.CERATOSUCHOPS.get(), CeratosuchopsRenderer::new);
         EntityRenderers.register(ModEntityTypes.ALTERNASAURUS.get(), AlternasaurusRenderer::new);
         EntityRenderers.register(ModEntityTypes.TYLOSAURUS.get(), TylosaurusRenderer::new);
@@ -47,10 +45,13 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.COMPY.get(), CompsognathusRenderer::new);
         EntityRenderers.register(ModEntityTypes.MEGALO.get(), MegaloRenderer::new);
         EntityRenderers.register(ModEntityTypes.GIGA.get(), GigaRenderer::new);
-        EntityRenderers.register(ModEntityTypes.BLUE.get(), BlueRenderer::new);
+        EntityRenderers.register(ModEntityTypes.VELOCIRAPTOR.get(), VelociraptorRenderer::new);
         EntityRenderers.register(ModEntityTypes.MALUSAURUS.get(), MalusaurusRenderer::new);
         EntityRenderers.register(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoRenderer::new);
         EntityRenderers.register(ModEntityTypes.MOROS.get(), MorosRenderer::new);
         EntityRenderers.register(ModEntityTypes.DEINONYCHUS.get(), DeinonychusRenderer::new);
+        EntityRenderers.register(ModEntityTypes.DRYPTO.get(), DryptoRenderer::new);
+        EntityRenderers.register(ModEntityTypes.ATROCI.get(), AtrociraptorRenderer::new);
+        EntityRenderers.register(ModEntityTypes.PYRO.get(), PyroraptorRenderer::new);
     }
 }

@@ -24,8 +24,8 @@ public class IndoraptorRenderer extends GeoEntityRenderer<IndoraptorEntity>
     }
     public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/indoraptor_male.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/indoraptor_female.png"));
+                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/indoraptor_alterna_male.png"));
+                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/indoraptor_alterna_female.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(IndoraptorEntity entity) {

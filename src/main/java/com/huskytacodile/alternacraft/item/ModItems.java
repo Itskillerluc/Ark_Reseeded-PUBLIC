@@ -7,7 +7,6 @@ import com.huskytacodile.alternacraft.item.custom.*;
 import com.huskytacodile.alternacraft.util.Dino;
 import com.huskytacodile.alternacraft.util.DinoEgg;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,7 +14,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -46,8 +44,8 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.SPINO, 0xD3D751, 0xB12626,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> BLUE_SPAWN_EGG = ITEMS.register("blue_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.BLUE, 0xA9A9A9,0x008DAF ,
+    public static final RegistryObject<ForgeSpawnEggItem> BLUE_SPAWN_EGG = ITEMS.register("velociraptor_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.VELOCIRAPTOR, 0xA9A9A9,0x008DAF ,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
     public static final RegistryObject<ForgeSpawnEggItem> TYLOSAURUS_SPAWN_EGG = ITEMS.register("tylosaurus_spawn_egg",
@@ -66,8 +64,8 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.ALTERNASAURUS, 0x000000, 0x1CFCFF,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_SPAWN_EGG = ITEMS.register("indoraptor_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR, 0x222222, 0xF0C500,
+    public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_GEN2_SPAWN_EGG = ITEMS.register("indoraptor_gen2_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR_GEN2, 0x222222, 0xF0C500,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
     public static final RegistryObject<ForgeSpawnEggItem> ACRO_SPAWN_EGG = ITEMS.register("acro_spawn_egg",
@@ -106,8 +104,28 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.COMPY, 0x9FDC55, 0x7D8F66,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
+    public static final RegistryObject<ForgeSpawnEggItem> MOROS_SPAWN_EGG = ITEMS.register("moros_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.MOROS, 0x9F0000, 0x7D8F66,
+                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+
+    public static final RegistryObject<ForgeSpawnEggItem> DRYPTO_SPAWN_EGG = ITEMS.register("drypto_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.DRYPTO, 0x9F0000, 0x7D8F66,
+                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+
+    public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_SPAWN_EGG = ITEMS.register("indoraptor_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR, 0x9F0000, 0x7D8F66,
+                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+
     public static final RegistryObject<ForgeSpawnEggItem> MEGALO_SPAWN_EGG = ITEMS.register("megalo_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.MEGALO, 0x4D3D2D, 0xC27007,
+                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+
+    public static final RegistryObject<ForgeSpawnEggItem> ATROCI_SPAWN_EGG = ITEMS.register("atroci_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.ATROCI, 0x4D3D2D, 0xC27007,
+                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+
+    public static final RegistryObject<ForgeSpawnEggItem> PYRO_SPAWN_EGG = ITEMS.register("pyro_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.PYRO, 0x4D3D2D, 0xC27007,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
     public static final RegistryObject<ForgeSpawnEggItem> YUTYRANNUS_SPAWN_EGG = ITEMS.register("yutyrannus_spawn_egg",

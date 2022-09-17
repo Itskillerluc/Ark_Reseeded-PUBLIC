@@ -7,7 +7,7 @@ import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.HybridEntity;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
-import com.huskytacodile.alternacraft.entities.variant.QuadVariant;
+import com.huskytacodile.alternacraft.entities.variant.QuadrupleVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 
 import net.minecraft.Util;
@@ -83,14 +83,14 @@ public class ScorpiusEntity extends HybridEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-        QuadVariant variant = Util.getRandom(QuadVariant.values(), this.random);
+        QuadrupleVariant variant = Util.getRandom(QuadrupleVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
     @Override
     public IVariant getVariant() {
-        return QuadVariant.byId(this.getTypeVariant() & 255);
+        return QuadrupleVariant.byId(this.getTypeVariant() & 255);
     }
 
     @Override

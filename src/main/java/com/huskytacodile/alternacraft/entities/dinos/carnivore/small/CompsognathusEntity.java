@@ -6,12 +6,9 @@ import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSleepingRandomLookAroundGoal;
 import org.jetbrains.annotations.Nullable;
 
-import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
-import com.huskytacodile.alternacraft.entities.ai.NocturnalSleepGoal;
-import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.SmallCarnivoreEntity;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
-import com.huskytacodile.alternacraft.entities.variant.MultiVariant;
+import com.huskytacodile.alternacraft.entities.variant.TripleVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 
 import net.minecraft.Util;
@@ -30,7 +27,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
@@ -87,13 +83,13 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-		MultiVariant variant = Util.getRandom(MultiVariant.values(), this.random);
+		TripleVariant variant = Util.getRandom(TripleVariant.values(), this.random);
 		setVariant(variant);
 		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
 	}
 
 	public IVariant getVariant() {
-		return MultiVariant.byId(this.getTypeVariant() & 255);
+		return TripleVariant.byId(this.getTypeVariant() & 255);
 	}
 
 	@Override

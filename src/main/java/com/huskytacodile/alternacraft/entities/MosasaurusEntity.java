@@ -83,7 +83,7 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
                 entitytype == ModEntityTypes.BARYONYX_GEN2.get()||
                 entitytype == ModEntityTypes.CERATOSUCHOPS.get()||
                 entitytype == ModEntityTypes.INDOMINUS.get()||
-                entitytype == ModEntityTypes.INDORAPTOR.get()||
+                entitytype == ModEntityTypes.INDORAPTOR_GEN2.get()||
                 entitytype == ModEntityTypes.ALLOSAURUS.get()||
                 entitytype == ModEntityTypes.ACRO.get()||
                 entitytype == ModEntityTypes.SCORPIUS.get()||

@@ -3,7 +3,7 @@ package com.huskytacodile.alternacraft.client.render.entity;
 import com.google.common.collect.Maps;
 import com.huskytacodile.alternacraft.client.model.entity.CompsognathusModel;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
-import com.huskytacodile.alternacraft.entities.variant.MultiVariant;
+import com.huskytacodile.alternacraft.entities.variant.TripleVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -22,11 +22,11 @@ public class CompsognathusRenderer extends GeoEntityRenderer<CompsognathusEntity
         super(entityRendererProvider, new CompsognathusModel());
         this.shadowRadius = .7F;
     }
-    public static final Map<MultiVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(MultiVariant.class), (p_114874_) -> {
-                p_114874_.put(MultiVariant.MALE, new ResourceLocation("alternacraft:textures/entity/compsognathus_male.png"));
-                p_114874_.put(MultiVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/compsognathus_female.png"));
-                p_114874_.put(MultiVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/compsognathus_female2.png"));
+    public static final Map<TripleVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(TripleVariant.class), (p_114874_) -> {
+                p_114874_.put(TripleVariant.MALE, new ResourceLocation("alternacraft:textures/entity/compsognathus_male.png"));
+                p_114874_.put(TripleVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/compsognathus_female.png"));
+                p_114874_.put(TripleVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/compsognathus_female2.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(CompsognathusEntity entity) {
