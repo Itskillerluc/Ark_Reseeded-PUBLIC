@@ -58,7 +58,6 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.GIGA.get(), GigaEntity.attributes().build());
         event.put(ModEntityTypes.VELOCIRAPTOR.get(), VelociraptorEntity.attributes().build());
         event.put(ModEntityTypes.MALUSAURUS.get(), MalusaurusEntity.attributes().build());
-        event.put(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoEntity.attributes().build());
         event.put(ModEntityTypes.MOROS.get(), MorosEntity.attributes().build());
         event.put(ModEntityTypes.DEINONYCHUS.get(), DeinonychusEntity.attributes().build());
         event.put(ModEntityTypes.DRYPTO.get(), DryptoEntity.attributes().build());

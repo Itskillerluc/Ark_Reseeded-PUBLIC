@@ -414,6 +414,9 @@
 				"tyrannosaurus": {
 					"position": {
 						"0.7917": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -580,6 +583,9 @@
 				"tail1": {
 					"rotation": {
 						"0.0417": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -600,6 +606,9 @@
 				"tail2": {
 					"rotation": {
 						"0.0833": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -620,6 +629,9 @@
 				"tail3": {
 					"rotation": {
 						"0.125": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -640,6 +652,9 @@
 				"tail4": {
 					"rotation": {
 						"0.1667": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -660,6 +675,9 @@
 				"tail5": {
 					"rotation": {
 						"0.2083": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -680,6 +698,9 @@
 				"tail6": {
 					"rotation": {
 						"0.25": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -700,6 +721,9 @@
 				"tail7": {
 					"rotation": {
 						"0.2917": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -720,6 +744,9 @@
 				"tail8": {
 					"rotation": {
 						"0.3333": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -740,6 +767,9 @@
 				"tail9": {
 					"rotation": {
 						"0.375": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -2101,6 +2131,134 @@
 								"vector": [-0.01278, 0.80907, -0.58757]
 							
 						}
+					}
+				}
+			}
+		},
+		"animation.yuty.sit": {
+			"loop": true,
+			"animation_length": 1.95833,
+			"bones": {
+				"root": {
+					"rotation": {
+						"vector": [-5, 0, 0]
+					},
+					"position": {
+						"vector": [0, -36, 0]
+					}
+				},
+				"thighRight": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"neck1": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [5, 0, 0]
+						},
+						"1.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"jawLowerBase": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [5, 0, 0]
+						},
+						"1.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"armBicepLeft": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"armBicepLeft2": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"thighLeft": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.yuty.sleep": {
+			"loop": true,
+			"animation_length": 3,
+			"bones": {
+				"root": {
+					"rotation": {
+						"vector": [-5, 0, 0]
+					},
+					"position": {
+						"vector": [0, -36, 0]
+					}
+				},
+				"thighRight": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"neck1": {
+					"rotation": {
+						"0.0": {
+							"vector": [30, 0, 0]
+						},
+						"1.5": {
+							"vector": [22.5, 0, 0]
+						},
+						"3.0": {
+							"vector": [30, 0, 0]
+						}
+					},
+					"position": {
+						"vector": [0, 3, 0]
+					}
+				},
+				"jawLowerBase": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [5, 0, 0]
+						},
+						"3.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"armBicepLeft": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"armBicepLeft2": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"thighLeft": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"eyes": {
+					"scale": {
+						"vector": [1, 0, 1]
 					}
 				}
 			}

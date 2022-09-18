@@ -63,8 +63,6 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
                                         MobSpawnType mobSpawnType, @Nullable SpawnGroupData groupData,
                                         @Nullable CompoundTag tag) {
-        IVariant variant = Util.getRandom(GenderVariant.values(), this.random);
-        setVariant(variant);
 
         return super.finalizeSpawn(world, difficulty, mobSpawnType, groupData, tag);
     }

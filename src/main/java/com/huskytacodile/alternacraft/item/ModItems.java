@@ -24,10 +24,6 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.JPSPINO, 0x614141, 0xDC0000,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> SIMPLIFIED_SPINO_SPAWN_EGG = ITEMS.register("simplified_spino_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.SIMPLIFIED_SPINO, 0x614141, 0xDC0000,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
-
     public static final RegistryObject<ForgeSpawnEggItem> MALUSAURUS_SPAWN_EGG = ITEMS.register("malusaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.MALUSAURUS, 0x614141, 0xDC0000,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));

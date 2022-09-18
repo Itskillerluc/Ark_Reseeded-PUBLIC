@@ -912,6 +912,9 @@
 					},
 					"position": {
 						"1.2083": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1042,6 +1045,9 @@
 					},
 					"position": {
 						"0.2083": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1633,6 +1639,131 @@
 								"vector": [0, 0, 0]
 							
 						}
+					}
+				}
+			}
+		},
+		"animation.oxalaia.sit": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"root": {
+					"rotation": {
+						"vector": [-2.5, 0, 0]
+					},
+					"position": {
+						"vector": [0, -48, 0]
+					}
+				},
+				"armBicepLeft": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"armBicepRight": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"neck1": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.75": {
+							"vector": [5, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"jawLowerBase": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.75": {
+							"vector": [12.5, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"thighLeft": {
+					"rotation": {
+						"vector": [-75, 0, 0]
+					}
+				},
+				"thighRight": {
+					"rotation": {
+						"vector": [-75, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.oxalaia.sleep": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"root": {
+					"rotation": {
+						"vector": [-2.5, 0, 0]
+					},
+					"position": {
+						"vector": [0, -48, 0]
+					}
+				},
+				"armBicepLeft": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"armBicepRight": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"neck1": {
+					"rotation": {
+						"0.0": {
+							"vector": [20, 0, 0]
+						},
+						"1.0": {
+							"vector": [17.5, 0, 0]
+						},
+						"2.0": {
+							"vector": [20, 0, 0]
+						}
+					}
+				},
+				"jawLowerBase": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [7.5, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"thighLeft": {
+					"rotation": {
+						"vector": [-75, 0, 0]
+					}
+				},
+				"thighRight": {
+					"rotation": {
+						"vector": [-75, 0, 0]
+					}
+				},
+				"eyes": {
+					"scale": {
+						"vector": [1, 0, 1]
 					}
 				}
 			}

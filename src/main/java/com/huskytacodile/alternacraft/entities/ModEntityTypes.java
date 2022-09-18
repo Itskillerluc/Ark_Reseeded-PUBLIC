@@ -40,12 +40,6 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(4f, 4f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "jpspino").toString()));
 
-    public static final RegistryObject<EntityType<SimplifiedSpinoEntity>> SIMPLIFIED_SPINO =
-            ENTITY_TYPES.register("simplified_spino",
-                    () -> EntityType.Builder.of(SimplifiedSpinoEntity::new,
-                                    MobCategory.CREATURE).sized(4f, 4f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "simplified_spino").toString()));
-
 
     public static final RegistryObject<EntityType<AlternasaurusEntity>> ALTERNASAURUS =
             ENTITY_TYPES.register("alternasaurus",

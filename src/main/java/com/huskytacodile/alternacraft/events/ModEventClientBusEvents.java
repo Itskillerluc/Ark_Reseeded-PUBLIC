@@ -47,7 +47,6 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.GIGA.get(), GigaRenderer::new);
         EntityRenderers.register(ModEntityTypes.VELOCIRAPTOR.get(), VelociraptorRenderer::new);
         EntityRenderers.register(ModEntityTypes.MALUSAURUS.get(), MalusaurusRenderer::new);
-        EntityRenderers.register(ModEntityTypes.SIMPLIFIED_SPINO.get(), SimplifiedSpinoRenderer::new);
         EntityRenderers.register(ModEntityTypes.MOROS.get(), MorosRenderer::new);
         EntityRenderers.register(ModEntityTypes.DEINONYCHUS.get(), DeinonychusRenderer::new);
         EntityRenderers.register(ModEntityTypes.DRYPTO.get(), DryptoRenderer::new);
