@@ -8,9 +8,7 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.Alte
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndominusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorGen2Entity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.ScorpiusEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.DryptoEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.AtrociraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.VelociraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
@@ -49,12 +47,10 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.ALLOSAURUS.get(), AllosaurusEntity.attributes().build());
         event.put(ModEntityTypes.BARYONYX.get(), BaryonyxEntity.attributes().build());
         event.put(ModEntityTypes.BARYONYX_GEN2.get(), BaryonyxGen2Entity.attributes().build());
-        event.put(ModEntityTypes.ALIORAMUS.get(), AlioramusEntity.attributes().build());
         event.put(ModEntityTypes.CARCHA.get(), CarchaEntity.attributes().build());
         event.put(ModEntityTypes.YUTYRANNUS.get(), YutyrannusEntity.attributes().build());
         event.put(ModEntityTypes.SPINO.get(), SpinoEntity.attributes().build());
         event.put(ModEntityTypes.COMPY.get(), CompsognathusEntity.attributes().build());
-        event.put(ModEntityTypes.MEGALO.get(), MegaloEntity.attributes().build());
         event.put(ModEntityTypes.GIGA.get(), GigaEntity.attributes().build());
         event.put(ModEntityTypes.VELOCIRAPTOR.get(), VelociraptorEntity.attributes().build());
         event.put(ModEntityTypes.MALUSAURUS.get(), MalusaurusEntity.attributes().build());

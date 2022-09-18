@@ -4,9 +4,7 @@ import com.huskytacodile.alternacraft.Alternacraft;
 
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.*;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.AlioramusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.DryptoEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.MegaloEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.AtrociraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.VelociraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
@@ -40,19 +38,11 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(4f, 4f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "jpspino").toString()));
 
-
     public static final RegistryObject<EntityType<AlternasaurusEntity>> ALTERNASAURUS =
             ENTITY_TYPES.register("alternasaurus",
                     () -> EntityType.Builder.of(AlternasaurusEntity::new,
                                     MobCategory.CREATURE).sized(4f, 4f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "alternasaurus").toString()));
-
-    public static final RegistryObject<EntityType<AlioramusEntity>> ALIORAMUS =
-            ENTITY_TYPES.register("alioramus",
-                    () -> EntityType.Builder.of(AlioramusEntity::new,
-                                    MobCategory.CREATURE).sized(2.25f, 2.25f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "alioramus").toString()));
-    
 
     public static final RegistryObject<EntityType<TylosaurusEntity>> TYLOSAURUS =
             ENTITY_TYPES.register("tylosaurus",
@@ -155,12 +145,6 @@ public class ModEntityTypes {
                     () -> EntityType.Builder.of(MorosEntity::new,
                                     MobCategory.CREATURE).sized(0.7f, 0.7f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "moros").toString()));
-
-    public static final RegistryObject<EntityType<MegaloEntity>> MEGALO =
-            ENTITY_TYPES.register("megalo",
-                    () -> EntityType.Builder.of(MegaloEntity::new,
-                                    MobCategory.CREATURE).sized(3f, 3f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "megalo").toString()));
 
     public static final RegistryObject<EntityType<DryptoEntity>> DRYPTO =
             ENTITY_TYPES.register("drypto",

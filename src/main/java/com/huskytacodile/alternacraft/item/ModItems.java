@@ -88,10 +88,6 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.BARYONYX_GEN2, 0x878787, 0xF9FF1E,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> ALIORAMUS_SPAWN_EGG = ITEMS.register("alioramus_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.ALIORAMUS, 0x8BCB42, 0x53801F,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
-
     public static final RegistryObject<ForgeSpawnEggItem> CARCHA_SPAWN_EGG = ITEMS.register("carcha_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.CARCHA, 0x2D2D2D, 0xC00000,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
@@ -110,10 +106,6 @@ public class ModItems {
 
     public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_SPAWN_EGG = ITEMS.register("indoraptor_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR, 0x9F0000, 0x7D8F66,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
-
-    public static final RegistryObject<ForgeSpawnEggItem> MEGALO_SPAWN_EGG = ITEMS.register("megalo_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.MEGALO, 0x4D3D2D, 0xC27007,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
     public static final RegistryObject<ForgeSpawnEggItem> ATROCI_SPAWN_EGG = ITEMS.register("atroci_spawn_egg",
