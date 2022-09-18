@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large;
 
+import com.huskytacodile.alternacraft.entities.ai.GeckoMeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.*;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,7 +31,6 @@ public class AcroEntity extends LargeCarnivoreEntity {
         super(entityType, level);
         this.setTame(false);
     }
-
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 82.00D)
@@ -38,13 +38,12 @@ public class AcroEntity extends LargeCarnivoreEntity {
                 .add(Attributes.FOLLOW_RANGE, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 7.0D);
     }
-
     @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.addGoal(4, new GeckoMeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal(this));
@@ -56,36 +55,31 @@ public class AcroEntity extends LargeCarnivoreEntity {
         this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class,
                 false, getPreySelection(this)));
     }
-    
-    public void aiStep() {
-    	super.aiStep();
-    	if (this.isAsleep() || this.isNaturallySitting()) {
-    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
-    	} else {
-    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-    	}
-    }
 
+    public void aiStep() {
+        super.aiStep();
+        if (this.isAsleep() || this.isNaturallySitting()) {
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
+        } else {
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
+        }
+    }
     @Override
     public String getAnimationName() {
         return "acrocanthosaurus";
     }
-
     @Override
     protected SoundEvent getAmbientSound() {
         return this.isAsleep() ? null : ModSoundEvents.ACRO_GROWL.get();
     }
-
     @Override
     protected SoundEvent getDeathSound() {
         return ModSoundEvents.ACRO_ROAR1.get();
     }
-
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return ModSoundEvents.ACRO_ROAR2.get();
     }
-
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
