@@ -4,9 +4,6 @@ import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.client.render.entity.*;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.item.ModItems;
-import com.huskytacodile.alternacraft.screen.DNAInsertionTableScreen;
-import com.huskytacodile.alternacraft.screen.FossilGrinderScreen;
-import com.huskytacodile.alternacraft.screen.ModMenuTypes;
 import com.huskytacodile.alternacraft.util.ModItemProperties;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -19,8 +16,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ModEventClientBusEvents {
     @SubscribeEvent
     public static void clientSetup(final FMLClientSetupEvent event) {
-        MenuScreens.register(ModMenuTypes.FOSSIL_GRINDER.get(), FossilGrinderScreen::new);
-        MenuScreens.register(ModMenuTypes.DNA_INSERTION_TABLE.get(), DNAInsertionTableScreen::new);
         ModItemProperties.makeBow(ModItems.PAINITE_BOW.get());
 
         EntityRenderers.register(ModEntityTypes.JPSPINO.get(), JPSpinoRenderer::new);

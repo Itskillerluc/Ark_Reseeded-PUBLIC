@@ -12,6 +12,7 @@ import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -44,7 +45,7 @@ public abstract class CarnivoreEntity extends AlternaDinoEntity {
 
     public boolean isAttacking() {
         return this.entityData.get(ATTACKING);
-    }
+}
 
     @Override
     protected void defineSynchedData() {
@@ -52,15 +53,13 @@ public abstract class CarnivoreEntity extends AlternaDinoEntity {
         this.entityData.define(ATTACKING, false);
     }
 
-    private <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> event) {
-        if(isAttacking()) {
-            event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation." + this.getAnimationName() + ".attack", true));
-
-            return PlayState.CONTINUE;
+    private PlayState attackPredicate(AnimationEvent event) {
+        if(this.swinging && event.getController().getAnimationState().equals(AnimationState.Stopped)){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + this.getAnimationName() + ".attack", false));
+            this.swinging = false;
         }
-
-        return PlayState.STOP;
+            return PlayState.CONTINUE;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

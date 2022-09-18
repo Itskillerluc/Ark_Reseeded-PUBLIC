@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic;
 
+import net.minecraft.world.entity.ai.goal.*;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
@@ -24,13 +25,6 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -44,7 +38,6 @@ public class SuchomimusEntity extends SemiAquaticEntity {
         super(p_i48575_1_, p_i48575_2_);
         this.setTame(false);
     }
-
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 94.00D)

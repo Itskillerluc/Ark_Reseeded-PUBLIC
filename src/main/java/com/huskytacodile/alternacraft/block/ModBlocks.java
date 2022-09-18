@@ -4,8 +4,6 @@ import com.huskytacodile.alternacraft.Alternacraft;
 
 import com.huskytacodile.alternacraft.block.custom.AlternaPortalBlock;
 import com.huskytacodile.alternacraft.block.custom.AlternaRadiatorBlock;
-import com.huskytacodile.alternacraft.block.custom.DNAInsertionTableBlock;
-import com.huskytacodile.alternacraft.block.custom.FossilGrinderBlock;
 import com.huskytacodile.alternacraft.item.ModCreativeModeTab;
 import com.huskytacodile.alternacraft.item.ModItems;
 
@@ -185,15 +183,6 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> DNA_COMBINATOR = registerBlock("dna_combinator",
             () -> new LanternBlock(BlockBehaviour.Properties.of(Material.METAL).strength(6f).requiresCorrectToolForDrops()));
-
-    public static final RegistryObject<Block> FOSSIL_GRINDER = registerBlock("fossil_grinder",
-            () -> new FossilGrinderBlock(BlockBehaviour.Properties.of(Material.METAL).strength(6f)
-                    .requiresCorrectToolForDrops()));
-
-    public static final RegistryObject<Block> DNA_INSERTION_TABLE = registerBlock("dna_insertion_table",
-            () -> new DNAInsertionTableBlock(BlockBehaviour.Properties.of(Material.METAL).strength(6f)
-                    .requiresCorrectToolForDrops()));
-
 
     public static final RegistryObject<Block> SECURITY_FENCE = registerBlock("security_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.of(Material.METAL).strength(6f)

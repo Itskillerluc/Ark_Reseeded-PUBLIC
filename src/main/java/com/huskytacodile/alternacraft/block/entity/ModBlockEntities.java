@@ -12,16 +12,6 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Alternacraft.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<FossilGrinderBlockEntity>> FOSSIL_GRINDER =
-            BLOCK_ENTITIES.register("fossil_grinder", () ->
-                    BlockEntityType.Builder.of(FossilGrinderBlockEntity::new,
-                            ModBlocks.FOSSIL_GRINDER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<DNAInsertionTableBlockEntity>> DNA_INSERTION_TABLE =
-            BLOCK_ENTITIES.register("dna_insertion_table", () ->
-                    BlockEntityType.Builder.of(DNAInsertionTableBlockEntity::new,
-                            ModBlocks.DNA_INSERTION_TABLE.get()).build(null));
-
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

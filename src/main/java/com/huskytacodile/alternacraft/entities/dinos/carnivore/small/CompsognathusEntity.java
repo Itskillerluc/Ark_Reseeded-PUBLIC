@@ -1,9 +1,9 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.small;
 
-import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoGeckoMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoNocturnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSleepingRandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.dinos.SmallCarnivoreEntity;
@@ -25,12 +25,6 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -59,7 +53,7 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 		this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-		this.goalSelector.addGoal(1, new SmallDinoGeckoMeleeAttackGoal(this, 1.2, false));
+		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
 		this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1));
 		this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
 		this.goalSelector.addGoal(4, new SmallDinoSleepingRandomLookAroundGoal(this));

@@ -17,7 +17,6 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
-import com.huskytacodile.alternacraft.recipe.FossilGrinderRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -68,8 +67,6 @@ public class ModEventBusEvents {
         });
 
         event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
-            helper.register(new ResourceLocation(Alternacraft.MOD_ID, FossilGrinderRecipe.Type.ID),
-                    FossilGrinderRecipe.Type.INSTANCE);
         });
 
         event.register(ForgeRegistries.Keys.ITEMS, ModItems::onRegisterItems);
