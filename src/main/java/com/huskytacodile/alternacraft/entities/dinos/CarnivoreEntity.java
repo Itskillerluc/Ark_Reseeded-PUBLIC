@@ -21,8 +21,6 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 
 public abstract class CarnivoreEntity extends AlternaDinoEntity {
-    protected static final EntityDataAccessor<Boolean> ATTACKING =
-            SynchedEntityData.defineId(CarnivoreEntity.class, EntityDataSerializers.BOOLEAN);
 
     public CarnivoreEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
@@ -39,21 +37,13 @@ public abstract class CarnivoreEntity extends AlternaDinoEntity {
         return item.isEdible() && item.getFoodProperties().isMeat();
     }
 
-    public void setAttacking(boolean attack) {
-        this.entityData.set(ATTACKING, attack);
-    }
-
-    public boolean isAttacking() {
-        return this.entityData.get(ATTACKING);
-}
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(ATTACKING, false);
     }
 
-    private PlayState attackPredicate(AnimationEvent event) {
+    private <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> event) {
         if(this.swinging && event.getController().getAnimationState().equals(AnimationState.Stopped)){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + this.getAnimationName() + ".attack", false));
@@ -66,6 +56,8 @@ public abstract class CarnivoreEntity extends AlternaDinoEntity {
 	@Override
     public void registerControllers(AnimationData data) {
         super.registerControllers(data);
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
         data.addAnimationController(new AnimationController
                 (this, "attackController", 0, this::attackPredicate));
     }
