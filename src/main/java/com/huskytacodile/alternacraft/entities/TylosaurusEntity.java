@@ -74,7 +74,6 @@ public class TylosaurusEntity extends WaterAnimal implements IAnimatable {
                 entitytype == ModEntityTypes.INDOMINUS.get()||
                 entitytype == ModEntityTypes.INDORAPTOR_GEN2.get()||
                 entitytype == ModEntityTypes.ALLOSAURUS.get()||
-                entitytype == ModEntityTypes.ACRO.get()||
                 entitytype == ModEntityTypes.SCORPIUS.get()||
                 entitytype == ModEntityTypes.ALTERNASAURUS.get();
     };

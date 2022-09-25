@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic;
 
+import com.huskytacodile.alternacraft.entities.attackgoal.BaryMeleeAttackGoal;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
@@ -53,7 +54,7 @@ public class BaryonyxGen2Entity extends SemiAquaticEntity {
         super.registerGoals();
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.addGoal(1, new BaryMeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal(this));

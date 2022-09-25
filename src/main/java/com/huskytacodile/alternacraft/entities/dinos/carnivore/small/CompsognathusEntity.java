@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.small;
 
+import com.huskytacodile.alternacraft.entities.attackgoal.CompyMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoNocturnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSleepingRandomLookAroundGoal;
@@ -53,7 +54,7 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 		this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
+		this.goalSelector.addGoal(1, new CompyMeleeAttackGoal(this, 1.2, false));
 		this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1));
 		this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
 		this.goalSelector.addGoal(4, new SmallDinoSleepingRandomLookAroundGoal(this));

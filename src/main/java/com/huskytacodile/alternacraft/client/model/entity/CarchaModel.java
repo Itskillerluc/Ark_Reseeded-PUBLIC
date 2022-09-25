@@ -14,7 +14,7 @@ public class CarchaModel extends AnimatedGeoModel<CarchaEntity> {
 
     @Override
     public ResourceLocation getModelResource(CarchaEntity entity) {
-        return new ResourceLocation(Alternacraft.MOD_ID, "geo/carcharodontosaurus.geo.json");
+        return new ResourceLocation(Alternacraft.MOD_ID, "geo/carcha.geo.json");
     }
 
     @Override

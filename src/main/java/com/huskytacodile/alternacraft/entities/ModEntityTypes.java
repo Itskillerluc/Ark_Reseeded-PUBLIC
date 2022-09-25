@@ -98,12 +98,6 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(3f, 3f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "indoraptor_gen2").toString()));
 
-    public static final RegistryObject<EntityType<AcroEntity>> ACRO =
-            ENTITY_TYPES.register("acro",
-                    () -> EntityType.Builder.of(AcroEntity::new,
-                                    MobCategory.CREATURE).sized(3.5f, 3.5f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "acro").toString()));
-
     public static final RegistryObject<EntityType<TyrannosaurusEntity>> TYRANNOSAURUS =
             ENTITY_TYPES.register("tyrannosaurus",
                     () -> EntityType.Builder.of(TyrannosaurusEntity::new,

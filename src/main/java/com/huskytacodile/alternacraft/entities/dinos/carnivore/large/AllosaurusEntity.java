@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large;
 
+import com.huskytacodile.alternacraft.entities.attackgoal.SpinosaurusMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.variant.RarityVariant;
 import org.jetbrains.annotations.Nullable;
 
@@ -88,7 +89,7 @@ public class AllosaurusEntity extends LargeCarnivoreEntity {
         super.registerGoals();
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.addGoal(1, new SpinosaurusMeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal(this));

@@ -1110,6 +1110,9 @@
 				"tyrannosaurus": {
 					"position": {
 						"0.7917": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1134,6 +1137,9 @@
 				"tail8": {
 					"rotation": {
 						"0.3333": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1154,6 +1160,9 @@
 				"tail9": {
 					"rotation": {
 						"0.375": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1412,6 +1421,9 @@
 				"tail1": {
 					"rotation": {
 						"0.0417": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1432,6 +1444,9 @@
 				"tail2": {
 					"rotation": {
 						"0.0833": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1452,6 +1467,9 @@
 				"tail3": {
 					"rotation": {
 						"0.125": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1472,6 +1490,9 @@
 				"tail4": {
 					"rotation": {
 						"0.1667": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1492,6 +1513,9 @@
 				"tail5": {
 					"rotation": {
 						"0.2083": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1512,6 +1536,9 @@
 				"tail6": {
 					"rotation": {
 						"0.25": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -1532,6 +1559,9 @@
 				"tail7": {
 					"rotation": {
 						"0.2917": {
+							"pre": {
+								"vector": [0, 0, 0]
+							},
 								"vector": [0, 0, 0]
 							
 						},
@@ -2063,6 +2093,176 @@
 								"vector": [0, 0, 0]
 							
 						}
+					}
+				}
+			}
+		},
+		"animation.carcha.sleep": {
+			"loop": true,
+			"animation_length": 3,
+			"bones": {
+				"thighRight": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"thighLeft": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"eyes": {
+					"scale": {
+						"vector": [1, 0, 1]
+					}
+				},
+				"root": {
+					"rotation": {
+						"vector": [-5, 0, 0]
+					},
+					"position": {
+						"vector": [0, -45, 0]
+					}
+				},
+				"bodyHips": {
+					"position": {
+						"vector": [0, 2, 0]
+					}
+				},
+				"neck1": {
+					"rotation": {
+						"0.0": {
+							"vector": [30, 0, 0]
+						},
+						"1.5": {
+							"vector": [22.5, 0, 0]
+						},
+						"3.0": {
+							"vector": [30, 0, 0]
+						}
+					},
+					"position": {
+						"vector": [0, 2, 0]
+					}
+				},
+				"jawLowerBase": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [5, 0, 0]
+						},
+						"3.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"armBicepLeft": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"armBicepLeft2": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"legThighLeft": {
+					"rotation": {
+						"vector": [-70, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"legThighRight": {
+					"rotation": {
+						"vector": [-70, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.carcha.sit": {
+			"loop": true,
+			"animation_length": 1.95833,
+			"bones": {
+				"thighRight": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"thighLeft": {
+					"rotation": {
+						"vector": [-72.5, 0, 0]
+					}
+				},
+				"root": {
+					"rotation": {
+						"vector": [-5, 0, 0]
+					},
+					"position": {
+						"vector": [0, -47, 0]
+					}
+				},
+				"bodyHips": {
+					"position": {
+						"vector": [0, 4, 0]
+					}
+				},
+				"neck1": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [5, 0, 0]
+						},
+						"1.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"jawLowerBase": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [5, 0, 0]
+						},
+						"1.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"armBicepLeft": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"armBicepLeft2": {
+					"rotation": {
+						"vector": [-55, 0, 0]
+					}
+				},
+				"legThighLeft": {
+					"rotation": {
+						"vector": [-70, 0, 0]
+					},
+					"position": {
+						"vector": [0, 2, 0]
+					}
+				},
+				"legThighRight": {
+					"rotation": {
+						"vector": [-70, 0, 0]
+					},
+					"position": {
+						"vector": [0, 2, 0]
 					}
 				}
 			}

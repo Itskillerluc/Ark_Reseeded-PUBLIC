@@ -40,7 +40,7 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.SPINO, 0xD3D751, 0xB12626,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> BLUE_SPAWN_EGG = ITEMS.register("velociraptor_spawn_egg",
+    public static final RegistryObject<ForgeSpawnEggItem> VELOCIRAPTOR_SPAWN_EGG = ITEMS.register("velociraptor_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.VELOCIRAPTOR, 0xA9A9A9,0x008DAF ,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
@@ -62,10 +62,6 @@ public class ModItems {
 
     public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_GEN2_SPAWN_EGG = ITEMS.register("indoraptor_gen2_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR_GEN2, 0x222222, 0xF0C500,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
-
-    public static final RegistryObject<ForgeSpawnEggItem> ACRO_SPAWN_EGG = ITEMS.register("acro_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.ACRO, 0xE39F30, 0x30BDE3,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
     public static final RegistryObject<ForgeSpawnEggItem> TYRANNOSAURUS_SPAWN_EGG = ITEMS.register("tyrannosaurus_spawn_egg",

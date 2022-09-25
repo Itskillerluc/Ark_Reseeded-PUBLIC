@@ -1,6 +1,9 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large;
 
-import com.huskytacodile.alternacraft.entities.ai.GeckoMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.attackgoal.OxalaiaMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.attackgoal.YutyMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.variant.IVariant;
+import net.minecraft.world.entity.ai.goal.*;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
@@ -24,13 +27,6 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -41,50 +37,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
 public class CarchaEntity extends LargeCarnivoreEntity {
-    public CarchaEntity(EntityType<? extends TamableAnimal> p_i48575_1_, Level p_i48575_2_) {
-        super(p_i48575_1_, p_i48575_2_);
+    public CarchaEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
+        super(entityType, level);
         this.setTame(false);
-    }
-
-    @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
-                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-        GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
-        setVariant(variant);
-        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return this.isAsleep() ? null : ModSoundEvents.CARCHA_AMBIENT.get();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return ModSoundEvents.CARCHA_DEATH.get();
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return ModSoundEvents.CARCHA_HURT.get();
-    }
-
-    @Override
-    public String getAnimationName() {
-        return "carcha";
     }
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 94.00D)
+                .add(Attributes.MAX_HEALTH, 86.00D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.ATTACK_DAMAGE, 9.0D);
-    }
-
-    @Override
-    protected Item getTamingItem() {
-        return Items.IRON_SWORD;
+                .add(Attributes.ATTACK_DAMAGE, 8.0D);
     }
 
     @Override
@@ -92,7 +55,7 @@ public class CarchaEntity extends LargeCarnivoreEntity {
         super.registerGoals();
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(4, new GeckoMeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal(this));
@@ -106,17 +69,52 @@ public class CarchaEntity extends LargeCarnivoreEntity {
     }
 
     public void aiStep() {
-    	super.aiStep();
-    	if (this.isAsleep() || this.isNaturallySitting()) {
-    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
-    	} else {
-    		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-    	}
+        super.aiStep();
+        if(this.isAsleep() || this.isNaturallySitting()) {
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
+        } else {
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
+        }
     }
-    
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return this.isAsleep() ? null : ModSoundEvents.YUTY_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return ModSoundEvents.YUTY_DEATH.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        return ModSoundEvents.YUTY_HURT.get();
+    }
+
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
+        GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
+        setVariant(variant);
+        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+    }
+
+    @Override
+    public IVariant getVariant() {
+        return GenderVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    @Override
+    public String getAnimationName() {
+        return "carcha";
+    }
+
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
         return null;
     }
 }

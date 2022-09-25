@@ -1,6 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid;
 
-import com.huskytacodile.alternacraft.entities.ai.GeckoMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.attackgoal.OxalaiaMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.attackgoal.ScorpiusMeleeAttackGoal;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ai.CathemeralSleepGoal;
@@ -27,7 +28,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
@@ -60,7 +60,7 @@ public class ScorpiusEntity extends HybridEntity {
         super.registerGoals();
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(1, new GeckoMeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.addGoal(1, new ScorpiusMeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new DinoSittingGoal(this));

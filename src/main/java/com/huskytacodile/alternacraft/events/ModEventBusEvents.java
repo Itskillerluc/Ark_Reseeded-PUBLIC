@@ -33,7 +33,6 @@ public class ModEventBusEvents {
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntityTypes.JPSPINO.get(), JPSpinoEntity.attributes().build());
         event.put(ModEntityTypes.INDOMINUS.get(), IndominusEntity.attributes().build());
-        event.put(ModEntityTypes.ACRO.get(), AcroEntity.attributes().build());
         event.put(ModEntityTypes.OXALAIA.get(), SuchomimusEntity.attributes().build());
         event.put(ModEntityTypes.INDORAPTOR.get(), IndoraptorGen2Entity.attributes().build());
         event.put(ModEntityTypes.INDORAPTOR_GEN2.get(), IndoraptorGen2Entity.attributes().build());

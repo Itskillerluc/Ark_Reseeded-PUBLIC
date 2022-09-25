@@ -20,7 +20,6 @@ public class ModEventClientBusEvents {
 
         EntityRenderers.register(ModEntityTypes.JPSPINO.get(), JPSpinoRenderer::new);
         EntityRenderers.register(ModEntityTypes.INDOMINUS.get(), IndominusRenderer::new);
-        EntityRenderers.register(ModEntityTypes.ACRO.get(), AcroRenderer::new);
         EntityRenderers.register(ModEntityTypes.OXALAIA.get(), OxalaiaRenderer::new);
         EntityRenderers.register(ModEntityTypes.INDORAPTOR.get(), IndoraptorRenderer::new);
         EntityRenderers.register(ModEntityTypes.INDORAPTOR_GEN2.get(), IndoraptorGen2Renderer::new);

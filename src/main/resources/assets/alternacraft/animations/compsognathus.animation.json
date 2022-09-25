@@ -333,7 +333,7 @@
 							
 						},
 						"0.5": {
-								"vector": [0, 0.2, 0]
+								"vector": [0, -0.8, 0]
 							
 						},
 						"1.0": {
@@ -341,7 +341,7 @@
 							
 						},
 						"1.5": {
-								"vector": [0, 0.2, 0]
+								"vector": [0, -0.8, 0]
 							
 						},
 						"2.0": {
@@ -634,10 +634,6 @@
 				"neck1": {
 					"rotation": {
 						"0.0": {
-								"vector": [1.73, 0, 0]
-							
-						},
-						"0.0417": {
 								"vector": [2.5, 0, 0]
 							
 						},
@@ -654,16 +650,12 @@
 							
 						},
 						"2.0": {
-								"vector": [1.73, 0, 0]
+								"vector": [2.5, 0, 0]
 							
 						}
 					},
 					"position": {
 						"0.0": {
-								"vector": [0, 0, 0.08]
-							
-						},
-						"0.0417": {
 								"vector": [0, 0, 0]
 							
 						},
@@ -680,7 +672,7 @@
 							
 						},
 						"2.0": {
-								"vector": [0, 0, 0.08]
+								"vector": [0, 0, 0]
 							
 						}
 					}
@@ -699,10 +691,6 @@
 					"rotation": {
 						"0.0": {
 								"vector": [-3.08, 0, 0]
-							
-						},
-						"0.0833": {
-								"vector": [-5, 0, 0]
 							
 						},
 						"0.625": {
@@ -725,10 +713,6 @@
 					"position": {
 						"0.0": {
 								"vector": [0, 0.08, 0.42]
-							
-						},
-						"0.0833": {
-								"vector": [0, 0.1, 0.5]
 							
 						},
 						"0.625": {
@@ -1785,7 +1769,7 @@
 							
 						},
 						"0.9583": {
-								"vector": [0, 0, 3]
+								"vector": [0, 0, 2.5]
 							
 						},
 						"1.5833": {
@@ -1816,70 +1800,23 @@
 				}
 			}
 		},
-		"animation.compsognathus.sit": {
-			"loop": true,
-			"animation_length": 1.5,
-			"bones": {
-				"bone": {
-					"position": {
-						"vector": [0, -16, 0]
-					}
-				},
-				"armBicepLeft": {
-					"rotation": {
-						"vector": [-90.13835, -15.11283, -8.74738]
-					}
-				},
-				"armBicepLeft2": {
-					"rotation": {
-						"vector": [-89.9048, 16.99691, 10.58]
-					}
-				},
-				"bodyShouldersUnder": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.75": {
-							"vector": [-2.5, 0, 0]
-						},
-						"1.5": {
-							"vector": [0, 0, 0]
-						}
-					}
-				},
-				"jawLowerBase": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.75": {
-							"vector": [10, 0, 0]
-						},
-						"1.5": {
-							"vector": [0, 0, 0]
-						}
-					}
-				},
-				"legThighLeft": {
-					"rotation": {
-						"vector": [-80, 0, 0]
-					}
-				},
-				"legThighLeft2": {
-					"rotation": {
-						"vector": [-80, 0, 0]
-					}
-				}
-			}
-		},
 		"animation.compsognathus.sleep": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
+				"eyes": {
+					"scale": {
+						"vector": [1, 0, 1]
+					}
+				},
 				"bone": {
 					"position": {
-						"vector": [0, -16, 0]
+						"vector": [0, -11, 0]
+					}
+				},
+				"bodyHips": {
+					"rotation": {
+						"vector": [7.5, 0, 0]
 					}
 				},
 				"armBicepLeft": {
@@ -1930,15 +1867,62 @@
 					"rotation": {
 						"vector": [-80, 0, 0]
 					}
-				},
-				"bodyHips": {
-					"rotation": {
-						"vector": [7.5, 0, 0]
+				}
+			}
+		},
+		"animation.compsognathus.sit": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"bone": {
+					"position": {
+						"vector": [0, -10, 0]
 					}
 				},
-				"eyes": {
-					"scale": {
-						"vector": [1, 0, 1]
+				"armBicepLeft": {
+					"rotation": {
+						"vector": [-90.13835, -15.11283, -8.74738]
+					}
+				},
+				"armBicepLeft2": {
+					"rotation": {
+						"vector": [-89.9048, 16.99691, 10.58]
+					}
+				},
+				"bodyShouldersUnder": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.75": {
+							"vector": [-2.5, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"jawLowerBase": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.75": {
+							"vector": [10, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"legThighLeft": {
+					"rotation": {
+						"vector": [-80, 0, 0]
+					}
+				},
+				"legThighLeft2": {
+					"rotation": {
+						"vector": [-80, 0, 0]
 					}
 				}
 			}

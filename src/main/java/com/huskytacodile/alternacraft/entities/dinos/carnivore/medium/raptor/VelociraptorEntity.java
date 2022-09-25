@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor;
 
+import com.huskytacodile.alternacraft.entities.attackgoal.RaptorMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.variant.DuodecupleVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import net.minecraft.Util;
@@ -53,7 +54,7 @@ public class VelociraptorEntity extends RaptorEntity {
         super.registerGoals();
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.addGoal(1, new RaptorMeleeAttackGoal(this, 1.2, false));
         this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal(this));
