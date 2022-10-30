@@ -23,8 +23,8 @@ public class BaryonyxGen2Renderer extends GeoEntityRenderer<BaryonyxGen2Entity>
     }
     public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/bary_g2_male.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/bary_g2_female.png"));
+                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/baryonyx_gen2_male.png"));
+                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/baryonyx_gen2_female.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(BaryonyxGen2Entity entity) {

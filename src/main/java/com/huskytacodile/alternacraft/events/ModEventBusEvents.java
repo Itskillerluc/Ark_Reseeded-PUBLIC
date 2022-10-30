@@ -4,7 +4,6 @@ import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.entities.*;
 
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.*;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.AlternasaurusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndominusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorGen2Entity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.ScorpiusEntity;
@@ -17,7 +16,6 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -37,7 +35,7 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.INDORAPTOR.get(), IndoraptorGen2Entity.attributes().build());
         event.put(ModEntityTypes.INDORAPTOR_GEN2.get(), IndoraptorGen2Entity.attributes().build());
         event.put(ModEntityTypes.CERATOSUCHOPS.get(), CeratosuchopsEntity.attributes().build());
-        event.put(ModEntityTypes.ALTERNASAURUS.get(), AlternasaurusEntity.attributes().build());
+        event.put(ModEntityTypes.ACRO.get(), AcroEntity.attributes().build());
         event.put(ModEntityTypes.TYLOSAURUS.get(), TylosaurusEntity.attributes().build());
         event.put(ModEntityTypes.MOSASAURUS.get(), MosasaurusEntity.attributes().build());
         event.put(ModEntityTypes.TYRANNOSAURUS.get(), TyrannosaurusEntity.attributes().build());

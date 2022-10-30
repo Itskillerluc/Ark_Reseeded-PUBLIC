@@ -1,13 +1,13 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.BaryMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.variant.QuadrupleVariant;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.DiurnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.SemiAquaticEntity;
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 
@@ -78,7 +78,7 @@ public class BaryonyxEntity extends SemiAquaticEntity {
     
     @Override
     public IVariant getVariant() {
-        return GenderVariant.byId(this.getTypeVariant() & 255);
+        return QuadrupleVariant.byId(this.getTypeVariant() & 255);
     }
 
     @Override

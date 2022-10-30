@@ -30,6 +30,6 @@ public abstract class HybridEntity extends LargeCarnivoreEntity {
                 e.getType() == ModEntityTypes.CARCHA.get() || e.getType() == ModEntityTypes.BARYONYX.get() || e.getType() == ModEntityTypes.BARYONYX_GEN2.get() ||
                 e.getType() == ModEntityTypes.TYLOSAURUS.get() || e.getType() == ModEntityTypes.MOSASAURUS.get() ||
                 e.getType() == ModEntityTypes.CERATOSUCHOPS.get() || e.getType() == ModEntityTypes.INDORAPTOR_GEN2.get() || e.getType() == ModEntityTypes.SCORPIUS.get() ||
-                e.getType() == ModEntityTypes.GIGA.get() || e.getType() == ModEntityTypes.ALTERNASAURUS.get());
+                e.getType() == ModEntityTypes.GIGA.get());
     }
 }

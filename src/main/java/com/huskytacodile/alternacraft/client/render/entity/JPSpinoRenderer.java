@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.huskytacodile.alternacraft.client.model.entity.JPSpinoModel;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.JPSpinoEntity;
 
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
+import com.huskytacodile.alternacraft.entities.variant.TripleVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -26,10 +26,11 @@ public class JPSpinoRenderer extends GeoEntityRenderer<JPSpinoEntity>
         super(entityRendererProvider, new JPSpinoModel());
         this.shadowRadius = 4.0F;
     }
-    public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/spino_alterna.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/spino_alterna.png"));
+    public static final Map<TripleVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(TripleVariant.class), (p_114874_) -> {
+                p_114874_.put(TripleVariant.MALE, new ResourceLocation("alternacraft:textures/entity/jpspino_male.png"));
+                p_114874_.put(TripleVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/jpspino_female.png"));
+                p_114874_.put(TripleVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/jpspino_male1.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(JPSpinoEntity entity) {

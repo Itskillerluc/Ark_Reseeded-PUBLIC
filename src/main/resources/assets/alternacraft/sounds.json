@@ -1,30 +1,24 @@
 {
-  "spino_roar1": {
+  "spino_idle": {
     "category": "entities",
-    "subtitle": "alternacraft.spino_roar1",
+    "subtitle": "alternacraft.spino_idle",
     "sounds": [
-      "alternacraft:spino_roar1"
-    ]
-  },
-  "spino_roar2": {
-    "category": "entities",
-    "subtitle": "alternacraft.spino_roar2",
-    "sounds": [
-      "alternacraft:spino_roar2"
-    ]
-  },
-  "satellite_spino": {
-    "category": "entities",
-    "subtitle": "alternacraft.satellite_spino",
-    "sounds": [
+      "alternacraft:spino_idle",
       "alternacraft:satellite_spino"
     ]
   },
-  "spino_roar3": {
+  "spino_hurt": {
     "category": "entities",
-    "subtitle": "alternacraft.spino_roar3",
+    "subtitle": "alternacraft.spino_hurt",
     "sounds": [
-      "alternacraft:spino_roar3"
+      "alternacraft:spino_hurt"
+    ]
+  },
+  "spino_death": {
+    "category": "entities",
+    "subtitle": "alternacraft.spino_death",
+    "sounds": [
+      "alternacraft:spino_death"
     ]
   },
   "indominus_rex_roar1": {
@@ -149,25 +143,35 @@
       "alternacraft:alternasaurus_death"
     ]
   },
-  "t_ambient": {
+  "rex_idle": {
     "category": "entities",
-    "subtitle": "alternacraft.t_ambient",
+    "subtitle": "alternacraft.rex_idle",
     "sounds": [
-      "alternacraft:t_ambient"
+      "alternacraft:rex_idle_1",
+      "alternacraft:rex_idle_2",
+      "alternacraft:rex_idle_3",
+      "alternacraft:rex_idle_4",
+      "alternacraft:rex_idle_5",
+      "alternacraft:rex_idle_6",
+      "alternacraft:rex_idle_7",
+      "alternacraft:rex_idle_8",
+      "alternacraft:rex_idle_9",
+      "alternacraft:rex_idle_10"
     ]
   },
-  "t_hurt": {
+  "rex_hurt": {
     "category": "entities",
-    "subtitle": "alternacraft.t_hurt",
+    "subtitle": "alternacraft.rex_hurt",
     "sounds": [
-      "alternacraft:t_hurt"
+      "alternacraft:rex_hurt_1",
+      "alternacraft:rex_hurt_2"
     ]
   },
-  "t_death": {
+  "rex_death": {
     "category": "entities",
-    "subtitle": "alternacraft.t_death",
+    "subtitle": "alternacraft.rex_death",
     "sounds": [
-      "alternacraft:t_death"
+      "alternacraft:rex_death_1"
     ]
   },
   "scorpius_death": {
@@ -384,50 +388,63 @@
     "category": "entities",
     "subtitle": "alternacraft.compy_death",
     "sounds": [
-        "alternacraft:compy_death"
+        "alternacraft:compy_death_1"
     ]
   },
-  "compy_ambient": {
+  "compy_idle": {
     "category": "entities",
-    "subtitle": "alternacraft.compy_ambient",
+    "subtitle": "alternacraft.compy_idle",
     "sounds": [
-      "alternacraft:compy_ambient",
-      "alternacraft:compy_ambient2"
+      "alternacraft:compy_idle_1",
+      "alternacraft:compy_idle_2",
+      "alternacraft:compy_idle_3",
+      "alternacraft:compy_idle_4",
+      "alternacraft:compy_idle_5",
+      "alternacraft:compy_idle_6"
     ]
   },
   "compy_hurt": {
     "category": "entities",
     "subtitle": "alternacraft.compy_hurt",
     "sounds": [
-      "alternacraft:compy_hurt"
+      "alternacraft:compy_hurt_1"
     ]
   },
-  "blue_death": {
+  "raptor_death": {
     "category": "entities",
-    "subtitle": "alternacraft.blue_death",
+    "subtitle": "alternacraft.raptor_death",
     "sounds": [
-        "alternacraft:blue_death"
+      "alternacraft:raptor_death_1",
+      "alternacraft:raptor_death_2",
+      "alternacraft:raptor_death_3",
+      "alternacraft:raptor_death_4"
     ]
   },
-  "blue_ambient": {
+  "raptor_idle": {
     "category": "entities",
-    "subtitle": "alternacraft.blue_ambient",
+    "subtitle": "alternacraft.raptor_idle",
     "sounds": [
-      "alternacraft:blue_ambient"
+      "alternacraft:raptor_idle_1",
+      "alternacraft:raptor_idle_2",
+      "alternacraft:raptor_idle_3",
+      "alternacraft:raptor_idle_4",
+      "alternacraft:raptor_idle_5",
+      "alternacraft:raptor_idle_6"
     ]
   },
-  "blue_hurt": {
+  "raptor_hurt": {
     "category": "entities",
-    "subtitle": "alternacraft.blue_hurt",
+    "subtitle": "alternacraft.raptor_hurt",
     "sounds": [
-      "alternacraft:blue_hurt"
+      "alternacraft:raptor_hurt_1",
+      "alternacraft:raptor_hurt_2"
     ]
   },
-  "beta_ambient": {
+  "raptor_snore": {
     "category": "entities",
-    "subtitle": "alternacraft.beta_ambient",
+    "subtitle": "alternacraft.raptor_snore",
     "sounds": [
-      "alternacraft:beta_ambient"
+      "alternacraft:raptor_snore"
     ]
   }
 }

@@ -84,8 +84,7 @@ public class MosasaurusEntity extends WaterAnimal implements IAnimatable {
                 entitytype == ModEntityTypes.INDOMINUS.get()||
                 entitytype == ModEntityTypes.INDORAPTOR_GEN2.get()||
                 entitytype == ModEntityTypes.ALLOSAURUS.get()||
-                entitytype == ModEntityTypes.SCORPIUS.get()||
-                entitytype == ModEntityTypes.ALTERNASAURUS.get();
+                entitytype == ModEntityTypes.SCORPIUS.get();
     };
     private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(MosasaurusEntity.class, EntityDataSerializers.BOOLEAN);
     

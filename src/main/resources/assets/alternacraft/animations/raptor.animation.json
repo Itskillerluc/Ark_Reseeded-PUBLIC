@@ -1382,7 +1382,7 @@
 				}
 			}
 		},
-		"animation.raptor.run": {
+		"animation.raptor.walk": {
 			"loop": true,
 			"animation_length": 0.58333,
 			"bones": {

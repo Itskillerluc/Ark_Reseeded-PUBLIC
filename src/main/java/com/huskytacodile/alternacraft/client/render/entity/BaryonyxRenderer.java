@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.huskytacodile.alternacraft.client.model.entity.BaryonyxModel;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.BaryonyxEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
+import com.huskytacodile.alternacraft.entities.variant.QuadrupleVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -22,10 +23,12 @@ public class BaryonyxRenderer extends GeoEntityRenderer<BaryonyxEntity>
         super(entityRendererProvider, new BaryonyxModel());
         this.shadowRadius = 4.0F;
     }
-    public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/baryonyx_male.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/baryonyx_female.png"));
+    public static final Map<QuadrupleVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(QuadrupleVariant.class), (p_114874_) -> {
+                p_114874_.put(QuadrupleVariant.MALE, new ResourceLocation("alternacraft:textures/entity/baryonyx_chaos.png"));
+                p_114874_.put(QuadrupleVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/baryonyx_grim.png"));
+                p_114874_.put(QuadrupleVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/baryonyx_fk.png"));
+                p_114874_.put(QuadrupleVariant.MALE2, new ResourceLocation("alternacraft:textures/entity/baryonyx_chaos.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(BaryonyxEntity entity) {

@@ -24,7 +24,7 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.INDORAPTOR.get(), IndoraptorRenderer::new);
         EntityRenderers.register(ModEntityTypes.INDORAPTOR_GEN2.get(), IndoraptorGen2Renderer::new);
         EntityRenderers.register(ModEntityTypes.CERATOSUCHOPS.get(), CeratosuchopsRenderer::new);
-        EntityRenderers.register(ModEntityTypes.ALTERNASAURUS.get(), AlternasaurusRenderer::new);
+        EntityRenderers.register(ModEntityTypes.ACRO.get(), AcroRenderer::new);
         EntityRenderers.register(ModEntityTypes.TYLOSAURUS.get(), TylosaurusRenderer::new);
         EntityRenderers.register(ModEntityTypes.MOSASAURUS.get(), MosasaurusRenderer::new);
         EntityRenderers.register(ModEntityTypes.TYRANNOSAURUS.get(), TyrannosaurusRenderer::new);

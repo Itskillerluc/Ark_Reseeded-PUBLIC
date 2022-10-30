@@ -1,6 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.SpinosaurusMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.variant.TripleVariant;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
@@ -8,7 +9,6 @@ import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.NocturnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.SemiAquaticEntity;
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 
@@ -87,31 +87,31 @@ public class JPSpinoEntity extends SemiAquaticEntity {
     
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-        GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
+        TripleVariant variant = Util.getRandom(TripleVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
     public IVariant getVariant() {
-        return GenderVariant.byId(this.getTypeVariant() & 255);
+        return TripleVariant.byId(this.getTypeVariant() & 255);
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return this.isAsleep() ? null : ModSoundEvents.SPINO_ROAR2.get();
+        return this.isAsleep() ? null : ModSoundEvents.SPINO_IDLE.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return ModSoundEvents.SPINO_ROAR3.get();
+        return ModSoundEvents.SPINO_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return ModSoundEvents.SPINO_ROAR1.get();
+        return ModSoundEvents.SPINO_HURT.get();
     }
 
     @Override

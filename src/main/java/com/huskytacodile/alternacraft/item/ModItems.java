@@ -44,9 +44,11 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.VELOCIRAPTOR, 0xA9A9A9,0x008DAF ,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
+    /*
     public static final RegistryObject<ForgeSpawnEggItem> TYLOSAURUS_SPAWN_EGG = ITEMS.register("tylosaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.TYLOSAURUS, 0xF4F4F4, 0x131929,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+     */
 
     public static final RegistryObject<ForgeSpawnEggItem> MOSASAURUS_SPAWN_EGG = ITEMS.register("mosasaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.MOSASAURUS, 0x5998C6, 0x19424A,
@@ -56,146 +58,142 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.CERATOSUCHOPS, 0x585551, 0xA18B00,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> ALTERNASAURUS_SPAWN_EGG = ITEMS.register("alternasaurus_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.ALTERNASAURUS, 0x000000, 0x1CFCFF,
+    public static final RegistryObject<ForgeSpawnEggItem> ACRO_SPAWN_EGG = ITEMS.register("acro_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.ACRO, 0x000000, 0x1CFCFF,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
     public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_GEN2_SPAWN_EGG = ITEMS.register("indoraptor_gen2_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR_GEN2, 0x222222, 0xF0C500,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> TYRANNOSAURUS_SPAWN_EGG = ITEMS.register("tyrannosaurus_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.TYRANNOSAURUS, 0xB09739, 0x6A5713,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
-
     public static final RegistryObject<ForgeSpawnEggItem> SCORPIUS_SPAWN_EGG = ITEMS.register("scorpius_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.SCORPIUS, 0x4F4F4F, 0x0A0A0A,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+    /*
+        public static final RegistryObject<ForgeSpawnEggItem> ALLOSAURUS_SPAWN_EGG = ITEMS.register("allosaurus_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.ALLOSAURUS, 0xB33B3B, 0x2D71D3,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+     */
+        public static final RegistryObject<ForgeSpawnEggItem> BARYONYX_SPAWN_EGG = ITEMS.register("baryonyx_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.BARYONYX, 0x878787, 0x003176,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> ALLOSAURUS_SPAWN_EGG = ITEMS.register("allosaurus_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.ALLOSAURUS, 0xB33B3B, 0x2D71D3,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> BARYONYX_GEN2_SPAWN_EGG = ITEMS.register("baryonyx_gen2_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.BARYONYX_GEN2, 0x878787, 0xF9FF1E,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> BARYONYX_SPAWN_EGG = ITEMS.register("baryonyx_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.BARYONYX, 0x878787, 0x003176,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> CARCHA_SPAWN_EGG = ITEMS.register("carcha_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.CARCHA, 0x2D2D2D, 0xC00000,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> BARYONYX_GEN2_SPAWN_EGG = ITEMS.register("baryonyx_gen2_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.BARYONYX_GEN2, 0x878787, 0xF9FF1E,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> COMPY_SPAWN_EGG = ITEMS.register("compy_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.COMPY, 0x9FDC55, 0x7D8F66,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> CARCHA_SPAWN_EGG = ITEMS.register("carcha_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.CARCHA, 0x2D2D2D, 0xC00000,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> MOROS_SPAWN_EGG = ITEMS.register("moros_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.MOROS, 0x9F0000, 0x7D8F66,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> COMPY_SPAWN_EGG = ITEMS.register("compy_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.COMPY, 0x9FDC55, 0x7D8F66,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> DRYPTO_SPAWN_EGG = ITEMS.register("drypto_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.DRYPTO, 0x9F0000, 0x7D8F66,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> MOROS_SPAWN_EGG = ITEMS.register("moros_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.MOROS, 0x9F0000, 0x7D8F66,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_SPAWN_EGG = ITEMS.register("indoraptor_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR, 0x9F0000, 0x7D8F66,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> DRYPTO_SPAWN_EGG = ITEMS.register("drypto_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.DRYPTO, 0x9F0000, 0x7D8F66,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> ATROCI_SPAWN_EGG = ITEMS.register("atroci_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.ATROCI, 0x4D3D2D, 0xC27007,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> INDORAPTOR_SPAWN_EGG = ITEMS.register("indoraptor_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.INDORAPTOR, 0x9F0000, 0x7D8F66,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> PYRO_SPAWN_EGG = ITEMS.register("pyro_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.PYRO, 0x4D3D2D, 0xC27007,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> ATROCI_SPAWN_EGG = ITEMS.register("atroci_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.ATROCI, 0x4D3D2D, 0xC27007,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> YUTYRANNUS_SPAWN_EGG = ITEMS.register("yutyrannus_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.YUTYRANNUS, 0xDFDFDF, 0xA68B48,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> PYRO_SPAWN_EGG = ITEMS.register("pyro_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.PYRO, 0x4D3D2D, 0xC27007,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<ForgeSpawnEggItem> GIGA_SPAWN_EGG = ITEMS.register("giga_spawn_egg",
+                () -> new ForgeSpawnEggItem(ModEntityTypes.GIGA, 0x878787, 0x313131,
+                        new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> YUTYRANNUS_SPAWN_EGG = ITEMS.register("yutyrannus_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.YUTYRANNUS, 0xDFDFDF, 0xA68B48,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> FOSSIL = ITEMS.register("fossil",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> GIGA_SPAWN_EGG = ITEMS.register("giga_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityTypes.GIGA, 0x878787, 0x313131,
-                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> TOTEM_OF_HUGO = ITEMS.register("totem_of_hugo",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> FOSSIL = ITEMS.register("fossil",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> TOTEM_OF_ELEMENT = ITEMS.register("totem_of_element",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> TOTEM_OF_HUGO = ITEMS.register("totem_of_hugo",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PAINITE = ITEMS.register("painite",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> TOTEM_OF_ELEMENT = ITEMS.register("totem_of_element",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PRIMORDIAL_SHARD = ITEMS.register("primordial_shard",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PAINITE = ITEMS.register("painite",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PRIME_BIOLUMINESCENCE = ITEMS.register("prime_bioluminescence",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PRIMORDIAL_SHARD = ITEMS.register("primordial_shard",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> BIOLUMINESCENCE = ITEMS.register("bioluminescence",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PRIME_BIOLUMINESCENCE = ITEMS.register("prime_bioluminescence",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> TITANIUM_INGOT = ITEMS.register("titanium_ingot",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> BIOLUMINESCENCE = ITEMS.register("bioluminescence",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite",
+                ()-> new MalachiteItem(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> TITANIUM_INGOT = ITEMS.register("titanium_ingot",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> AMBER = ITEMS.register("amber",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> MALACHITE = ITEMS.register("malachite",
-            ()-> new MalachiteItem(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> MOSQUITO_IN_AMBER = ITEMS.register("mosquito_in_amber",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> AMBER = ITEMS.register("amber",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> AMONG_US_RED = ITEMS.register("among_us_red",
+                ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> MOSQUITO_IN_AMBER = ITEMS.register("mosquito_in_amber",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PAINITE_SWORD = ITEMS.register("painite_sword",
+                ()-> new SwordItem(ModItemTier.PAINITE, 2,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> AMONG_US_RED = ITEMS.register("among_us_red",
-            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> CARAMEL_SWORD = ITEMS.register("caramel_sword",
+                ()-> new CaramelSwordItem(ModItemTier.ICE_CREAM, 3,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PAINITE_SWORD = ITEMS.register("painite_sword",
-            ()-> new SwordItem(ModItemTier.PAINITE, 2,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> MINT_SWORD = ITEMS.register("mint_sword",
+                ()-> new MintSwordItem(ModItemTier.ICE_CREAM, 3,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> CARAMEL_SWORD = ITEMS.register("caramel_sword",
-            ()-> new CaramelSwordItem(ModItemTier.ICE_CREAM, 3,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> SHERBET_SWORD = ITEMS.register("sherbet_sword",
+                ()-> new SherbetSwordItem(ModItemTier.ICE_CREAM, 3,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> MINT_SWORD = ITEMS.register("mint_sword",
-            ()-> new MintSwordItem(ModItemTier.ICE_CREAM, 3,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> TRI_BLADE = ITEMS.register("tri_blade",
+                ()-> new SwordItem(ModItemTier.PAINITE, 7,3f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> SHERBET_SWORD = ITEMS.register("sherbet_sword",
-            ()-> new SherbetSwordItem(ModItemTier.ICE_CREAM, 3,1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PRIMORDIAL_BLADE = ITEMS.register("primordial_blade",
+                ()-> new SwordItem(ModItemTier.PRIMORDIAL, 3,3f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> TRI_BLADE = ITEMS.register("tri_blade",
-            ()-> new SwordItem(ModItemTier.PAINITE, 7,3f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PAINITE_PICKAXE = ITEMS.register("painite_pickaxe",
+                ()-> new PickaxeItem(ModItemTier.PAINITE, 1,-2f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PRIMORDIAL_BLADE = ITEMS.register("primordial_blade",
-            ()-> new SwordItem(ModItemTier.PRIMORDIAL, 3,3f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PAINITE_AXE = ITEMS.register("painite_axe",
+                ()-> new AxeItem(ModItemTier.PAINITE, 4,-1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PAINITE_PICKAXE = ITEMS.register("painite_pickaxe",
-            ()-> new PickaxeItem(ModItemTier.PAINITE, 1,-2f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PAINITE_SHOVEL = ITEMS.register("painite_shovel",
+                ()-> new ShovelItem(ModItemTier.PAINITE, 0,-1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PAINITE_AXE = ITEMS.register("painite_axe",
-            ()-> new AxeItem(ModItemTier.PAINITE, 4,-1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> PAINITE_HOE = ITEMS.register("painite_hoe",
+                ()-> new HoeItem(ModItemTier.PAINITE, 0,0f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
-    public static final RegistryObject<Item> PAINITE_SHOVEL = ITEMS.register("painite_shovel",
-            ()-> new ShovelItem(ModItemTier.PAINITE, 0,-1f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<PainiteBowItem> PAINITE_BOW = ITEMS.register("painite_bow",
+                () -> new PainiteBowItem(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP).stacksTo(1)));
 
-    public static final RegistryObject<Item> PAINITE_HOE = ITEMS.register("painite_hoe",
-            ()-> new HoeItem(ModItemTier.PAINITE, 0,0f,new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+        public static final RegistryObject<Item> EMPTY_SYRINGE = ITEMS.register("dna_syringe",
+                () -> new DNASyringeItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES)));
 
-    public static final RegistryObject<PainiteBowItem> PAINITE_BOW = ITEMS.register("painite_bow",
-            () -> new PainiteBowItem(new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP).stacksTo(1)));
+        public static final RegistryObject<Item> EMPTY_DINO_EGG = ITEMS.register("dino_egg",
+                () -> new DinoEggItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES)));
 
-    public static final RegistryObject<Item> EMPTY_SYRINGE = ITEMS.register("dna_syringe",
-            () -> new DNASyringeItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES)));
-
-    public static final RegistryObject<Item> EMPTY_DINO_EGG = ITEMS.register("dino_egg",
-            () -> new DinoEggItem(new Item.Properties().tab(ModCreativeModeTab.DNA_SYRINGES)));
-
-    /* DNA SYRINGES */
+        /* DNA SYRINGES */
     public static void onRegisterItems(RegisterEvent.RegisterHelper<Item> helper) {
         var resources = Dino.values();
         var resources1 = DinoEgg.values();

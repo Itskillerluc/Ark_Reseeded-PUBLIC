@@ -85,19 +85,19 @@ public class TyrannosaurusEntity extends LargeCarnivoreEntity {
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return this.isAsleep() ? null : ModSoundEvents.T_AMBIENT.get();
+        return this.isAsleep() ? ModSoundEvents.REX_SNORE.get() : ModSoundEvents.REX_IDLE.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return ModSoundEvents.T_DEATH.get();
+        return ModSoundEvents.REX_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return ModSoundEvents.T_HURT.get();
+        return ModSoundEvents.REX_HURT.get();
     }
 
     @Override

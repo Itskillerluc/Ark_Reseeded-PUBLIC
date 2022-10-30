@@ -91,19 +91,19 @@ public class VelociraptorEntity extends RaptorEntity {
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return this.isAsleep() ? null : ModSoundEvents.BLUE_AMBIENT.get();
+        return this.isAsleep() ? ModSoundEvents.RAPTOR_SNORE.get() : ModSoundEvents.RAPTOR_IDLE.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return ModSoundEvents.BLUE_DEATH.get();
+        return ModSoundEvents.RAPTOR_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return ModSoundEvents.BLUE_HURT.get();
+        return ModSoundEvents.RAPTOR_HURT.get();
     }
 
     @Override

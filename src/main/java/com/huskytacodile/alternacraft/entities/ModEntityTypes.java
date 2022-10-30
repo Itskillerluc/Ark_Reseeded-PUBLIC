@@ -38,12 +38,6 @@ public class ModEntityTypes {
                                     MobCategory.CREATURE).sized(4f, 4f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "jpspino").toString()));
 
-    public static final RegistryObject<EntityType<AlternasaurusEntity>> ALTERNASAURUS =
-            ENTITY_TYPES.register("alternasaurus",
-                    () -> EntityType.Builder.of(AlternasaurusEntity::new,
-                                    MobCategory.CREATURE).sized(4f, 4f)
-                            .build(new ResourceLocation(Alternacraft.MOD_ID, "alternasaurus").toString()));
-
     public static final RegistryObject<EntityType<TylosaurusEntity>> TYLOSAURUS =
             ENTITY_TYPES.register("tylosaurus",
                     () -> EntityType.Builder.of(TylosaurusEntity::new,
@@ -85,6 +79,12 @@ public class ModEntityTypes {
                     () -> EntityType.Builder.of(IndominusEntity::new,
                                     MobCategory.CREATURE).sized(4f, 4f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "indominus").toString()));
+
+    public static final RegistryObject<EntityType<AcroEntity>> ACRO =
+            ENTITY_TYPES.register("acro",
+                    () -> EntityType.Builder.of(AcroEntity::new,
+                                    MobCategory.CREATURE).sized(4f, 4f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "acro").toString()));
 
     public static final RegistryObject<EntityType<IndoraptorEntity>> INDORAPTOR =
             ENTITY_TYPES.register("indoraptor_alterna",

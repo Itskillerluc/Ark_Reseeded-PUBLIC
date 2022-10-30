@@ -14,14 +14,12 @@ public class ModSoundEvents {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Alternacraft.MOD_ID);
 
-    public static final RegistryObject<SoundEvent> SPINO_ROAR1 =
-            registerSoundEvent("spino_roar1");
-    public static final RegistryObject<SoundEvent> SPINO_ROAR2 =
-            registerSoundEvent("spino_roar2");
-    public static final RegistryObject<SoundEvent> SPINO_ROAR3 =
-            registerSoundEvent("spino_roar3");
-    public static final RegistryObject<SoundEvent> SATELLITE_SPINO =
-            registerSoundEvent("satellite_spino");
+    public static final RegistryObject<SoundEvent> SPINO_IDLE =
+            registerSoundEvent("spino_idle");
+    public static final RegistryObject<SoundEvent> SPINO_HURT =
+            registerSoundEvent("spino_hurt");
+    public static final RegistryObject<SoundEvent> SPINO_DEATH =
+            registerSoundEvent("spino_death");
     public static final RegistryObject<SoundEvent> INDOMINUS_REX_ROAR1 =
             registerSoundEvent("indominus_rex_roar1");
     public static final RegistryObject<SoundEvent> INDOMINUS_REX_ROAR2 =
@@ -46,12 +44,14 @@ public class ModSoundEvents {
             registerSoundEvent("spinosaurus_hurt");
     public static final RegistryObject<SoundEvent> SPINOSAURUS_DEATH =
             registerSoundEvent("spinosaurus_death");
-    public static final RegistryObject<SoundEvent> T_AMBIENT =
-            registerSoundEvent("t_ambient");
-    public static final RegistryObject<SoundEvent> T_HURT =
-            registerSoundEvent("t_hurt");
-    public static final RegistryObject<SoundEvent> T_DEATH =
-            registerSoundEvent("t_death");
+    public static final RegistryObject<SoundEvent> REX_IDLE =
+            registerSoundEvent("rex_idle");
+    public static final RegistryObject<SoundEvent> REX_HURT =
+            registerSoundEvent("rex_hurt");
+    public static final RegistryObject<SoundEvent> REX_DEATH =
+            registerSoundEvent("rex_death");
+    public static final RegistryObject<SoundEvent> REX_SNORE =
+            registerSoundEvent("rex_snore");
     public static final RegistryObject<SoundEvent> CERATOSUCHOPS_IDLE_ROAR =
             registerSoundEvent("ceratosuchops_idle_roar");
     public static final RegistryObject<SoundEvent> CERATOSUCHOPS_HURT =
@@ -130,14 +130,14 @@ public class ModSoundEvents {
             registerSoundEvent("compy_hurt");
     public static final RegistryObject<SoundEvent> COMPY_DEATH =
             registerSoundEvent("compy_death");
-    public static final RegistryObject<SoundEvent> BETA_AMBIENT =
-            registerSoundEvent("beta_ambient");
-    public static final RegistryObject<SoundEvent> BLUE_AMBIENT =
-            registerSoundEvent("blue_ambient");
-    public static final RegistryObject<SoundEvent> BLUE_HURT =
-            registerSoundEvent("blue_hurt");
-    public static final RegistryObject<SoundEvent> BLUE_DEATH =
-            registerSoundEvent("blue_death");
+    public static final RegistryObject<SoundEvent> RAPTOR_IDLE =
+            registerSoundEvent("raptor_idle");
+    public static final RegistryObject<SoundEvent> RAPTOR_HURT =
+            registerSoundEvent("raptor_hurt");
+    public static final RegistryObject<SoundEvent> RAPTOR_DEATH =
+            registerSoundEvent("raptor_death");
+    public static final RegistryObject<SoundEvent> RAPTOR_SNORE =
+            registerSoundEvent("raptor_snore");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(Alternacraft.MOD_ID, name)));
