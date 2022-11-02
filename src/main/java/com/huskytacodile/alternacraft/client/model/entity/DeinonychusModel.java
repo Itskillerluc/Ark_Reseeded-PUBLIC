@@ -1,6 +1,7 @@
 package com.huskytacodile.alternacraft.client.model.entity;
 
 import com.huskytacodile.alternacraft.Alternacraft;
+import com.huskytacodile.alternacraft.client.render.entity.DeinonychusRenderer;
 import com.huskytacodile.alternacraft.client.render.entity.VelociraptorRenderer;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +20,6 @@ public class DeinonychusModel extends AnimatedGeoModel<DeinonychusEntity> {
 
     @Override
     public ResourceLocation getTextureResource(DeinonychusEntity entity)    {
-        return VelociraptorRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
+        return DeinonychusRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

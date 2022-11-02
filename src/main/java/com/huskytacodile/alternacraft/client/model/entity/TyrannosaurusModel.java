@@ -9,12 +9,12 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 public class TyrannosaurusModel extends AnimatedGeoModel<TyrannosaurusEntity> {
     @Override
     public ResourceLocation getAnimationResource(TyrannosaurusEntity entity) {
-        return new ResourceLocation(Alternacraft.MOD_ID, "animations/tyrannosaur.animation.json");
+        return new ResourceLocation(Alternacraft.MOD_ID, "animations/trex.animation.json");
     }
 
     @Override
     public ResourceLocation getModelResource(TyrannosaurusEntity entity) {
-        return new ResourceLocation(Alternacraft.MOD_ID, "geo/tyrannosaurus.geo.json");
+        return new ResourceLocation(Alternacraft.MOD_ID, "geo/trex.geo.json");
     }
 
     @Override

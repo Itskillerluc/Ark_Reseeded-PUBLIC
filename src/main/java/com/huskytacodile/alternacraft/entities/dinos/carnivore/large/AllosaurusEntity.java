@@ -73,7 +73,7 @@ public class AllosaurusEntity extends LargeCarnivoreEntity {
 
     @Override
     public String getAnimationName() {
-        return "allosaurus_fragillis";
+        return "allo";
     }
 
     public static AttributeSupplier.Builder attributes() {

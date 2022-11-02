@@ -5,8 +5,8 @@ import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.MalusaurusMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.dinos.LargeCarnivoreEntity;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
+import com.huskytacodile.alternacraft.entities.variant.QuadrupleVariant;
 import org.jetbrains.annotations.Nullable;
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 
 import net.minecraft.Util;
@@ -27,7 +27,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
@@ -103,14 +102,14 @@ public class MalusaurusEntity extends LargeCarnivoreEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-        GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
+        QuadrupleVariant variant = Util.getRandom(QuadrupleVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
     @Override
     public IVariant getVariant() {
-        return GenderVariant.byId(this.getTypeVariant() & 255);
+        return QuadrupleVariant.byId(this.getTypeVariant() & 255);
     }
 
     @Override

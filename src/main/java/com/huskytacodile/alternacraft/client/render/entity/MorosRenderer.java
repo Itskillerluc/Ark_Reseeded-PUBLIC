@@ -24,8 +24,8 @@ public class MorosRenderer extends GeoEntityRenderer<MorosEntity>
     }
     public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/moros_male.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/moros_female.png"));
+                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/moros.png"));
+                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/moros.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(MorosEntity entity) {

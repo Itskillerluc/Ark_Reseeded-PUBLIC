@@ -5,6 +5,7 @@ import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.client.model.entity.MalusaurusModel;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.MalusaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
+import com.huskytacodile.alternacraft.entities.variant.QuadrupleVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -23,15 +24,13 @@ public class MalusaurusRenderer extends GeoEntityRenderer<MalusaurusEntity>
         super(entityRendererProvider, new MalusaurusModel());
         this.shadowRadius = 4.0F;
     }
-    public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/malusaurus_male.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/malusaurus_female.png"));
+    public static final Map<QuadrupleVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(QuadrupleVariant.class), (p_114874_) -> {
+                p_114874_.put(QuadrupleVariant.MALE, new ResourceLocation("alternacraft:textures/entity/malusaurus_male.png"));
+                p_114874_.put(QuadrupleVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/malusaurus_female.png"));
+                p_114874_.put(QuadrupleVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/malusaurus_female2.png"));
+                p_114874_.put(QuadrupleVariant.MALE2, new ResourceLocation("alternacraft:textures/entity/malusaurus_male2.png"));
             });
-    @Override
-    public ResourceLocation getTextureLocation(MalusaurusEntity entity) {
-        return new ResourceLocation(Alternacraft.MOD_ID, "textures/entity/malusaurus.png");
-    }
 
     @Override
     public RenderType getRenderType(MalusaurusEntity animatable, float partialTicks, PoseStack stack,

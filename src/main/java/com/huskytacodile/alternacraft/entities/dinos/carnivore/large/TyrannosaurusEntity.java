@@ -1,13 +1,13 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.YutyMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.variant.SextupleVariant;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.DiurnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.dinos.LargeCarnivoreEntity;
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 
@@ -52,7 +52,7 @@ public class TyrannosaurusEntity extends LargeCarnivoreEntity {
                 .add(Attributes.MAX_HEALTH, 96.00D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.ATTACK_DAMAGE, 10.0D);
+                .add(Attributes.ATTACK_DAMAGE, 11.0D);
     }
 
     @Override
@@ -102,26 +102,25 @@ public class TyrannosaurusEntity extends LargeCarnivoreEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
-        GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
+        SextupleVariant variant = Util.getRandom(SextupleVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
     @Override
     public IVariant getVariant() {
-        return GenderVariant.byId(this.getTypeVariant() & 255);
+        return SextupleVariant.byId(this.getTypeVariant() & 255);
     }
 
     @Override
     public String getAnimationName() {
-        return "tyrannosaur";
+        return "rex";
     }
 
     @Override
     protected Item getTamingItem() {
-        return Items.IRON_SWORD;
+        return Items.NETHERITE_SWORD;
     }
-
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {

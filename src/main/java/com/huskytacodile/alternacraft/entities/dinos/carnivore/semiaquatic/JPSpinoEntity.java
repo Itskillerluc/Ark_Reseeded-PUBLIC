@@ -121,7 +121,7 @@ public class JPSpinoEntity extends SemiAquaticEntity {
 
     @Override
     protected Item getTamingItem() {
-        return Items.IRON_SWORD;
+        return Items.NETHERITE_INGOT;
     }
 
     @Nullable

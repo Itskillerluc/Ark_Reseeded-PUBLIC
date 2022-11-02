@@ -8,13 +8,11 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.Indo
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorGen2Entity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.ScorpiusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.DryptoEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.AtrociraptorEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.VelociraptorEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DeinonychusEntity;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.PyroraptorEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
+import com.huskytacodile.alternacraft.entities.dinos.herbivore.large.agitated.TheriEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -44,7 +42,7 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.BARYONYX.get(), BaryonyxEntity.attributes().build());
         event.put(ModEntityTypes.BARYONYX_GEN2.get(), BaryonyxGen2Entity.attributes().build());
         event.put(ModEntityTypes.CARCHA.get(), CarchaEntity.attributes().build());
-        event.put(ModEntityTypes.YUTYRANNUS.get(), YutyrannusEntity.attributes().build());
+        event.put(ModEntityTypes.YUTYRANNUS.get(), NanuqsaurusEntity.attributes().build());
         event.put(ModEntityTypes.SPINO.get(), SpinoEntity.attributes().build());
         event.put(ModEntityTypes.COMPY.get(), CompsognathusEntity.attributes().build());
         event.put(ModEntityTypes.GIGA.get(), GigaEntity.attributes().build());
@@ -55,6 +53,9 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.DRYPTO.get(), DryptoEntity.attributes().build());
         event.put(ModEntityTypes.ATROCI.get(), AtrociraptorEntity.attributes().build());
         event.put(ModEntityTypes.PYRO.get(), PyroraptorEntity.attributes().build());
+        event.put(ModEntityTypes.CARNO.get(), CarnoEntity.attributes().build());
+        event.put(ModEntityTypes.THERI.get(), TheriEntity.attributes().build());
+        event.put(ModEntityTypes.DROMAEO.get(), DromaeoEntity.attributes().build());
     }
 
     @SubscribeEvent

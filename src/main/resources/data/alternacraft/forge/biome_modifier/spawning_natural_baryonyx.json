@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:mangrove_swamp",
+    "minecraft:swamp"
+  ],
+  "spawners":
+  {
+    "type": "alternacraft:baryonyx",
+    "weight": 2,
+    "minCount": 2,
+    "maxCount": 3
+  }
+}

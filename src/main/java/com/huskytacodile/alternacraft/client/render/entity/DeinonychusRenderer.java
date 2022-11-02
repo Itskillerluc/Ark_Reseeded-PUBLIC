@@ -24,8 +24,8 @@ public class DeinonychusRenderer extends GeoEntityRenderer<DeinonychusEntity>
     }
     public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/deinonychus_male.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/deinonychus_male.png"));
+                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/deinonychus.png"));
+                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/deinonychus.png"));
             });
 
     @Override

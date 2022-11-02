@@ -2770,7 +2770,7 @@
 			"bones": {
 				"root": {
 					"position": {
-						"vector": [0, -42.475, 0]
+						"vector": [0, -22.475, 0]
 					}
 				},
 				"leftarm": {
@@ -3042,7 +3042,7 @@
 			"bones": {
 				"root": {
 					"position": {
-						"vector": [0, -42.475, 0]
+						"vector": [0, -22.475, 0]
 					}
 				},
 				"leftarm": {

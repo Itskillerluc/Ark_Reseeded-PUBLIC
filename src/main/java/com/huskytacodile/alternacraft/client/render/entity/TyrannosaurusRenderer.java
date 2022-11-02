@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.huskytacodile.alternacraft.client.model.entity.TyrannosaurusModel;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.TyrannosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
+import com.huskytacodile.alternacraft.entities.variant.SextupleVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -22,10 +23,14 @@ public class TyrannosaurusRenderer extends GeoEntityRenderer<TyrannosaurusEntity
         super(entityRendererProvider, new TyrannosaurusModel());
         this.shadowRadius = 4.0F;
     }
-    public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
-                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/tyrannosaurus_male.png"));
-                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/tyrannosaurus_female.png"));
+    public static final Map<SextupleVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(SextupleVariant.class), (p_114874_) -> {
+                p_114874_.put(SextupleVariant.MALE, new ResourceLocation("alternacraft:textures/entity/t_rex_buck.png"));
+                p_114874_.put(SextupleVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/t_rex_doe.png"));
+                p_114874_.put(SextupleVariant.MALE2, new ResourceLocation("alternacraft:textures/entity/t_rex_alpha.png"));
+                p_114874_.put(SextupleVariant.FEMALE2, new ResourceLocation("alternacraft:textures/entity/t_rex_little_eatie.png"));
+                p_114874_.put(SextupleVariant.MALE3, new ResourceLocation("alternacraft:textures/entity/t_rex_big_eatie.png"));
+                p_114874_.put(SextupleVariant.FEMALE3, new ResourceLocation("alternacraft:textures/entity/t_rex_rexy.png"));
             });
     @Override
     public ResourceLocation getTextureLocation(TyrannosaurusEntity entity) {

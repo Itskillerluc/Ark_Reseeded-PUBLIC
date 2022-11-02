@@ -2,6 +2,7 @@ package com.huskytacodile.alternacraft.client.model.entity;
 
 import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.client.render.entity.IndoraptorGen2Renderer;
+import com.huskytacodile.alternacraft.client.render.entity.IndoraptorRenderer;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid.IndoraptorGen2Entity;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +20,6 @@ public class IndoraptorModel extends AnimatedGeoModel<IndoraptorEntity> {
     }
     @Override
     public ResourceLocation getTextureResource(IndoraptorEntity entity)    {
-        return IndoraptorGen2Renderer.LOCATION_BY_VARIANT.get(entity.getVariant());
+        return IndoraptorRenderer.LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 }

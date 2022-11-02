@@ -3,9 +3,9 @@ package com.huskytacodile.alternacraft.events;
 import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.client.render.entity.*;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DromaeoEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.util.ModItemProperties;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,7 +33,7 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.BARYONYX.get(), BaryonyxRenderer::new);
         EntityRenderers.register(ModEntityTypes.BARYONYX_GEN2.get(), BaryonyxGen2Renderer::new);
         EntityRenderers.register(ModEntityTypes.CARCHA.get(), CarchaRenderer::new);
-        EntityRenderers.register(ModEntityTypes.YUTYRANNUS.get(), YutyrannusRenderer::new);
+        EntityRenderers.register(ModEntityTypes.YUTYRANNUS.get(), NanuqsaurusRenderer::new);
         EntityRenderers.register(ModEntityTypes.SPINO.get(), SpinoRenderer::new);
         EntityRenderers.register(ModEntityTypes.COMPY.get(), CompsognathusRenderer::new);
         EntityRenderers.register(ModEntityTypes.GIGA.get(), GigaRenderer::new);
@@ -44,5 +44,8 @@ public class ModEventClientBusEvents {
         EntityRenderers.register(ModEntityTypes.DRYPTO.get(), DryptoRenderer::new);
         EntityRenderers.register(ModEntityTypes.ATROCI.get(), AtrociraptorRenderer::new);
         EntityRenderers.register(ModEntityTypes.PYRO.get(), PyroraptorRenderer::new);
+        EntityRenderers.register(ModEntityTypes.CARNO.get(), CarnoRenderer::new);
+        EntityRenderers.register(ModEntityTypes.THERI.get(), TheriRenderer::new);
+        EntityRenderers.register(ModEntityTypes.DROMAEO.get(), DromaeoRenderer::new);
     }
 }

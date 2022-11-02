@@ -19,7 +19,7 @@ public class BaryonyxGen2Renderer extends GeoEntityRenderer<BaryonyxGen2Entity>
 {
     public BaryonyxGen2Renderer(EntityRendererProvider.Context entityRendererProvider) {
         super(entityRendererProvider, new BaryonyxGen2Model());
-        this.shadowRadius = 4.0F;
+        this.shadowRadius = 2.0F;
     }
     public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {

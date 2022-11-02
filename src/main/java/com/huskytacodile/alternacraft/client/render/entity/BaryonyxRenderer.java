@@ -21,7 +21,7 @@ public class BaryonyxRenderer extends GeoEntityRenderer<BaryonyxEntity>
 {
     public BaryonyxRenderer(EntityRendererProvider.Context entityRendererProvider) {
         super(entityRendererProvider, new BaryonyxModel());
-        this.shadowRadius = 4.0F;
+        this.shadowRadius = 2.2F;
     }
     public static final Map<QuadrupleVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(QuadrupleVariant.class), (p_114874_) -> {
