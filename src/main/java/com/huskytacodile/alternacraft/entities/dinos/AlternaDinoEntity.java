@@ -1,9 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos;
 
-import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.item.ModItems;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -31,17 +29,21 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimatable {
 	
 	private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.BOOLEAN);
+
+    private static final EntityDataAccessor<Integer> KNOCKOUT = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> NATURAL_SITTING = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.BOOLEAN);
 	
-    protected AnimationFactory factory = new AnimationFactory(this);
+    protected AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public AlternaDinoEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
@@ -171,6 +173,13 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
             return playerentity.getMainHandItem().getItem() == Items.NETHERITE_SWORD || playerentity.getOffhandItem().getItem() == Items.NETHERITE_SWORD;
         }
     }
+    public void setKnockout(int knockoutTime){
+        this.entityData.set(KNOCKOUT, knockoutTime);
+    }
+
+    public int getKnockout(){
+        return this.entityData.get(KNOCKOUT);
+    }
 
     public void setSitting(boolean sitting) {
         this.entityData.set(SITTING, sitting);
@@ -191,6 +200,7 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         tag.putInt("Variant", this.getTypeVariant());
         tag.putBoolean("IsAsleep", this.isAsleep());
         tag.putBoolean("NaturallySitting", this.isNaturallySitting());
+        tag.putInt("knockoutTime", this.getKnockout());
     }
 
     @Override
@@ -198,6 +208,7 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         super.readAdditionalSaveData(tag);
         this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
         this.entityData.set(ASLEEP, tag.getBoolean("IsAsleep"));
+        this.entityData.set(KNOCKOUT, tag.getInt("knockoutTime"));
         this.entityData.set(NATURAL_SITTING, tag.getBoolean("NaturallySitting"));
     }
     
@@ -232,33 +243,34 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         this.entityData.define(SITTING, false);
     	this.entityData.define(ASLEEP, false);
     	this.entityData.define(NATURAL_SITTING, false);
+        this.entityData.define(KNOCKOUT, 0);
     }
 
     public abstract String getAnimationName();
 
     protected  <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (!(animationSpeed > -0.10F && animationSpeed < 0.05F)) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (this.isAggressive() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (this.isSitting() || this.getHealth() < 0.01 || this.isDeadOrDying() || this.isNaturallySitting()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".sit", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".sit", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (this.isSwimming() && !(animationSpeed > -0.10F && animationSpeed < 0.05F) && !this.isAggressive()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (this.isAsleep() || this.getHealth() < 0.01 || this.isDeadOrDying()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".sleep", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".sleep", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".idle", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".idle", ILoopType.EDefaultLoopTypes.LOOP));
 
         return PlayState.CONTINUE;
     }
