@@ -53,6 +53,7 @@ public class ModEventClientBusEvents {
             EntityRenderers.register(ModEntityTypes.CARNO.get(), CarnoRenderer::new);
             EntityRenderers.register(ModEntityTypes.THERI.get(), TheriRenderer::new);
             EntityRenderers.register(ModEntityTypes.DROMAEO.get(), DromaeoRenderer::new);
+            EntityRenderers.register(ModEntityTypes.FIRE_WYVERN.get(), FireWyvernRenderer::new);
         }
 
         @SubscribeEvent

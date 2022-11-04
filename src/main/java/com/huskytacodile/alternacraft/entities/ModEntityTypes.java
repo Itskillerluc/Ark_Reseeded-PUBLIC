@@ -10,6 +10,7 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
 import com.huskytacodile.alternacraft.entities.dinos.herbivore.large.agitated.TheriEntity;
+import com.huskytacodile.alternacraft.entities.wyverns.FireWyvernEntity;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraft.world.entity.EntityType;
@@ -193,6 +194,12 @@ public class ModEntityTypes {
                     () -> EntityType.Builder.of(DeinonychusEntity::new,
                                     MobCategory.CREATURE).sized(1.8f, 1.8f)
                             .build(new ResourceLocation(Alternacraft.MOD_ID, "deinonychus").toString()));
+
+    public static final RegistryObject<EntityType<FireWyvernEntity>> FIRE_WYVERN =
+            ENTITY_TYPES.register("fire_wyvern",
+                    () -> EntityType.Builder.of(FireWyvernEntity::new,
+                            MobCategory.CREATURE).sized(2f, 2f)
+                            .build(new ResourceLocation(Alternacraft.MOD_ID, "fire_wyvern").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

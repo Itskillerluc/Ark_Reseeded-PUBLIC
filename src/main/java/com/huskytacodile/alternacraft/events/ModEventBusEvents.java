@@ -13,6 +13,7 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
 import com.huskytacodile.alternacraft.entities.dinos.herbivore.large.agitated.TheriEntity;
+import com.huskytacodile.alternacraft.entities.wyverns.FireWyvernEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -56,6 +57,7 @@ public class ModEventBusEvents {
         event.put(ModEntityTypes.CARNO.get(), CarnoEntity.attributes().build());
         event.put(ModEntityTypes.THERI.get(), TheriEntity.attributes().build());
         event.put(ModEntityTypes.DROMAEO.get(), DromaeoEntity.attributes().build());
+        event.put(ModEntityTypes.FIRE_WYVERN.get(), FireWyvernEntity.attributes().build());
     }
 
     @SubscribeEvent

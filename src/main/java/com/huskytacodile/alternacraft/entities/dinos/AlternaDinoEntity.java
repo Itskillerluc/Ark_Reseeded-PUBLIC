@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.dinos;
 
+import com.huskytacodile.alternacraft.entities.Sleeping;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -36,7 +37,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimatable {
+public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimatable, Sleeping {
 	
 	private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.BOOLEAN);
 
@@ -211,11 +212,13 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         this.entityData.set(KNOCKOUT, tag.getInt("knockoutTime"));
         this.entityData.set(NATURAL_SITTING, tag.getBoolean("NaturallySitting"));
     }
-    
+
+    @Override
     public boolean isAsleep() {
     	return this.entityData.get(ASLEEP);
     }
-    
+
+    @Override
     public void setAsleep(boolean isAsleep) {
     	this.entityData.set(ASLEEP, isAsleep);
     }
