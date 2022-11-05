@@ -29,6 +29,11 @@ public abstract class CarnivoreEntity extends AlternaDinoEntity {
     }
     protected static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(CarnivoreEntity.class, EntityDataSerializers.BOOLEAN);
+    protected Predicate<LivingEntity> getPreySelection(Entity entity) {
+        return (e) -> e.getType() != entity.getType() && (e.getType() == EntityType.SHEEP || e.getType() == EntityType.RABBIT
+                || e.getType() == EntityType.COW || e.getType() == EntityType.CHICKEN || e.getType() == EntityType.PIG || e.getType() == EntityType.HORSE
+                || e.getType() == EntityType.GOAT);
+    }
 
     @SuppressWarnings("deprecation")
 	public boolean isFood(ItemStack stack) {
