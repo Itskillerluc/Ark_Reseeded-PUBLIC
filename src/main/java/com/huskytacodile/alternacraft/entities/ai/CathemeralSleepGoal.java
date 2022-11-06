@@ -20,7 +20,7 @@ public class CathemeralSleepGoal <T extends Mob & Sleeping & OwnableEntity> exte
 	
 	@Override
 	public boolean canUse() {
-		return AlternacraftConfig.sleepingAi && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInPowderSnow && !entity.isInWater() && entity.getOwner() == null;
+		return entity.isOnGround() && AlternacraftConfig.sleepingAi && entity.getRandom().nextInt(1000) == 0 && entity.getLastHurtByMob() == null && entity.getTarget() == null && !entity.isInPowderSnow && !entity.isInWater() && entity.getOwner() == null;
 	}
 	
 	@Override

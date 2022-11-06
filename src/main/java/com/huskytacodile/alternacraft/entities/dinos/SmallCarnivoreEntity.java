@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
@@ -54,7 +55,7 @@ public abstract class SmallCarnivoreEntity extends AlternaNonRideableDinoEntity 
     private <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> event) {
         if(isAttacking()) {
             event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation." + this.getAnimationName() + ".attack", true));
+                    .addAnimation("animation." + this.getAnimationName() + ".attack", ILoopType.EDefaultLoopTypes.LOOP));
 
             return PlayState.CONTINUE;
         }

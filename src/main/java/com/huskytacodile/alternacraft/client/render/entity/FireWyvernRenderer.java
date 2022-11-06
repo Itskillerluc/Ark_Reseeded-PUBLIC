@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.huskytacodile.alternacraft.client.model.entity.AcroModel;
 import com.huskytacodile.alternacraft.client.model.entity.FireWyvernModel;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AcroEntity;
+import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.TripleVariant;
 import com.huskytacodile.alternacraft.entities.wyverns.FireWyvernEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -25,10 +26,10 @@ public class FireWyvernRenderer extends GeoEntityRenderer<FireWyvernEntity>
         super(entityRendererProvider, new FireWyvernModel());
         this.shadowRadius = 4.0F;
     }
-    public static final Map<TripleVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(TripleVariant.class), (p_114874_) -> {
-                p_114874_.put(TripleVariant.MALE, new ResourceLocation("alternacraft:textures/entity/fire_wyvern_male.png"));
-                p_114874_.put(TripleVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/fire_wyvern_female.png"));
+    public static final Map<GenderVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(GenderVariant.class), (p_114874_) -> {
+                p_114874_.put(GenderVariant.MALE, new ResourceLocation("alternacraft:textures/entity/fire_wyvern_male.png"));
+                p_114874_.put(GenderVariant.FEMALE, new ResourceLocation("alternacraft:textures/entity/fire_wyvern_female.png"));
             });
     @Override
     public @NotNull ResourceLocation getTextureLocation(FireWyvernEntity entity) {
