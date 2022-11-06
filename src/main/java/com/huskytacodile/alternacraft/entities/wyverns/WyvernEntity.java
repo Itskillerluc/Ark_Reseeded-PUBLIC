@@ -369,7 +369,6 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Animal.class, true, getPreySelection(this)));
     }
-
     public void aiStep() {
         super.aiStep();
         if (this.isAsleep()) {
