@@ -55,8 +55,7 @@ public class AtrociraptorEntity extends RaptorEntity {
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(Items.NETHERITE_SWORD), false));
         this.goalSelector.addGoal(3, new RandomSwimmingGoal(this,0,1));
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false,
-                getPreySelection(this)));
+        this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false, getPreySelection(this)));
     }
     
     public void aiStep() {
