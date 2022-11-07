@@ -44,7 +44,7 @@ public class FireWyvernEntity extends WyvernEntity{
         return TamableAnimal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 92.00D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
-                .add(Attributes.FOLLOW_RANGE, 16.0D)
+                .add(Attributes.FOLLOW_RANGE, 40.0D)
                 .add(Attributes.ATTACK_DAMAGE, 9.0D)
                 .add(Attributes.FLYING_SPEED, 0.2D);
     }

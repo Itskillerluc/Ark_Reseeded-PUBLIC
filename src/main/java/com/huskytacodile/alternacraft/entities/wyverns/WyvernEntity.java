@@ -2,10 +2,8 @@ package com.huskytacodile.alternacraft.entities.wyverns;
 
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.Sleeping;
-import com.huskytacodile.alternacraft.entities.ai.CathemeralSleepGoal;
-import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
-import com.huskytacodile.alternacraft.entities.ai.WyvernLookoutGoal;
-import com.huskytacodile.alternacraft.entities.ai.WyvernStrollGoal;
+import com.huskytacodile.alternacraft.entities.ai.*;
+import com.huskytacodile.alternacraft.entities.attackgoal.WyvernMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,8 +18,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
@@ -47,6 +43,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -62,6 +59,10 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
 
     protected AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
+    @Override
+    public boolean isAggressive() {
+        return super.isAggressive();
+    }
 
     public WyvernEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -314,7 +315,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
             return PlayState.CONTINUE;
         }
         if (this.isAggressive() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
         if (this.isSwimming() && !(animationSpeed > -0.10F && animationSpeed < 0.05F) && !this.isAggressive() && !isFlying()) {
@@ -366,6 +367,8 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal<>(this));
         this.goalSelector.addGoal(4, new CathemeralSleepGoal<>(this));
         this.goalSelector.addGoal(2, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new WyvernFollowGoal(this, 1.0, 40, (float) Objects.requireNonNull(this.getAttribute(Attributes.FOLLOW_RANGE)).getBaseValue()));
+        this.goalSelector.addGoal(3, new WyvernMeleeAttackGoal(this, 1, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Animal.class, true, getPreySelection(this)));
     }
@@ -376,7 +379,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
             this.getAttribute(Attributes.FLYING_SPEED).setBaseValue(0.0D);
         } else {
             this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-            this.getAttribute(Attributes.FLYING_SPEED).setBaseValue(0.2D);
+            this.getAttribute(Attributes.FLYING_SPEED).setBaseValue(1D);
         }
     }
 
