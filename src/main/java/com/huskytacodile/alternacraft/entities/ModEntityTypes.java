@@ -10,6 +10,7 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic.*;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.CompsognathusEntity;
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity;
 import com.huskytacodile.alternacraft.entities.dinos.herbivore.large.agitated.TheriEntity;
+import com.huskytacodile.alternacraft.entities.other.FireEntity;
 import com.huskytacodile.alternacraft.entities.other.TranqDartEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.FireWyvernEntity;
 import net.minecraft.resources.ResourceLocation;
@@ -206,6 +207,11 @@ public class ModEntityTypes {
             ENTITY_TYPES.register("tranquilizer_dart",
                     () -> EntityType.Builder.<TranqDartEntity>of(TranqDartEntity::new,
                             MobCategory.MISC).build(new ResourceLocation(Alternacraft.MOD_ID, "tranquilizer_dart").toString()));
+
+    public static final RegistryObject<EntityType<FireEntity>> FIRE =
+            ENTITY_TYPES.register("fire",
+                    () -> EntityType.Builder.<FireEntity>of(FireEntity::new,
+                            MobCategory.MISC).build(new ResourceLocation(Alternacraft.MOD_ID, "fire").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

@@ -35,7 +35,7 @@ public class WyvernFollowGoal extends MoveTowardsTargetGoal {
     @Override
     public void tick() {
         super.tick();
-        if (this.entity.distanceTo(this.entity.getTarget()) < 5){
+        if (this.entity.distanceTo(this.entity.getTarget()) < 4){
             this.entity.getNavigation().stop();
             this.stop();
         }

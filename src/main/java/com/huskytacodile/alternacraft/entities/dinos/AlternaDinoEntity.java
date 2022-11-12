@@ -70,6 +70,15 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements IAnimat
         return super.finalizeSpawn(world, difficulty, mobSpawnType, groupData, tag);
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        setKnockout(Math.max(getKnockout()-1, 0));
+        if (getKnockout() > 0){
+            setAsleep(true);
+        }
+    }
+
     protected Item getTamingItem() {
         return ModItems.TOTEM_OF_HUGO.get();
     }
