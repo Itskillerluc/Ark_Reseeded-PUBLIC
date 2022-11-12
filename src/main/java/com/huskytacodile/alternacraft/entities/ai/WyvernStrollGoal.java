@@ -16,7 +16,7 @@ public class WyvernStrollGoal extends RandomStrollGoal {
 
     @Override
     public boolean canUse() {
-        if (this.mob.isVehicle()) {
+        if (this.mob.isVehicle() || this.mob.getTarget() != null) {
             return false;
         } else {
             if (!this.forceTrigger) {

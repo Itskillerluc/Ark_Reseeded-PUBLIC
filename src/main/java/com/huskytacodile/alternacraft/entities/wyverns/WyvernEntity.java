@@ -3,6 +3,7 @@ package com.huskytacodile.alternacraft.entities.wyverns;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.Sleeping;
 import com.huskytacodile.alternacraft.entities.ai.*;
+import com.huskytacodile.alternacraft.entities.attackgoal.MorosMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.WyvernMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import net.minecraft.core.BlockPos;
@@ -283,22 +284,118 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
 
     protected  <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> event){
         if (isAttacking()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
+        /*if (isAttacking()) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
+        if (isAttacking()) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".fly").addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
+        if (isAttacking()) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".idle_fly").addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
+
         if (0 < isBreathingFire() && isBreathingFire() < 5){
+            event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
+        if (0 < isBreathingFire() && isBreathingFire() < 5){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+        if (0 < isBreathingFire() && isBreathingFire() < 5){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("animation." + getAnimationName() + ".fly").addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+        if (0 < isBreathingFire() && isBreathingFire() < 5){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("animation." + getAnimationName() + ".idle_fly").addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
         if (isBreathingFire() > 5){
+            event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
+        if (isBreathingFire() > 5){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
+        if (isBreathingFire() > 5){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fly").addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
+        if (isBreathingFire() > 5){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".idle_fly").addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
+
         if (isBreathingFire() == -1){
+            event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
-        return PlayState.STOP;
+        if (isBreathingFire() == -1){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+        if (isBreathingFire() == -1){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fly").addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+        if (isBreathingFire() == -1){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".idle_fly").addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+        if (this.isAggressive() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+        if (this.isAggressive() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP).addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+        if (this.isAggressive() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fly").addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+        if (this.isAggressive() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".idle_fly").addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }*/
+        return PlayState.CONTINUE;
     }
 
     protected  <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -312,10 +409,6 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         }
         if (animationSpeed > 1F && this.isFlying()){
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".glide"));
-            return PlayState.CONTINUE;
-        }
-        if (this.isAggressive() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
         if (this.isSwimming() && !(animationSpeed > -0.10F && animationSpeed < 0.05F) && !this.isAggressive() && !isFlying()) {

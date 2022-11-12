@@ -54,6 +54,7 @@ public class ModEventClientBusEvents {
             EntityRenderers.register(ModEntityTypes.THERI.get(), TheriRenderer::new);
             EntityRenderers.register(ModEntityTypes.DROMAEO.get(), DromaeoRenderer::new);
             EntityRenderers.register(ModEntityTypes.FIRE_WYVERN.get(), FireWyvernRenderer::new);
+            EntityRenderers.register(ModEntityTypes.TRANQUILIZER_DART.get(), TranqDartRenderer::new);
         }
 
         @SubscribeEvent
@@ -61,6 +62,7 @@ public class ModEventClientBusEvents {
             event.register(KeyBinds.FLY_DOWN_KEY);
         }
     }
+    @Mod.EventBusSubscriber(modid = Alternacraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
     public static class forgeEventBus{
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
