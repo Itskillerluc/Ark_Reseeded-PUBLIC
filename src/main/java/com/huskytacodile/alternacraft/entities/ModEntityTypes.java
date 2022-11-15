@@ -13,6 +13,8 @@ import com.huskytacodile.alternacraft.entities.dinos.herbivore.large.agitated.Th
 import com.huskytacodile.alternacraft.entities.other.FireEntity;
 import com.huskytacodile.alternacraft.entities.other.TranqDartEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.FireWyvernEntity;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraft.world.entity.EntityType;

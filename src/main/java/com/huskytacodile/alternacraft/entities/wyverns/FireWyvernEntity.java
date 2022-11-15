@@ -1,11 +1,13 @@
 package com.huskytacodile.alternacraft.entities.wyverns;
 
+import com.huskytacodile.alternacraft.data.AnimatedTexture;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.entities.variant.RarityVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -47,5 +49,15 @@ public class FireWyvernEntity extends WyvernEntity{
                 .add(Attributes.FOLLOW_RANGE, 40.0D)
                 .add(Attributes.ATTACK_DAMAGE, 9.0D)
                 .add(Attributes.FLYING_SPEED, 0.2D);
+    }
+
+    @Override
+    public String getTextureId() {
+        return "fire_wyvern_texture";
+    }
+
+    @Override
+    public ResourceLocation getFrame(float interval, AnimatedTexture texture) {
+        return texture.next();
     }
 }

@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.wyverns;
 
+import com.huskytacodile.alternacraft.entities.AnimatedTextureEntity;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.Sleeping;
 import com.huskytacodile.alternacraft.entities.ai.*;
@@ -49,13 +50,15 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnimatable, OwnableEntity, PlayerRideableFlying, Sleeping {
+public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnimatable, OwnableEntity, PlayerRideableFlying, Sleeping, AnimatedTextureEntity {
     protected static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Integer> BREATHING_FIRE = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Optional<UUID>> OWNER = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     protected static final EntityDataAccessor<Integer> RISK = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Integer> FIRE_CHARGE = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Integer> FIRE_ANIMATION = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
 
     protected AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
@@ -84,6 +87,8 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.entityData.define(BREATHING_FIRE, 0);
         this.entityData.define(OWNER, Optional.empty());
         this.entityData.define(RISK, 0);
+        this.entityData.define(FIRE_CHARGE, 100);
+        this.entityData.define(FIRE_ANIMATION, 0);
     }
 
     public void setOwner(@Nullable UUID uuid){
@@ -113,6 +118,19 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
 
     public void setBreathingFire(int breathing){
         this.entityData.set(BREATHING_FIRE, breathing);
+    }
+
+    public int getFireCharge(){
+        return this.entityData.get(FIRE_CHARGE);
+    }
+    public int getFireAnimation(){
+        return this.entityData.get(FIRE_ANIMATION);
+    }
+    public void setFireCharge(int charge) {
+        this.entityData.set(FIRE_CHARGE, charge);
+    }
+    public void setFireAnimation(int anim) {
+        this.entityData.set(FIRE_ANIMATION, anim);
     }
 
     public int isBreathingFire(){
@@ -156,6 +174,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         tag.putInt("Variant", this.getTypeVariant());
         tag.putInt("Risk", this.getRisk());
         tag.putBoolean("IsAsleep", this.isAsleep());
+        tag.putInt("charge", this.getFireCharge());
     }
 
     @Override
@@ -173,6 +192,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
         this.entityData.set(RISK, tag.getInt("Risk"));
         this.entityData.set(ASLEEP, tag.getBoolean("IsAsleep"));
+        this.entityData.set(FIRE_CHARGE, tag.getInt("charge"));
     }
 
     public boolean isAsleep() {

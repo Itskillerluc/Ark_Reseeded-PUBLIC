@@ -55,6 +55,7 @@ public class ModEventClientBusEvents {
             EntityRenderers.register(ModEntityTypes.DROMAEO.get(), DromaeoRenderer::new);
             EntityRenderers.register(ModEntityTypes.FIRE_WYVERN.get(), FireWyvernRenderer::new);
             EntityRenderers.register(ModEntityTypes.TRANQUILIZER_DART.get(), TranqDartRenderer::new);
+            EntityRenderers.register(ModEntityTypes.FIRE.get(), FireRenderer::new);
         }
 
         @SubscribeEvent
