@@ -1,6 +1,5 @@
 package com.huskytacodile.alternacraft.entities.wyverns;
 
-import com.huskytacodile.alternacraft.entities.AnimatedTextureEntity;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.Sleeping;
 import com.huskytacodile.alternacraft.entities.ai.*;
@@ -50,9 +49,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnimatable, OwnableEntity, PlayerRideableFlying, Sleeping, AnimatedTextureEntity {
+public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnimatable, OwnableEntity, PlayerRideableFlying, Sleeping {
     protected static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.BOOLEAN);
-    protected static final EntityDataAccessor<Integer> BREATHING_FIRE = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Optional<UUID>> OWNER = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.OPTIONAL_UUID);
@@ -84,7 +82,6 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
         this.entityData.define(ASLEEP, false);
         this.entityData.define(ATTACKING, false);
-        this.entityData.define(BREATHING_FIRE, 0);
         this.entityData.define(OWNER, Optional.empty());
         this.entityData.define(RISK, 0);
         this.entityData.define(FIRE_CHARGE, 100);
@@ -116,10 +113,6 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         return this.entityData.get(ATTACKING);
     }
 
-    public void setBreathingFire(int breathing){
-        this.entityData.set(BREATHING_FIRE, breathing);
-    }
-
     public int getFireCharge(){
         return this.entityData.get(FIRE_CHARGE);
     }
@@ -131,10 +124,6 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
     }
     public void setFireAnimation(int anim) {
         this.entityData.set(FIRE_ANIMATION, anim);
-    }
-
-    public int isBreathingFire(){
-        return this.entityData.get(BREATHING_FIRE);
     }
 
     @Nullable
@@ -307,21 +296,22 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
             return PlayState.CONTINUE;
         }
 
-        if (0 < isBreathingFire() && isBreathingFire() < 5){
+        if (getFireAnimation() == 1){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
 
-        if (isBreathingFire() > 5){
+        if (getFireAnimation() == 2 && getFireCharge() < 1){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        if (isBreathingFire() == -1){
+        if (getFireAnimation() == 3){
             event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            setFireAnimation(0);
             return PlayState.CONTINUE;
         }
         if (this.isAggressive()  && !isFlying() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
@@ -333,7 +323,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
     }
 
     protected  <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (isAttacking() && !isFlying()){
+        if ((isAttacking() && !isFlying()) || getFireAnimation() > 1){
             return PlayState.STOP;
         }
         if (!(animationSpeed > -0.10F && animationSpeed < 0.05F) && !this.isFlying()) {
@@ -426,6 +416,12 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
     @Override
     public void tick() {
         super.tick();
+        if (getFireAnimation() == 3){
+            setFireAnimation(0);
+        }
+        if (getFireAnimation() < 1 && getFireCharge() < 100 && this.tickCount % 2 == 0){
+            this.setFireCharge(getFireCharge()+1);
+        }
         if (!level.isClientSide && !level.getEntities(this, AABB.ofSize(this.position(), 5, 5, 5), getPreySelection(this)).isEmpty()){
             Optional<Entity> entity = level.getEntities(this, AABB.ofSize(this.position(), 5, 5, 5), getPreySelection(this)).stream().findFirst();
             this.setTarget((LivingEntity) entity.get());

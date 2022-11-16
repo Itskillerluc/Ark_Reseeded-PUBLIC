@@ -1,23 +1,25 @@
 package com.huskytacodile.alternacraft.entities.wyverns;
 
-import com.huskytacodile.alternacraft.data.AnimatedTexture;
-import com.huskytacodile.alternacraft.entities.ModEntityTypes;
+import com.huskytacodile.alternacraft.entities.attackgoal.WyvernFireAttackGoal;
+import com.huskytacodile.alternacraft.entities.other.FireEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
-import com.huskytacodile.alternacraft.entities.variant.RarityVariant;
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class FireWyvernEntity extends WyvernEntity{
@@ -26,10 +28,35 @@ public class FireWyvernEntity extends WyvernEntity{
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor p_146746_, @NotNull DifficultyInstance p_146747_, @NotNull MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
         GenderVariant variant = Util.getRandom(GenderVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(2, new WyvernFireAttackGoal(this, () -> new FireEntity(this, 0, 0, 0, this.level, this::fireEntityHit, this::fireBlockHit, new ItemStack(Items.FIRE_CHARGE))));
+    }
+
+    private void fireBlockHit(FireEntity entity, BlockHitResult result){
+        if (!this.level.isClientSide) {
+            if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, entity)) {
+                BlockPos blockpos = result.getBlockPos().relative(result.getDirection());
+                if (this.level.isEmptyBlock(blockpos)) {
+                    this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));
+                }
+            }
+
+        }
+    }
+
+    private void fireEntityHit(FireEntity entity, EntityHitResult result){
+        var target = result.getEntity();
+        if (!this.level.isClientSide && target.isAlive() && target != entity.getOwner()) {
+            target.setSecondsOnFire(5);
+        }
     }
 
     @Override
@@ -49,15 +76,5 @@ public class FireWyvernEntity extends WyvernEntity{
                 .add(Attributes.FOLLOW_RANGE, 40.0D)
                 .add(Attributes.ATTACK_DAMAGE, 9.0D)
                 .add(Attributes.FLYING_SPEED, 0.2D);
-    }
-
-    @Override
-    public String getTextureId() {
-        return "fire_wyvern_texture";
-    }
-
-    @Override
-    public ResourceLocation getFrame(float interval, AnimatedTexture texture) {
-        return texture.next();
     }
 }

@@ -4,7 +4,6 @@ import com.huskytacodile.alternacraft.block.ModBlocks;
 import com.huskytacodile.alternacraft.block.entity.ModBlockEntities;
 import com.huskytacodile.alternacraft.config.AlternacraftConfig;
 import com.huskytacodile.alternacraft.config.AlternacraftConfigHolder;
-import com.huskytacodile.alternacraft.data.AnimatedTextureLoader;
 import com.huskytacodile.alternacraft.enchantment.ModEnchantments;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.item.ModItems;
@@ -14,7 +13,6 @@ import com.huskytacodile.alternacraft.world.dimension.ModDimensions;
 import com.huskytacodile.alternacraft.world.feature.ModPlacedFeatures;
 import com.huskytacodile.alternacraft.world.structure.ModStructures;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -71,10 +69,6 @@ public class Alternacraft {
     	if (config.getSpec() == AlternacraftConfigHolder.COMMON_SPEC) {
     		AlternacraftConfig.bake(config);
     	}
-    }
-
-    public void addReloadListenerEvent(AddReloadListenerEvent event) {
-        event.addListener(new AnimatedTextureLoader());
     }
 
     private void setup(final FMLCommonSetupEvent event)
