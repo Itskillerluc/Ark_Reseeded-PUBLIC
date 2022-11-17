@@ -2,10 +2,14 @@ package com.huskytacodile.alternacraft.entities.attackgoal;
 
 import com.huskytacodile.alternacraft.entities.other.FireEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.WyvernEntity;
+import net.minecraft.commands.arguments.coordinates.RotationArgument;
+import net.minecraft.core.Rotations;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 
 import java.util.function.Supplier;
 
@@ -49,33 +53,35 @@ public class WyvernFireAttackGoal extends Goal {
     @Override
     public void tick() {
         super.tick();
-        if (entity.level.isClientSide()){
+        if (entity.level.isClientSide()) {
             return;
         }
         checkAndPerformAttack();
-        if (entity.getFireAnimation() == 1 && animCounter <= animTickLength){
+        if (entity.getFireAnimation() == 1 && animCounter <= animTickLength) {
             animCounter++;
         } else if (entity.getFireAnimation() == 2) {
             if (enemy != null) {
-                if (entity.tickCount % 3 == 0) {
+                if (entity.tickCount % 7 == 0) {
                     var proj = projectile.get();
-                    proj.shoot(enemy.getX(), enemy.getY(), enemy.getZ(), 1, 1);
+                    entity.lookAt(enemy, 60, 60);
+                    proj.shoot(enemy.getX() - entity.getX(), enemy.getY() - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 0);
                     entity.level.addFreshEntity(proj);
                 }
             } else {
-                if (entity.tickCount % 3 == 0){
+                if (entity.tickCount % 7 == 0) {
                     var proj = projectile.get();
                     if (entity.getTarget() != null) {
-                        proj.shoot(entity.getTarget().getX(), entity.getTarget().getY(), entity.getTarget().getZ(), 1, 1);
+                        entity.lookAt(enemy, 60, 60);
+                        proj.shoot(enemy.getX() - entity.getX(), enemy.getY() - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 0);
+                        entity.level.addFreshEntity(proj);
                     }
-                    entity.level.addFreshEntity(proj);
                 }
+                entity.setFireAnimation(3);
+                entity.setFireCharge(entity.getFireCharge() - 1);
             }
-            entity.setFireAnimation(3);
-            entity.setFireCharge(entity.getFireCharge()-1);
-        }
-        if (entity.getFireCharge() <=0){
-            this.stop();
+            if (entity.getFireCharge() <= 0) {
+                this.stop();
+            }
         }
     }
 

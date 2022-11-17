@@ -8,6 +8,7 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -35,6 +36,11 @@ public class FireWyvernEntity extends WyvernEntity{
     }
 
     @Override
+    public boolean displayFireAnimation() {
+        return false;
+    }
+
+    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(2, new WyvernFireAttackGoal(this, () -> new FireEntity(this, 0, 0, 0, this.level, this::fireEntityHit, this::fireBlockHit, new ItemStack(Items.FIRE_CHARGE))));
@@ -50,6 +56,11 @@ public class FireWyvernEntity extends WyvernEntity{
             }
 
         }
+    }
+
+    @Override
+    public boolean fireImmune() {
+        return true;
     }
 
     private void fireEntityHit(FireEntity entity, EntityHitResult result){

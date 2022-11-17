@@ -27,7 +27,7 @@ public class FireRenderer <T extends FireEntity> extends EntityRenderer<T> {
     @Override
     public void render(@NotNull T pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         pPoseStack.pushPose();
-        pPoseStack.scale(0.8F, 0.8F, 0.8F);
+        pPoseStack.scale(2F, 2F, 2F);
         pPoseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
         pPoseStack.mulPose(Vector3f.YP.rotationDegrees(180.0F));
         renderer.renderStatic(null, pEntity.item, ItemTransforms.TransformType.NONE, false, pPoseStack, pBuffer, pEntity.getLevel(), pPackedLight, OverlayTexture.NO_OVERLAY, 1);

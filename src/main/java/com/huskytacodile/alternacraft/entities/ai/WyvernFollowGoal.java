@@ -8,6 +8,7 @@ public class WyvernFollowGoal extends MoveTowardsTargetGoal {
     private final float within;
     private final float range;
     private final double speed;
+    private int timeToRecalcPath;
 
     public WyvernFollowGoal(WyvernEntity pMob, double pSpeedModifier, float pWithin, float range) {
         super(pMob, pSpeedModifier, pWithin);
@@ -24,20 +25,20 @@ public class WyvernFollowGoal extends MoveTowardsTargetGoal {
 
     @Override
     public boolean canUse() {
-        return entity.getOwner() == null && entity.getTarget() != null && entity.getTarget().distanceTo(entity) < within && entity.getTarget().distanceTo(entity) < range;
+        return entity.tickCount % 5 == 0 && entity.getOwner() == null && entity.getTarget() != null && entity.getTarget().distanceTo(entity) < within && entity.getTarget().distanceTo(entity) < range;
     }
 
     @Override
     public void start() {
-        entity.getNavigation().moveTo(entity.getTarget().getX(), entity.getTarget().getY()-1, entity.getTarget().getZ(), speed);
+        this.timeToRecalcPath = 0;
     }
 
-    @Override
     public void tick() {
-        super.tick();
-        if (this.entity.distanceTo(this.entity.getTarget()) < 4){
-            this.entity.getNavigation().stop();
-            this.stop();
+        if (--this.timeToRecalcPath <= 0) {
+            this.timeToRecalcPath = this.adjustedTickDelay(10);
+            if (!this.entity.isLeashed() && !this.entity.isPassenger()) {
+                this.entity.getNavigation().moveTo(this.entity.getTarget(), 1);
+            }
         }
     }
 
