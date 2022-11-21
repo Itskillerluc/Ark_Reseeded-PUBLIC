@@ -291,39 +291,43 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
     public abstract String getAnimationName();
 
     protected  <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> event){
-        if (isAttacking() && !isFlying()) {
+        if (!((isAttacking() && !isFlying()) || !(getFireAnimation() == 0)) || this.getFireCharge() < 0){
+            return PlayState.STOP;
+        }
+
+        if (isAttacking() && !isFlying() && getFireAnimation() == 0) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        if (getFireAnimation() == 1){
+        if (getFireAnimation() == 1 && !isAttacking()){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
 
-        if (getFireAnimation() == 2 && getFireCharge() < 1){
+        if (getFireAnimation() == 2 && getFireCharge() < 1 && !isAttacking()){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        if (getFireAnimation() == 3){
+        if (getFireAnimation() == 3 && !isAttacking()){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             setFireAnimation(0);
             return PlayState.CONTINUE;
         }
-        if (this.isAggressive()  && !isFlying() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())) {
+        if (this.isAggressive()  && !isFlying() && !(this.dead || this.getHealth() < 0.01 || this.isDeadOrDying())  && getFireAnimation() == 0) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
+        return PlayState.CONTINUE;
 
-        return PlayState.STOP;
     }
 
     protected  <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if ((isAttacking() && !isFlying()) || getFireAnimation() > 1){
+        if (((isAttacking() && !isFlying()) || !(getFireAnimation() == 0)) && !(!((isAttacking() && !isFlying()) || !(getFireAnimation() == 0)) || this.getFireCharge() < 0)){
             return PlayState.STOP;
         }
         if (!(animationSpeed > -0.10F && animationSpeed < 0.05F) && !this.isFlying()) {
@@ -419,7 +423,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         if (getFireAnimation() == 3){
             setFireAnimation(0);
         }
-        if (getFireAnimation() < 1 && getFireCharge() < 100 && this.tickCount % 2 == 0){
+        if (getFireAnimation() < 1 && getFireCharge() < 200 && this.tickCount % 2 == 0){
             this.setFireCharge(getFireCharge()+1);
         }
         if (!level.isClientSide && !level.getEntities(this, AABB.ofSize(this.position(), 5, 5, 5), getPreySelection(this)).isEmpty()){

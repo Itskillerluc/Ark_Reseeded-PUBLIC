@@ -32,6 +32,14 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.INDOMINUS, 0xC8C8C8, 0xA5A5A5,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
 
+    public static final RegistryObject<ForgeSpawnEggItem> ICE_WYVERN_SPAWN_EGG = ITEMS.register("ice_wyvern_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.ICE_WYVERN, 0x73fdff, 0xa5dbe3,
+                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+
+    public static final RegistryObject<ForgeSpawnEggItem> FIRE_WYVERN_SPAWN_EGG = ITEMS.register("fire_wyvern_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.FIRE_WYVERN, 0xce2029, 0xff7900,
+                    new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));
+
     public static final RegistryObject<ForgeSpawnEggItem> OXALIA_SPAWN_EGG = ITEMS.register("oxalaia_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.OXALAIA, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(ModCreativeModeTab.ALTERNACRAFT_GROUP)));

@@ -2,21 +2,16 @@ package com.huskytacodile.alternacraft.entities.attackgoal;
 
 import com.huskytacodile.alternacraft.entities.other.FireEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.WyvernEntity;
-import net.minecraft.commands.arguments.coordinates.RotationArgument;
-import net.minecraft.core.Rotations;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.model.generators.ModelBuilder;
 
 import java.util.function.Supplier;
 
 public class WyvernFireAttackGoal extends Goal {
     private WyvernEntity entity;
     private int animCounter = 0;
-    private double animTickLength = 23.4;
+    private double animTickLength = 24;
     private LivingEntity enemy;
     private Supplier<FireEntity> projectile;
 
@@ -61,25 +56,27 @@ public class WyvernFireAttackGoal extends Goal {
             animCounter++;
         } else if (entity.getFireAnimation() == 2) {
             if (enemy != null) {
-                if (entity.tickCount % 7 == 0) {
+                if (entity.tickCount % 2 == 0) {
                     var proj = projectile.get();
+                    proj.setPos(entity.position().add(Vec3.directionFromRotation(0, entity.getYHeadRot())));
                     entity.lookAt(enemy, 60, 60);
-                    proj.shoot(enemy.getX() - entity.getX(), enemy.getY() - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 0);
+                    proj.shoot(enemy.getX() - entity.getX(), enemy.getEyeY() -1 - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 15f);
                     entity.level.addFreshEntity(proj);
                 }
+                entity.setFireCharge(entity.getFireCharge() - 2);
             } else {
-                if (entity.tickCount % 7 == 0) {
+                if (entity.tickCount % 2 == 0) {
                     var proj = projectile.get();
                     if (entity.getTarget() != null) {
                         entity.lookAt(enemy, 60, 60);
-                        proj.shoot(enemy.getX() - entity.getX(), enemy.getY() - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 0);
+                        proj.shoot(enemy.getX() - entity.getX(), enemy.getEyeY() -1 - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 15f);
                         entity.level.addFreshEntity(proj);
                     }
                 }
-                entity.setFireAnimation(3);
-                entity.setFireCharge(entity.getFireCharge() - 1);
+                entity.setFireCharge(entity.getFireCharge() - 2);
             }
             if (entity.getFireCharge() <= 0) {
+                entity.setFireAnimation(3);
                 this.stop();
             }
         }
@@ -87,13 +84,20 @@ public class WyvernFireAttackGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return (((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) || entity.getLevel().getNearestPlayer(entity, 10) != null && entity.getLevel().getNearestPlayer(entity, 10).distanceTo(entity) > 3) && entity.getFireCharge() == 100) || ((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) && entity.getFireAnimation() > 0);
+        return (((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) || entity.getLevel().getNearestPlayer(entity, 10) != null && entity.getLevel().getNearestPlayer(entity, 10).distanceTo(entity) > 3) && entity.getFireCharge() == 200) || ((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) && entity.getFireAnimation() > 0) && isAlive();
     }
 
     @Override
     public void start() {
         enemy = entity.getLevel().getNearestPlayer(entity, 10);
+
         checkAndPerformAttack();
+    }
+
+    public boolean isAlive(){
+        if (entity.getTarget() != null){
+            return entity.getTarget().isAlive();
+        } else return enemy.isAlive();
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.huskytacodile.alternacraft.entities.dinos.herbivore.large.agitated.Th
 import com.huskytacodile.alternacraft.entities.other.FireEntity;
 import com.huskytacodile.alternacraft.entities.other.TranqDartEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.FireWyvernEntity;
+import com.huskytacodile.alternacraft.entities.wyverns.IceWyvernEntity;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.resources.ResourceLocation;
@@ -214,6 +215,11 @@ public class ModEntityTypes {
             ENTITY_TYPES.register("fire",
                     () -> EntityType.Builder.<FireEntity>of(FireEntity::new,
                             MobCategory.MISC).build(new ResourceLocation(Alternacraft.MOD_ID, "fire").toString()));
+
+    public static final RegistryObject<EntityType<IceWyvernEntity>> ICE_WYVERN =
+            ENTITY_TYPES.register("ice_wyvern",
+                    () -> EntityType.Builder.of(IceWyvernEntity::new,
+                            MobCategory.MISC).build(new ResourceLocation(Alternacraft.MOD_ID, "ice_wyvern").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

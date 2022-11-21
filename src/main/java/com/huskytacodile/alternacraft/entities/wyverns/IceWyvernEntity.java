@@ -9,7 +9,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
@@ -18,13 +21,17 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PowderSnowBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FireWyvernEntity extends WyvernEntity{
-    public FireWyvernEntity(EntityType<? extends Animal> entityType, Level level) {
+public class IceWyvernEntity extends WyvernEntity{
+    public IceWyvernEntity(EntityType<? extends WyvernEntity> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -36,22 +43,17 @@ public class FireWyvernEntity extends WyvernEntity{
     }
 
     @Override
-    public boolean displayFireAnimation() {
-        return false;
-    }
-
-    @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(2, new WyvernFireAttackGoal(this, () -> new FireEntity(this, 0, 0, 0, this.level, this::fireEntityHit, this::fireBlockHit, new ItemStack(Items.FIRE_CHARGE))));
+        this.goalSelector.addGoal(2, new WyvernFireAttackGoal(this, () -> new FireEntity(this, 0, 0, 0, this.level, this::iceEntityHit, this::iceBlockHit, new ItemStack(Items.SNOWBALL))));
     }
 
-    private void fireBlockHit(FireEntity entity, BlockHitResult result){
+    private void iceBlockHit(FireEntity entity, BlockHitResult result){
         if (!this.level.isClientSide) {
             if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, entity)) {
                 BlockPos blockpos = result.getBlockPos().relative(result.getDirection());
-                if (this.level.isEmptyBlock(blockpos)) {
-                    this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));
+                if (!(this.level.getBlockState(blockpos).getMaterial().equals(Material.METAL) || this.level.getBlockState(blockpos).getMaterial().equals(Material.HEAVY_METAL))) {
+                    this.level.setBlockAndUpdate(blockpos, Blocks.POWDER_SNOW.defaultBlockState());
                 }
             }
 
@@ -59,14 +61,14 @@ public class FireWyvernEntity extends WyvernEntity{
     }
 
     @Override
-    public boolean fireImmune() {
-        return true;
+    public boolean isDamageSourceBlocked(DamageSource pDamageSource) {
+        return pDamageSource.msgId.equals("freeze");
     }
 
-    private void fireEntityHit(FireEntity entity, EntityHitResult result){
+    private void iceEntityHit(FireEntity entity, EntityHitResult result){
         var target = result.getEntity();
         if (!this.level.isClientSide && target.isAlive() && target != entity.getOwner()) {
-            target.setSecondsOnFire(15);
+            target.setTicksFrozen(100);
         }
     }
 

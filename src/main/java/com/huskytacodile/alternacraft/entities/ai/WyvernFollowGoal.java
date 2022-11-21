@@ -20,12 +20,12 @@ public class WyvernFollowGoal extends MoveTowardsTargetGoal {
 
     @Override
     public boolean canContinueToUse() {
-        return !this.entity.getNavigation().isDone() && this.entity.getTarget() != null && this.entity.getTarget().isAlive() && this.entity.distanceTo(this.entity.getTarget()) > 5 && this.entity.getTarget().distanceToSqr(this.entity) > (double)(this.within * this.within) && this.entity.getTarget().distanceToSqr(this.entity) < (double)(this.range * this.range);
+        return this.entity.getTarget() != null && this.entity.getTarget().isAlive() && this.entity.distanceTo(this.entity.getTarget()) > 5 && this.entity.getTarget().distanceToSqr(this.entity) > (double)(this.within * this.within) && this.entity.getTarget().distanceToSqr(this.entity) < (double)(this.range * this.range);
     }
 
     @Override
     public boolean canUse() {
-        return entity.tickCount % 5 == 0 && entity.getOwner() == null && entity.getTarget() != null && entity.getTarget().distanceTo(entity) < within && entity.getTarget().distanceTo(entity) < range;
+        return entity.tickCount % 20 == 0 && entity.getOwner() == null && entity.getTarget() != null && entity.getTarget().distanceTo(entity) < within && entity.getTarget().distanceTo(entity) < range;
     }
 
     @Override
