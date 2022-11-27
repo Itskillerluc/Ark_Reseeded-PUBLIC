@@ -5,18 +5,26 @@ import com.huskytacodile.alternacraft.entities.Sleeping;
 import com.huskytacodile.alternacraft.entities.ai.*;
 import com.huskytacodile.alternacraft.entities.attackgoal.WyvernMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
+import com.huskytacodile.alternacraft.misc.KeyBinds;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -26,9 +34,12 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -70,10 +81,39 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
+    @Override
+    public boolean canBreed() {
+        return true;
+    }
+
+    @Override
+    public void spawnChildFromBreeding(ServerLevel pLevel, Animal pMate) {
+        ServerPlayer serverplayer = this.getLoveCause();
+        if (serverplayer == null && pMate.getLoveCause() != null) {
+            serverplayer = pMate.getLoveCause();
+        }
+
+        if (serverplayer != null) {
+            serverplayer.awardStat(Stats.ANIMALS_BRED);
+        }
+
+        this.setAge(6000);
+        pMate.setAge(6000);
+        this.resetLove();
+        pMate.resetLove();
+
+        pLevel.setBlock(blockPosition(), Blocks.DRAGON_EGG.defaultBlockState(), 2);
+
+        pLevel.broadcastEntityEvent(this, (byte)18);
+        if (pLevel.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+            pLevel.addFreshEntity(new ExperienceOrb(pLevel, this.getX(), this.getY(), this.getZ(), this.getRandom().nextInt(7) + 1));
+        }
+    }
+
     @SuppressWarnings("deprecation")
     public boolean isFood(ItemStack stack) {
         Item item = stack.getItem();
-        return item.isEdible() && item.getFoodProperties().isMeat();
+        return item.isEdible() && item.getFoodProperties().isMeat() && this.getOwner() != null;
     }
 
     @Override
@@ -164,6 +204,9 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         tag.putInt("Risk", this.getRisk());
         tag.putBoolean("IsAsleep", this.isAsleep());
         tag.putInt("charge", this.getFireCharge());
+        if (this.getOwnerUUID() != null) {
+            tag.putUUID("owner", this.getOwnerUUID());
+        }
     }
 
     @Override
@@ -182,6 +225,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.entityData.set(RISK, tag.getInt("Risk"));
         this.entityData.set(ASLEEP, tag.getBoolean("IsAsleep"));
         this.entityData.set(FIRE_CHARGE, tag.getInt("charge"));
+        if (tag.contains("owner")) setOwner(tag.getUUID("owner"));
     }
 
     public boolean isAsleep() {
@@ -195,15 +239,38 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
     @Nullable
     @Override
     public Entity getOwner() {
-        if (getOwnerUUID() == null){
+        try {
+            UUID uuid = this.getOwnerUUID();
+            return uuid == null ? null : this.level.getPlayerByUUID(uuid);
+        } catch (IllegalArgumentException illegalargumentexception) {
             return null;
         }
-        return ((ServerLevel) this.level).getEntity(getOwnerUUID());
+    }
+
+    @Override
+    public void positionRider(Entity pPassenger) {
+        this.positionRider(pPassenger, Entity::setPos);
+    }
+
+    private void positionRider(Entity pPassenger, Entity.MoveFunction pCallback) {
+        if (this.hasPassenger(pPassenger)) {
+            double d0 = this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset();
+            pCallback.accept(pPassenger, this.getX(), d0, this.getZ());
+        }
+    }
+
+    public void setOwner(Player owner){
+        this.setOwner(owner.getUUID());
     }
 
     @Override
     public void onPlayerJump(int p_21696_) {
-        this.getMoveControl().setWantedPosition(position().x(), position().y()+0.1f, position().z(), 1);
+    }
+
+    @Override
+    public void onJumpHold() {
+        super.travel(new Vec3(0,  3, 0));
+        setNoGravity(true);
     }
 
     @Override
@@ -213,12 +280,10 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
 
     @Override
     public void handleStartJump(int p_21695_) {
-
     }
 
     @Override
     public void handleStopJump() {
-
     }
 
     @Override
@@ -230,7 +295,38 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
 
     @Override
     public void onPlayerLower() {
-        this.getMoveControl().setWantedPosition(position().x(), position().y()-0.1f, position().z(), 1);
+        super.travel(new Vec3(0,  -3, 0));
+    }
+
+    public void travel(Vec3 pTravelVector) {
+        if (this.isAlive()) {
+            if (this.isVehicle()) {
+                LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
+                this.setYRot(livingentity.getYRot());
+                this.yRotO = this.getYRot();
+                this.setXRot(livingentity.getXRot() * 0.5F);
+                this.setRot(this.getYRot(), this.getXRot());
+                this.yBodyRot = this.getYRot();
+                this.yHeadRot = this.yBodyRot;
+                float f = livingentity.xxa * 0.5F;
+                float f1 = livingentity.zza;
+                if (f1 <= 0.0F) {
+                    f1 *= 0.25F;
+                }
+
+                if (this.isControlledByLocalInstance()) {
+                    this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
+                    super.travel(new Vec3((double)f, pTravelVector.y, (double)f1));
+                } else if (livingentity instanceof Player && !KeyBinds.FLY_DOWN_KEY.isDown() && !KeyBinds.FLY_UP_KEY.isDown()) {
+                    this.setDeltaMovement(Vec3.ZERO);
+                }
+
+                this.calculateEntityAnimation(this, false);
+                this.tryCheckInsideBlocks();
+            } else {
+                super.travel(pTravelVector);
+            }
+        }
     }
 
     @Override
@@ -271,6 +367,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
 
     @Override
     public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        super.mobInteract(player, hand);
         if (this.getOwner() != null) {
             if (player.isShiftKeyDown()) {
                 var itemStack = player.getItemInHand(hand);
@@ -291,7 +388,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
     public abstract String getAnimationName();
 
     protected  <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> event){
-        if (!((isAttacking() && !isFlying()) || !(getFireAnimation() == 0)) || this.getFireCharge() < 0){
+        if (!isAttacking() && getFireAnimation() == 0){
             return PlayState.STOP;
         }
 
@@ -300,19 +397,19 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
             return PlayState.CONTINUE;
         }
 
-        if (getFireAnimation() == 1 && !isAttacking()){
+        if (getFireAnimation() == 1){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_start", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
 
-        if (getFireAnimation() == 2 && getFireCharge() < 1 && !isAttacking()){
+        if (getFireAnimation() == 2 && getFireCharge() > 0){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_loop", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        if (getFireAnimation() == 3 && !isAttacking()){
+        if (getFireAnimation() == 3){
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".fire_end", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             setFireAnimation(0);
@@ -322,14 +419,15 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".attack_01", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
-        return PlayState.CONTINUE;
+        return PlayState.STOP;
 
     }
 
     protected  <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (((isAttacking() && !isFlying()) || !(getFireAnimation() == 0)) && !(!((isAttacking() && !isFlying()) || !(getFireAnimation() == 0)) || this.getFireCharge() < 0)){
+        if (isAttacking() || getFireAnimation() > 0){
             return PlayState.STOP;
         }
+
         if (!(animationSpeed > -0.10F && animationSpeed < 0.05F) && !this.isFlying()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation." + getAnimationName() + ".walk", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
@@ -391,11 +489,12 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new WyvernStrollGoal(this, 1));
-        this.goalSelector.addGoal(2, new WyvernLookoutGoal(this, 1000));
+        this.goalSelector.addGoal(4, new WyvernLookoutGoal(this, 1000));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new SleepingRandomLookAroundGoal<>(this));
         this.goalSelector.addGoal(4, new CathemeralSleepGoal<>(this));
-        this.goalSelector.addGoal(2, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(5, new BreedGoal(this, 1));
         this.goalSelector.addGoal(2, new WyvernFollowGoal(this, 1.0, 40, (float) Objects.requireNonNull(this.getAttribute(Attributes.FOLLOW_RANGE)).getBaseValue()));
         this.goalSelector.addGoal(3, new WyvernMeleeAttackGoal(this, 1, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true, false));
@@ -423,6 +522,9 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         if (getFireAnimation() == 3){
             setFireAnimation(0);
         }
+        if (getFireCharge() < 0){
+            setFireAnimation(0);
+        }
         if (getFireAnimation() < 1 && getFireCharge() < 200 && this.tickCount % 2 == 0){
             this.setFireCharge(getFireCharge()+1);
         }
@@ -434,7 +536,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
             this.setNoGravity(false);
         }
         if (this.goalSelector.getRunningGoals().noneMatch(e -> e.getGoal() instanceof WyvernLookoutGoal) && this.tickCount % 20 == 0) {
-            increaseRisk(20);
+            increaseRisk(1);
         }
     }
 

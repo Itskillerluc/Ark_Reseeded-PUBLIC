@@ -35,7 +35,7 @@ public class WyvernLookoutGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return wyvern.getRisk() > 0 && !wyvern.isSleeping();
+        return wyvern.getRisk() > 0 && !wyvern.isSleeping() && wyvern.getTarget() == null;
     }
 
     @Override

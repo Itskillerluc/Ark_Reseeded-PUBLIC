@@ -34,7 +34,7 @@ public class WyvernFireAttackGoal extends Goal {
             } else if (entity.getFireAnimation() == 0) {
                 entity.setFireAnimation(1);
             }
-        } else{
+        } else {
             if (entity.getFireAnimation() == 1 && animCounter > animTickLength) {
                 if (entity != null) {
                     entity.setFireAnimation(2);
@@ -51,6 +51,9 @@ public class WyvernFireAttackGoal extends Goal {
         if (entity.level.isClientSide()) {
             return;
         }
+        if (enemy == null && entity.getTarget() == null) {
+            stop();
+        }
         checkAndPerformAttack();
         if (entity.getFireAnimation() == 1 && animCounter <= animTickLength) {
             animCounter++;
@@ -60,7 +63,7 @@ public class WyvernFireAttackGoal extends Goal {
                     var proj = projectile.get();
                     proj.setPos(entity.position().add(Vec3.directionFromRotation(0, entity.getYHeadRot())));
                     entity.lookAt(enemy, 60, 60);
-                    proj.shoot(enemy.getX() - entity.getX(), enemy.getEyeY() -1 - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 15f);
+                    proj.shoot(enemy.getX() - entity.getX(), enemy.getEyeY() - 1 - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 15f);
                     entity.level.addFreshEntity(proj);
                 }
                 entity.setFireCharge(entity.getFireCharge() - 2);
@@ -69,7 +72,7 @@ public class WyvernFireAttackGoal extends Goal {
                     var proj = projectile.get();
                     if (entity.getTarget() != null) {
                         entity.lookAt(enemy, 60, 60);
-                        proj.shoot(enemy.getX() - entity.getX(), enemy.getEyeY() -1 - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 15f);
+                        proj.shoot(enemy.getX() - entity.getX(), enemy.getEyeY() - 1 - entity.getY(), enemy.getZ() - entity.getZ(), 0.5f, 15f);
                         entity.level.addFreshEntity(proj);
                     }
                 }
@@ -84,7 +87,12 @@ public class WyvernFireAttackGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return (((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) || entity.getLevel().getNearestPlayer(entity, 10) != null && entity.getLevel().getNearestPlayer(entity, 10).distanceTo(entity) > 3) && entity.getFireCharge() == 200) || ((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) && entity.getFireAnimation() > 0) && isAlive();
+        var check = (((entity.getTarget() != null && !entity.getTarget().getUUID().equals(entity.getOwnerUUID()) && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) || entity.getLevel().getNearestPlayer(entity, 10) != null && !entity.getLevel().getNearestPlayer(entity, 10).getUUID().equals(entity.getOwnerUUID()) && entity.getLevel().getNearestPlayer(entity, 10).distanceTo(entity) > 3) && entity.getFireCharge() == 200) || ((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 10 && entity.distanceTo(entity.getTarget()) > 3) && entity.getFireAnimation() > 0 && !entity.getTarget().getUUID().equals(entity.getOwnerUUID())) && isAlive();
+
+        if (entity.getFireAnimation() != 0 && !check) {
+            entity.setFireAnimation(0);
+        }
+        return check;
     }
 
     @Override

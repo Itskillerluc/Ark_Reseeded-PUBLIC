@@ -16,4 +16,6 @@ public interface PlayerRideableFlying extends PlayerRideableJumping {
     boolean canLower();
 
     void onPlayerLower();
+
+    void onJumpHold();
 }

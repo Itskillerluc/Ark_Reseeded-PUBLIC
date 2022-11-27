@@ -3,10 +3,12 @@ package com.huskytacodile.alternacraft.events;
 import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.client.render.entity.*;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
-import com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor.DromaeoEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.PlayerRideableFlying;
 import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.misc.KeyBinds;
+import com.huskytacodile.alternacraft.networking.ModMessages;
+import com.huskytacodile.alternacraft.networking.packet.FlyPacket;
+import com.huskytacodile.alternacraft.networking.packet.LowerPacket;
 import com.huskytacodile.alternacraft.util.ModItemProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -71,7 +73,13 @@ public class ModEventClientBusEvents {
             if (KeyBinds.FLY_DOWN_KEY.isDown()) {
                 PlayerRideableFlying entity = PlayerRideableFlying.getEntity(Minecraft.getInstance().player);
                 if (entity != null && entity.canLower()) {
-                    entity.onPlayerLower();
+                    ModMessages.sendToServer(new LowerPacket());
+                }
+            }
+            if (KeyBinds.FLY_UP_KEY.isDown()){
+                PlayerRideableFlying entity = PlayerRideableFlying.getEntity(Minecraft.getInstance().player);
+                if (entity != null && entity.canJump()) {
+                    ModMessages.sendToServer(new FlyPacket());
                 }
             }
         }

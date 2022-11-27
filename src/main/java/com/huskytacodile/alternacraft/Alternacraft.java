@@ -8,6 +8,7 @@ import com.huskytacodile.alternacraft.enchantment.ModEnchantments;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.misc.ModPOIs;
+import com.huskytacodile.alternacraft.networking.ModMessages;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 import com.huskytacodile.alternacraft.world.dimension.ModDimensions;
 import com.huskytacodile.alternacraft.world.feature.ModPlacedFeatures;
@@ -71,8 +72,9 @@ public class Alternacraft {
     	}
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
-
+    private void setup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModMessages.register();
+        });
     }
 }

@@ -62,7 +62,7 @@ public class WyvernMeleeAttackGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return ((entity.getTarget() != null && entity.distanceTo(entity.getTarget()) < 5) || entity.getLevel().getNearestPlayer(entity, 5) != null);
+        return ((entity.getTarget() != null && !entity.getTarget().getUUID().equals(entity.getOwnerUUID()) && entity.distanceTo(entity.getTarget()) < 5) || entity.getLevel().getNearestPlayer(entity, 5) != null && !entity.getLevel().getNearestPlayer(entity, 5).getUUID().equals(entity.getOwnerUUID()));
     }
 
     @Override
