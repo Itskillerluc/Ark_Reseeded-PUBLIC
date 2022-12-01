@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.entities.wyverns;
 
+import com.huskytacodile.alternacraft.block.ModBlocks;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.Sleeping;
 import com.huskytacodile.alternacraft.entities.ai.*;
@@ -102,7 +103,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, IAnim
         this.resetLove();
         pMate.resetLove();
 
-        pLevel.setBlock(blockPosition(), Blocks.DRAGON_EGG.defaultBlockState(), 2);
+        pLevel.setBlock(blockPosition(), ModBlocks.FIRE_WYVERN_EGG.get().defaultBlockState(), 2);
 
         pLevel.broadcastEntityEvent(this, (byte)18);
         if (pLevel.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
