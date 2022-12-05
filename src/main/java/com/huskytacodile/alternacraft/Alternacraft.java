@@ -13,6 +13,7 @@ import com.huskytacodile.alternacraft.util.ModSoundEvents;
 import com.huskytacodile.alternacraft.world.dimension.ModDimensions;
 import com.huskytacodile.alternacraft.world.feature.ModPlacedFeatures;
 import com.huskytacodile.alternacraft.world.structure.ModStructures;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,7 +51,6 @@ public class Alternacraft {
 
         ModBlockEntities.register(eventBus);
         ModDimensions.register();
-
         ModPOIs.register(eventBus);
         ModPlacedFeatures.register(eventBus);
 

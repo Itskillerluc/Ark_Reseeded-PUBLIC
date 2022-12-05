@@ -2,6 +2,7 @@ package com.huskytacodile.alternacraft.events;
 
 import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.client.render.entity.*;
+import com.huskytacodile.alternacraft.client.screen.PlayerInventoryScreen;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.wyverns.PlayerRideableFlying;
 import com.huskytacodile.alternacraft.item.ModItems;
@@ -11,17 +12,23 @@ import com.huskytacodile.alternacraft.networking.packet.FlyPacket;
 import com.huskytacodile.alternacraft.networking.packet.LowerPacket;
 import com.huskytacodile.alternacraft.util.ModItemProperties;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.network.NetworkHooks;
 
 public class ModEventClientBusEvents {
     @Mod.EventBusSubscriber(modid = Alternacraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class modBusEvents {
+
         @SubscribeEvent
         public static void clientSetup(final FMLClientSetupEvent event) {
             ModItemProperties.makeBow(ModItems.PAINITE_BOW.get());
@@ -68,6 +75,7 @@ public class ModEventClientBusEvents {
     }
     @Mod.EventBusSubscriber(modid = Alternacraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
     public static class forgeEventBus{
+
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
             if (KeyBinds.FLY_DOWN_KEY.isDown()) {

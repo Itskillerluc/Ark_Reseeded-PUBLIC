@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft.block.custom;
 
+import com.huskytacodile.alternacraft.block.ModBlocks;
 import com.huskytacodile.alternacraft.block.entity.AlternaDinoEggBlockEntity;
 import com.huskytacodile.alternacraft.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -34,6 +36,12 @@ public class AlternaDinoEggBlock <T extends LivingEntity> extends BaseEntityBloc
         this.registerDefaultState(this.stateDefinition.any().setValue(PLACEDBYPLAYER, false));
         this.hatchTime = hatchTime;
         this.entity = entity;
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+       return this.stateDefinition.any().setValue(PLACEDBYPLAYER, true);
     }
 
     @Nullable
