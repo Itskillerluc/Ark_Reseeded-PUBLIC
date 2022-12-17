@@ -104,4 +104,9 @@ public class AcroEntity extends LargeCarnivoreEntity {
     public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
         return null;
     }
+
+    @Override
+    public double getTick(Object object) {
+        return this.tickCount;
+    }
 }

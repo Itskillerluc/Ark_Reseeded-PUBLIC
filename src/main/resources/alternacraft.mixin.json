@@ -3,7 +3,8 @@
   "package" : "com.huskytacodile.alternacraft.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins" : [
-    "InventoryScreenMixin"
+    "InventoryScreenMixin",
+    "InventoryMenuMixin"
   ],
   "Injectors": {
     "defaultRequire" : 1

@@ -15,8 +15,11 @@ import com.huskytacodile.alternacraft.entities.dinos.carnivore.small.MorosEntity
 import com.huskytacodile.alternacraft.entities.dinos.herbivore.large.agitated.TheriEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.FireWyvernEntity;
 import com.huskytacodile.alternacraft.entities.wyverns.IceWyvernEntity;
+import com.huskytacodile.alternacraft.item.ModCreativeModeTab;
 import com.huskytacodile.alternacraft.item.ModItems;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -76,5 +79,10 @@ public class ModEventBusEvents {
         event.register(ForgeRegistries.Keys.ENTITY_TYPES, helper -> {
             SpawnEggItem.eggs();
         });
+    }
+
+    @SubscribeEvent
+    public static void registerCreativeTab(final CreativeModeTabEvent.BuildContents event){
+        event.getTab().
     }
 }

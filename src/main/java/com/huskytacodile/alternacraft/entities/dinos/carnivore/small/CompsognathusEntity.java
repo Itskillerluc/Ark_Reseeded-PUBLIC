@@ -120,4 +120,9 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 	public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
 		return null;
 	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
 }

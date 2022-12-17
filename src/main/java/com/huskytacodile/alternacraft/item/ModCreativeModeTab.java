@@ -6,7 +6,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 public class ModCreativeModeTab {
-    public static final CreativeModeTab ALTERNACRAFT_GROUP = new CreativeModeTab("alternacraft_tab") {
+    public static final CreativeModeTab TEEST = new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 1).icon()
+    public static final CreativeModeTab ALTERNACRAFT_GROUP = new CreativeModeTab.Builder("alternacraft_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ModItems.FOSSIL.get());
