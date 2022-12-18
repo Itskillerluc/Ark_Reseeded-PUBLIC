@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(Player.class)
 public class InventoryMenuMixin {
-    @Redirect(method = "Lnet/minecraft/world/entity/player/Player;<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLcom/mojang/authlib/GameProfile;Lnet/minecraft/world/entity/player/ProfilePublicKey;)V", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Player;inventoryMenu:Lnet/minecraft/world/inventory/InventoryMenu;", opcode = Opcodes.PUTFIELD))
+    @Redirect(method = "Lnet/minecraft/world/entity/player/Player;<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLcom/mojang/authlib/GameProfile;)V", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Player;inventoryMenu:Lnet/minecraft/world/inventory/InventoryMenu;", opcode = Opcodes.PUTFIELD))
     private void inventoryMenu(Player player, InventoryMenu menu){
         player.inventoryMenu = new PlayerInventoryMenu(player.getInventory(), !player.getLevel().isClientSide, player);
     }

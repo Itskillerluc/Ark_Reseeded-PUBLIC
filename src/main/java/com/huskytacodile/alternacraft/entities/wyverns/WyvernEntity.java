@@ -545,4 +545,9 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, GeoAn
     public double getTick(Object object) {
         return this.tickCount;
     }
+
+    @Override
+    public Player getPassenger() {
+        return this.getPassenger();
+    }
 }

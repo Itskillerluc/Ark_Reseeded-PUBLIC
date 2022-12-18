@@ -86,7 +86,7 @@ public class ModEventClientBusEvents {
             }
             if (KeyBinds.FLY_UP_KEY.isDown()){
                 PlayerRideableFlying entity = PlayerRideableFlying.getEntity(Minecraft.getInstance().player);
-                if (entity != null && entity.canJump()) {
+                if (entity != null && entity.canJump(entity.getPassenger())) {
                     ModMessages.sendToServer(new FlyPacket());
                 }
             }

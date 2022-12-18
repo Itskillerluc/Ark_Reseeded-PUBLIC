@@ -11,7 +11,6 @@ import com.huskytacodile.alternacraft.misc.ModPOIs;
 import com.huskytacodile.alternacraft.networking.ModMessages;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
 import com.huskytacodile.alternacraft.world.dimension.ModDimensions;
-import com.huskytacodile.alternacraft.world.feature.ModPlacedFeatures;
 import com.huskytacodile.alternacraft.world.structure.ModStructures;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -39,7 +38,6 @@ public class Alternacraft {
         final ModLoadingContext modLoadingContext = ModLoadingContext.get();
 
         eventBus.addListener(this::onModConfigEvent);
-        
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModEntityTypes.register(eventBus);
@@ -51,7 +49,6 @@ public class Alternacraft {
         ModBlockEntities.register(eventBus);
         ModDimensions.register();
         ModPOIs.register(eventBus);
-        ModPlacedFeatures.register(eventBus);
 
         eventBus.addListener(this::setup);
 

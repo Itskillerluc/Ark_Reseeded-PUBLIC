@@ -62,8 +62,8 @@ description='''
     side="BOTH"
 
 [[dependencies.alternacraft]]
-    modId="geckolib3"
+    modId="geckolib"
     mandatory=true
-    versionRange="[3.1.35,)"
+    versionRange="[4.0.2,)"
     ordering="NONE"
     side="BOTH"

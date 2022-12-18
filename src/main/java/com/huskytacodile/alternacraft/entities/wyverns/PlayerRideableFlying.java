@@ -18,4 +18,6 @@ public interface PlayerRideableFlying extends PlayerRideableJumping {
     void onPlayerLower();
 
     void onJumpHold();
+
+    Player getPassenger();
 }

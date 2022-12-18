@@ -14,9 +14,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 
 public class IceWyvernRenderer extends GeoEntityRenderer<IceWyvernEntity>
@@ -34,13 +34,13 @@ public class IceWyvernRenderer extends GeoEntityRenderer<IceWyvernEntity>
     public @NotNull ResourceLocation getTextureLocation(IceWyvernEntity entity) {
         return LOCATION_BY_VARIANT.get(entity.getVariant());
     }
+
     @Override
-    public RenderType getRenderType(IceWyvernEntity animatable, float partialTicks, PoseStack stack,
-                                    @Nullable MultiBufferSource multiBufferSource, VertexConsumer vertexConsumer, int packedLightIn,
-                                    ResourceLocation textureLocation)
-    {
+    public RenderType getRenderType(IceWyvernEntity animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return RenderType.entityTranslucent(getTextureLocation(animatable));
+
     }
+
     @Override
     protected float getDeathMaxRotation(IceWyvernEntity entityLivingBaseIn){
         return 0.0F;
