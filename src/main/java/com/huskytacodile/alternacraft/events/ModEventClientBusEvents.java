@@ -6,6 +6,7 @@ import com.huskytacodile.alternacraft.client.screen.PlayerInventoryScreen;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.wyverns.PlayerRideableFlying;
 import com.huskytacodile.alternacraft.item.ModItems;
+import com.huskytacodile.alternacraft.menu.PlayerInventoryMenu;
 import com.huskytacodile.alternacraft.misc.KeyBinds;
 import com.huskytacodile.alternacraft.networking.ModMessages;
 import com.huskytacodile.alternacraft.networking.packet.FlyPacket;
@@ -16,10 +17,15 @@ import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ClientPlayerChangeGameTypeEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -91,7 +97,13 @@ public class ModEventClientBusEvents {
                 }
             }
         }
+
+        @SubscribeEvent
+        public static void joinEvent(EntityJoinLevelEvent event){
+            if (event.getEntity() instanceof Player player) {
+                player.inventoryMenu = new PlayerInventoryMenu(player.getInventory(), !event.getLevel().isClientSide(), player, player.inventoryMenu);
+                player.containerMenu = player.inventoryMenu;
+            }
+        }
     }
-
-
 }
