@@ -2,7 +2,6 @@ package com.huskytacodile.alternacraft.networking;
 
 import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.networking.packet.FlyPacket;
-import com.huskytacodile.alternacraft.networking.packet.InventoryPacket;
 import com.huskytacodile.alternacraft.networking.packet.LowerPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -40,13 +39,6 @@ public class ModMessages {
                 .encoder(LowerPacket::toBytes)
                 .consumerMainThread(LowerPacket::handle)
                 .add();
-
-        net.messageBuilder(InventoryPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(InventoryPacket::new)
-                .encoder(InventoryPacket::toBytes)
-                .consumerMainThread(InventoryPacket::handle)
-                .add();
-
     }
 
     public static <MSG> void sendToServer(MSG message) {

@@ -15,6 +15,7 @@ public class PlayerInventoryScreen extends InventoryScreen {
 
     public PlayerInventoryScreen(Player pPlayer) {
         super(pPlayer);
+        this.getRecipeBookComponent().updateScreenPosition(100, 100);
     }
 
     @Override

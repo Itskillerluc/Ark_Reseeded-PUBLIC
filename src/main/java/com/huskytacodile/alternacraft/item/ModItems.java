@@ -175,6 +175,9 @@ public class ModItems {
         public static final RegistryObject<Item> TITANIUM_INGOT = register("titanium_ingot",
                 ()-> new Item(new Item.Properties()), CreativeModeTabs.ALTERNACRAFT_GROUP);
 
+        public static final RegistryObject<Item> DEBUG_ITEM = ITEMS.register("debug_item",
+                ()-> new Item(new Item.Properties()));
+
         public static final RegistryObject<Item> MALACHITE = register("malachite",
                 ()-> new MalachiteItem(new Item.Properties()), CreativeModeTabs.ALTERNACRAFT_GROUP);
 

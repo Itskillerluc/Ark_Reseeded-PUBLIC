@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins" : [
     "InventoryScreenMixin",
-    "InventoryMenuMixin",
-    "InventoryReloadMixin"
+    "InventoryMenuSlotMixin"
   ],
   "Injectors": {
     "defaultRequire" : 1
