@@ -1,6 +1,6 @@
 package com.huskytacodile.alternacraft.block.custom;
 
-import com.huskytacodile.alternacraft.block.ModBlocks;
+import com.google.common.base.Suppliers;
 import com.huskytacodile.alternacraft.block.entity.AlternaDinoEggBlockEntity;
 import com.huskytacodile.alternacraft.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -24,10 +24,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
 import java.util.function.Function;
 
 public class AlternaDinoEggBlock <T extends LivingEntity> extends BaseEntityBlock {
     public static final BooleanProperty PLACEDBYPLAYER = BooleanProperty.create("placedbyplayer");
+    public static UUID owner;
     private final int hatchTime;
     private final Function<Level, T> entity;
 
@@ -41,6 +43,7 @@ public class AlternaDinoEggBlock <T extends LivingEntity> extends BaseEntityBloc
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        this.owner = pContext.getPlayer().getUUID();
        return this.stateDefinition.any().setValue(PLACEDBYPLAYER, true);
     }
 
@@ -58,7 +61,7 @@ public class AlternaDinoEggBlock <T extends LivingEntity> extends BaseEntityBloc
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (pLevel.isClientSide()){
-            return InteractionResult.PASS;
+            return InteractionResult.FAIL;
         }
         var blockEntity = pLevel.getBlockEntity(pPos, ModBlockEntities.FIRE_WYVERN_EGG_BLOCK_ENTITY.get());
 
@@ -79,6 +82,6 @@ public class AlternaDinoEggBlock <T extends LivingEntity> extends BaseEntityBloc
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
-        return pLevel.isClientSide() ? null : ((pLevel1, pPos, pState1, pBlockEntity) -> ((AlternaDinoEggBlockEntity<?>) pBlockEntity).tick());
+        return pLevel.isClientSide() ? null : ((pLevel1, pPos, pState1, pBlockEntity) -> ((AlternaDinoEggBlockEntity<?>) pBlockEntity).tick(owner));
     }
 }

@@ -220,6 +220,9 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, GeoAn
         this.entityData.set(ASLEEP, tag.getBoolean("IsAsleep"));
         this.entityData.set(FIRE_CHARGE, tag.getInt("charge"));
         if (tag.contains("owner")) setOwner(tag.getUUID("owner"));
+        else if (tag.contains("ForgeData")) {
+            setOwner(tag.getCompound("ForgeData").getUUID("owner"));
+        } ;
     }
 
     public boolean isAsleep() {
@@ -548,6 +551,6 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, GeoAn
 
     @Override
     public Player getPassenger() {
-        return this.getPassenger();
+        return this.getControllingPassenger() instanceof Player ? ((Player) this.getControllingPassenger()) : null;
     }
 }
