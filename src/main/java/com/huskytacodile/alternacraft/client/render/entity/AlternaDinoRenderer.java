@@ -2,6 +2,7 @@ package com.huskytacodile.alternacraft.client.render.entity;
 
 import com.huskytacodile.alternacraft.entities.dinos.AlternaDinoEntity;
 import com.huskytacodile.alternacraft.util.Utils;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,8 +30,20 @@ public abstract class AlternaDinoRenderer <T extends AlternaDinoEntity & GeoAnim
             if (entityRenderDispatcher.crosshairPickEntity == animatable) {
                 float size = 0.01f;
                 VertexConsumer builder = bufferSource.getBuffer(AlternaCraftRenderTypes.KNOCKOUT_TEXTURE_TYPE);
-                Utils.draw(poseStack, 2, 88, 2, 64, size, 1, 1, 0, packedLight, builder, 90, 104, 0);
-                Utils.draw(poseStack, 34, 56, 79, 101, size, 1, animatable.getHealth() / animatable.getMaxHealth(), 1, packedLight, builder , 90, 104, 0);
+                Utils.draw(poseStack, 2, 88, 2, 64, size, 1, 1, packedLight, builder, 90, 104, 0);
+
+                Utils.draw(poseStack, 8, 30, 81, 103, size, 1, 1 - (animatable.getHealth() / animatable.getMaxHealth()), packedLight, builder , 90, 104, 1);
+                Utils.draw(poseStack, 34, 56, 81, 103, size, 1, animatable.getHealth() / animatable.getMaxHealth(), packedLight, builder , 90, 104, 0);
+
+                poseStack.translate(0, 0.42, 0);
+                Utils.draw(poseStack, 8, 82, 77, 81, size, 1f - (Math.min(animatable.getKnockout() / ((float) animatable.getTameTime()), 1)), 1, packedLight, builder, 90, 104, 1);
+                Utils.draw(poseStack, 8, 82, 66, 70, size, Math.min(animatable.getKnockout() / ((float) animatable.getTameTime()), 1), 1, packedLight, builder, 90, 104, 0);
+                poseStack.translate(0, -0.42, 0);
+
+                poseStack.translate(0, 0.56, 0);
+                Utils.draw(poseStack, 8, 82, 77, 81, size, (Math.min(animatable.getKnockout() / ((float) animatable.getTameTime()), 1)), 1, packedLight, builder, 90, 104, 1);
+                Utils.draw(poseStack, 8, 82, 73, 77, size, 1f - Math.min(animatable.getKnockout() / ((float) animatable.getTameTime()), 1), 1, packedLight, builder, 90, 104, 0);
+                poseStack.translate(0, -0.56, 0);
             }
             poseStack.popPose();
         }

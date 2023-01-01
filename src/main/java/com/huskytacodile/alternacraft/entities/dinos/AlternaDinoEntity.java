@@ -43,6 +43,7 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements GeoAnim
 
     private static final EntityDataAccessor<Integer> KNOCKOUT = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> NATURAL_SITTING = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> TAMING = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.INT);
 	
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -73,9 +74,17 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements GeoAnim
     @Override
     public void tick() {
         super.tick();
-        setKnockout(Math.max(getKnockout()-1, 0));
         if (getKnockout() > 0){
             setAsleep(true);
+            setTaming(getTaming() + 1);
+            setKnockout(Math.max(getKnockout()-1, 0));
+            if (getTaming() >= this.getTameTime()){
+                this.setKnockout(0);
+                this.setAsleep(false);
+            }
+            if (getKnockout() == 0){
+                setAsleep(false);
+            }
         }
     }
 
@@ -196,6 +205,13 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements GeoAnim
         return this.entityData.get(KNOCKOUT);
     }
 
+    public void setTaming(int taming){
+        this.entityData.set(TAMING, taming);
+    }
+    public int getTaming(){
+        return this.entityData.get(TAMING);
+    }
+
     public void setSitting(boolean sitting) {
         this.entityData.set(SITTING, sitting);
         this.setOrderedToSit(sitting);
@@ -205,6 +221,10 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements GeoAnim
         return this.entityData.get(SITTING);
     }
 
+    //TODO: make abstract
+    public int getTameTime() {
+        return 2000;
+    }
     protected void setVariant(IVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }

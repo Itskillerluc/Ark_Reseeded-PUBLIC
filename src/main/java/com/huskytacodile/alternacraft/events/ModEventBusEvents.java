@@ -2,6 +2,7 @@ package com.huskytacodile.alternacraft.events;
 
 import com.huskytacodile.alternacraft.Alternacraft;
 import com.huskytacodile.alternacraft.block.ModBlocks;
+import com.huskytacodile.alternacraft.capabilities.AttachLevelCapability;
 import com.huskytacodile.alternacraft.entities.*;
 
 import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.*;
@@ -19,9 +20,11 @@ import com.huskytacodile.alternacraft.entities.wyverns.IceWyvernEntity;
 import com.huskytacodile.alternacraft.item.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -106,4 +109,5 @@ public class ModEventBusEvents {
                         })
         );
     }
+
 }

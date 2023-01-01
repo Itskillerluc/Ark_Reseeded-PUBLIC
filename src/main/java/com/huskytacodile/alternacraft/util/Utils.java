@@ -15,7 +15,6 @@ public class Utils {
      * @param scalar scaling modifier
      * @param xFactor part/total of the bar width
      * @param yFactor part/total of the bar height
-     * @param layer layer
      * @param packedLight packedLight
      * @param healthBuilder builder
      * @param textureWidth total texture width
@@ -23,13 +22,14 @@ public class Utils {
      * @param direction 0 = top to bottom & left to right
      *                  1 = bottom to top & right to left
      */
-    public static void draw(PoseStack poseStack, int x1, int x2, int y1, int y2, float scalar, float xFactor, float yFactor, int layer, int packedLight, VertexConsumer healthBuilder, int textureWidth, int textureHeight, int direction) {
+    public static void draw(PoseStack poseStack, int x1, int x2, int y1, int y2, float scalar, float xFactor, float yFactor, int packedLight, VertexConsumer healthBuilder, int textureWidth, int textureHeight, int direction) {
         int width = x2 - x1;
         int height = y2 - y1;
         poseStack.translate(direction == 0 ? 0.01 * (width-(width * xFactor)) : -0.01 * (width-(width * xFactor)), direction == 0 ? 0.01 * (height-(height * yFactor)) : -0.01 * (height-(height * yFactor)), 0);
-        healthBuilder.vertex(poseStack.last().pose(),  width * scalar * xFactor,  height * yFactor * scalar, 0F + .001F * layer).uv((x1 + (direction == 0 ? width-(width * xFactor) : 0)) / ((float) textureWidth), (y2 + (direction == 1 ? height-(height * yFactor) : 0)) / ((float) textureHeight)).uv2(packedLight).endVertex();
-        healthBuilder.vertex(poseStack.last().pose(), -width * scalar * xFactor,  height * yFactor * scalar, 0F + .001F * layer).uv((x2 + (direction == 1 ? width-(width * xFactor) : 0)) / ((float) textureWidth), (y2 + (direction == 1 ? height-(height * yFactor) : 0)) / ((float) textureHeight)).uv2(packedLight).endVertex();
-        healthBuilder.vertex(poseStack.last().pose(), -width * scalar * xFactor, -height * yFactor * scalar, 0F + .001F * layer).uv((x2 + (direction == 1 ? width-(width * xFactor) : 0)) / ((float) textureWidth), (y1 + (direction == 0 ? height-(height * yFactor) : 0)) / ((float) textureHeight)).uv2(packedLight).endVertex();
-        healthBuilder.vertex(poseStack.last().pose(),  width * scalar * xFactor, -height * yFactor * scalar, 0F + .001F * layer).uv((x1 + (direction == 0 ? width-(width * xFactor) : 0)) / ((float) textureWidth), (y1 + (direction == 0 ? height-(height * yFactor) : 0)) / ((float) textureHeight)).uv2(packedLight).endVertex();
+        healthBuilder.vertex(poseStack.last().pose(),  width * scalar * xFactor,  height * yFactor * scalar, 0).uv((x1 + (direction == 0 ? width-(width * xFactor) : 0)) / ((float) textureWidth), (y2 - (direction == 1 ? (height * (1 - yFactor)) : 0 ))/((float) textureHeight)).uv2(packedLight).endVertex();
+        healthBuilder.vertex(poseStack.last().pose(), -width * scalar * xFactor,  height * yFactor * scalar, 0).uv((x2 - (direction == 1 ? (width * (1 -xFactor)) : 0)) /  ((float) textureWidth), (y2 - (direction == 1 ? (height * (1 - yFactor)) : 0 ))/((float) textureHeight)).uv2(packedLight).endVertex();
+        healthBuilder.vertex(poseStack.last().pose(), -width * scalar * xFactor, -height * yFactor * scalar, 0).uv((x2 - (direction == 1 ? (width * (1 -xFactor)) : 0)) /  ((float) textureWidth), (y1 + (direction == 0 ? height-(height * yFactor) : 0))/((float) textureHeight)).uv2(packedLight).endVertex();
+        healthBuilder.vertex(poseStack.last().pose(),  width * scalar * xFactor, -height * yFactor * scalar, 0).uv((x1 + (direction == 0 ? width-(width * xFactor) : 0)) / ((float) textureWidth), (y1 + (direction == 0 ? height-(height * yFactor) : 0))/((float) textureHeight)).uv2(packedLight).endVertex();
+        poseStack.translate(-(direction == 0 ? 0.01 * (width-(width * xFactor)) : -0.01 * (width-(width * xFactor))),-(direction == 0 ? 0.01 * (height-(height * yFactor)) : -0.01 * (height-(height * yFactor))), 0);
     }
 }

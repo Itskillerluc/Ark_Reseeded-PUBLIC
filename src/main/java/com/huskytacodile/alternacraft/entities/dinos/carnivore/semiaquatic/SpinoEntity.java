@@ -55,6 +55,7 @@ public class SpinoEntity extends SemiAquaticEntity {
                 .add(Attributes.ATTACK_DAMAGE, 10.0D);
     }
 
+
     @Override
     protected void registerGoals() {
         super.registerGoals();
@@ -120,6 +121,11 @@ public class SpinoEntity extends SemiAquaticEntity {
     @Override
     protected Item getTamingItem() {
         return Items.IRON_SWORD;
+    }
+
+    @Override
+    public int getTameTime() {
+        return 2000;
     }
 
     @Nullable
