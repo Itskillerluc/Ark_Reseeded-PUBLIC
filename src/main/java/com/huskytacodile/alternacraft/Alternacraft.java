@@ -1,5 +1,6 @@
 package com.huskytacodile.alternacraft;
 
+import com.google.common.base.Suppliers;
 import com.huskytacodile.alternacraft.block.ModBlocks;
 import com.huskytacodile.alternacraft.block.entity.ModBlockEntities;
 import com.huskytacodile.alternacraft.config.AlternacraftConfig;
@@ -10,6 +11,7 @@ import com.huskytacodile.alternacraft.item.ModItems;
 import com.huskytacodile.alternacraft.misc.ModPOIs;
 import com.huskytacodile.alternacraft.networking.ModMessages;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
+import com.huskytacodile.alternacraft.world.ModBiomes;
 import com.huskytacodile.alternacraft.world.dimension.ModDimensions;
 import com.huskytacodile.alternacraft.world.structure.ModStructures;
 import net.minecraftforge.common.MinecraftForge;
@@ -71,6 +73,7 @@ public class Alternacraft {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ModMessages.register();
+            ModBiomes.setupTerraBlender();
         });
     }
 }

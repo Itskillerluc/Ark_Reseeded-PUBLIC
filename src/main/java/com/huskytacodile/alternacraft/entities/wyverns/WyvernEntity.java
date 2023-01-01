@@ -81,6 +81,11 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, GeoAn
     }
 
     @Override
+    public boolean canMate(Animal pOtherAnimal) {
+        return super.canMate(pOtherAnimal) && ((this.getTypeVariant() % 2 == 0 && ((WyvernEntity) pOtherAnimal).getTypeVariant() % 2 != 0) || (this.getTypeVariant() % 2 != 0 && ((WyvernEntity) pOtherAnimal).getTypeVariant() % 2 == 0));
+    }
+
+    @Override
     public void spawnChildFromBreeding(ServerLevel pLevel, Animal pMate) {
         ServerPlayer serverplayer = this.getLoveCause();
         if (serverplayer == null && pMate.getLoveCause() != null) {

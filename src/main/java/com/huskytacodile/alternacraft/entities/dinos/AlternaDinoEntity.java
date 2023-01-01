@@ -3,6 +3,7 @@ package com.huskytacodile.alternacraft.entities.dinos;
 import com.huskytacodile.alternacraft.entities.Sleeping;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.item.ModItems;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -166,6 +167,11 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements GeoAnim
     }
 
     protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
+    }
+
+    @Override
+    public void lookAt(EntityAnchorArgument.Anchor pAnchor, Vec3 pTarget) {
+        super.lookAt(pAnchor, pTarget);
     }
 
     @javax.annotation.Nullable

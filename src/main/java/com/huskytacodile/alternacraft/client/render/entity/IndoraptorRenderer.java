@@ -34,7 +34,7 @@ public class IndoraptorRenderer extends GeoEntityRenderer<IndoraptorEntity>
 
     @Override
     public void render(IndoraptorEntity entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        if(animatable.isBaby()) {
+        if(entity.isBaby()) {
             poseStack.scale(0.2F, 0.2F, 0.2F);
             this.shadowRadius = 1.0F;
         } else {

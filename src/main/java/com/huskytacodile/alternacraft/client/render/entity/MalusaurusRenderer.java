@@ -32,7 +32,7 @@ public class MalusaurusRenderer extends GeoEntityRenderer<MalusaurusEntity>
 
     @Override
     public void render(MalusaurusEntity entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        if(animatable.isBaby()) {
+        if(entity.isBaby()) {
             poseStack.scale(0.4F, 0.4F, 0.4F);
         } else {
             poseStack.scale(0.8F, 0.8F, 0.8F);

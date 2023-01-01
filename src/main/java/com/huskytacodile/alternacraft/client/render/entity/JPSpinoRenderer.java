@@ -39,7 +39,7 @@ public class JPSpinoRenderer extends GeoEntityRenderer<JPSpinoEntity>
 
     @Override
     public void render(JPSpinoEntity entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        if(animatable.isBaby()) {
+        if(entity.isBaby()) {
             poseStack.scale(0.4F, 0.4F, 0.4F);
         } else {
             poseStack.scale(0.8F, 0.8F, 0.8F);
