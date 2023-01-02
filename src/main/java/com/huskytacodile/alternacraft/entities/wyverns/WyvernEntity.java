@@ -55,13 +55,13 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 public abstract class WyvernEntity extends Animal implements FlyingAnimal, GeoAnimatable, OwnableEntity, PlayerRideableFlying, Sleeping {
-    protected static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.BOOLEAN);
-    protected static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Optional<UUID>> OWNER = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.OPTIONAL_UUID);
-    protected static final EntityDataAccessor<Integer> RISK = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Integer> FIRE_CHARGE = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Integer> FIRE_ANIMATION = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Optional<UUID>> OWNER = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<Integer> RISK = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> FIRE_CHARGE = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> FIRE_ANIMATION = SynchedEntityData.defineId(WyvernEntity.class, EntityDataSerializers.INT);
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -227,7 +227,7 @@ public abstract class WyvernEntity extends Animal implements FlyingAnimal, GeoAn
         if (tag.contains("owner")) setOwner(tag.getUUID("owner"));
         else if (tag.contains("ForgeData")) {
             setOwner(tag.getCompound("ForgeData").getUUID("owner"));
-        } ;
+        }
     }
 
     public boolean isAsleep() {
