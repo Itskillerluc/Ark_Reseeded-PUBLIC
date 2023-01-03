@@ -69,14 +69,7 @@ public class CarchaEntity extends LargeCarnivoreEntity {
                 getPreySelection(this)));
     }
 
-    public void aiStep() {
-        super.aiStep();
-        if(this.isAsleep() || this.isNaturallySitting()) {
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
-        } else {
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-        }
-    }
+
 
     @Override
     protected SoundEvent getAmbientSound()

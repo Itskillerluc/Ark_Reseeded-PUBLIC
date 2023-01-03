@@ -5,6 +5,7 @@ import com.huskytacodile.alternacraft.block.ModBlocks;
 import com.huskytacodile.alternacraft.block.entity.ModBlockEntities;
 import com.huskytacodile.alternacraft.config.AlternacraftConfig;
 import com.huskytacodile.alternacraft.config.AlternacraftConfigHolder;
+import com.huskytacodile.alternacraft.data.DataSerializerRegistry;
 import com.huskytacodile.alternacraft.enchantment.ModEnchantments;
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.item.ModItems;
@@ -51,6 +52,8 @@ public class Alternacraft {
         ModBlockEntities.register(eventBus);
         ModDimensions.register();
         ModPOIs.register(eventBus);
+
+        DataSerializerRegistry.SERIALIZERS.register(eventBus);
 
         eventBus.addListener(this::setup);
 

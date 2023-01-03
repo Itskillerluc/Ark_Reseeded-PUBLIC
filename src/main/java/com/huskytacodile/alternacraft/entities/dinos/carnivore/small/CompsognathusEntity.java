@@ -5,6 +5,7 @@ import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoNocturnalSle
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSleepingRandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.huskytacodile.alternacraft.entities.dinos.SmallCarnivoreEntity;
@@ -67,17 +68,10 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 				getPreySelection(this)));
 	}
 
-	public void aiStep() {
-		super.aiStep();
-		if (this.isAsleep() || this.isNaturallySitting()) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
-		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.15D);
-		}
-	}
+
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
+	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor p_146746_, @NotNull DifficultyInstance p_146747_, @NotNull MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
 		TripleVariant variant = Util.getRandom(TripleVariant.values(), this.random);
 		setVariant(variant);
 		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);

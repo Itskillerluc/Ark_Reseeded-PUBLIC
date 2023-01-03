@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModItems {
-
     public enum CreativeModeTabs {
         ALTERNACRAFT_GROUP(new ArrayList<>()),
         BLOCKS_TAB(new ArrayList<>()),

@@ -74,14 +74,7 @@ public class MalusaurusEntity extends LargeCarnivoreEntity {
                 getPreySelection(this)));
     }
 
-    public void aiStep() {
-        super.aiStep();
-        if (this.isAsleep() || this.isNaturallySitting()) {
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-        } else {
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-        }
-    }
+
 
     @Override
     protected SoundEvent getAmbientSound()

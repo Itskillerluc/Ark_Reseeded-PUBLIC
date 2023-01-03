@@ -23,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -33,7 +34,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public abstract class AlternaNonRideableDinoEntity extends TamableAnimal implements GeoAnimatable {
+public abstract class AlternaNonRideableDinoEntity extends AlternaDinoEntity implements GeoAnimatable {
 
 	private static final EntityDataAccessor<Boolean> ASLEEP = SynchedEntityData.defineId(AlternaNonRideableDinoEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> NATURAL_SITTING = SynchedEntityData.defineId(AlternaNonRideableDinoEntity.class, EntityDataSerializers.BOOLEAN);
@@ -51,8 +52,8 @@ public abstract class AlternaNonRideableDinoEntity extends TamableAnimal impleme
 
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty,
-                                        MobSpawnType mobSpawnType, @Nullable SpawnGroupData groupData,
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty,
+                                        @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData groupData,
                                         @Nullable CompoundTag tag) {
         IVariant variant = Util.getRandom(GenderVariant.values(), this.random);
         setVariant(variant);
@@ -66,7 +67,7 @@ public abstract class AlternaNonRideableDinoEntity extends TamableAnimal impleme
 
     @SuppressWarnings("deprecation")
 	@Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         Item item = itemstack.getItem();
 
@@ -112,7 +113,7 @@ public abstract class AlternaNonRideableDinoEntity extends TamableAnimal impleme
         return false;
     }
 
-    protected SoundEvent getSwimSound() {
+    protected @NotNull SoundEvent getSwimSound() {
         return SoundEvents.FISH_SWIM;
     }
 
@@ -133,7 +134,7 @@ public abstract class AlternaNonRideableDinoEntity extends TamableAnimal impleme
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
+    public void addAdditionalSaveData(@NotNull CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
         tag.putBoolean("IsAsleep", this.isAsleep());
@@ -141,7 +142,7 @@ public abstract class AlternaNonRideableDinoEntity extends TamableAnimal impleme
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
+    public void readAdditionalSaveData(@NotNull CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
         this.entityData.set(ASLEEP, tag.getBoolean("IsAsleep"));
@@ -222,7 +223,7 @@ public abstract class AlternaNonRideableDinoEntity extends TamableAnimal impleme
         return this.factory;
     }
 
-    public boolean doHurtTarget(Entity p_70652_1_) {
+    public boolean doHurtTarget(@NotNull Entity p_70652_1_) {
         boolean flag = super.doHurtTarget(p_70652_1_);
         if (flag) {
             this.doEnchantDamageEffects(this, p_70652_1_);
@@ -231,7 +232,7 @@ public abstract class AlternaNonRideableDinoEntity extends TamableAnimal impleme
         return flag;
     }
 
-    public boolean canBeLeashed(Player player){
+    public boolean canBeLeashed(@NotNull Player player){
         return false;
     }
 

@@ -89,14 +89,7 @@ public class TheriEntity extends LargeCarnivoreEntity {
         this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false,
                 getPreySelection(this)));
     }
-    public void aiStep() {
-        super.aiStep();
-        if (this.isAsleep() || this.isNaturallySitting()) {
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
-        } else {
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-        }
-    }
+
 
     @Nullable
     @Override
