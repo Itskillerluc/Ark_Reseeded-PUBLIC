@@ -17,6 +17,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
@@ -59,8 +60,8 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Optional<UUID>> OWNER = SynchedEntityData.defineId(AlternaDinoEntity.class, EntityDataSerializers.OPTIONAL_UUID);
-    protected static final EntityDataAccessor<EnumMap<DinoLevelCategory, Integer>> ATTRIBUTE_LEVELS = SynchedEntityData.defineId(AlternaDinoEntity.class, DataSerializerRegistry.DINO_LEVEL_CAT.get());
-    protected static final EntityDataAccessor<EnumMap<DinoLevelCategory, Integer>> ATTRIBUTE_CACHE = SynchedEntityData.defineId(AlternaDinoEntity.class, DataSerializerRegistry.DINO_LEVEL_CAT.get());
+    protected static final EntityDataAccessor<EnumMap<DinoLevelCategory, Double>> ATTRIBUTE_LEVELS = SynchedEntityData.defineId(AlternaDinoEntity.class, DataSerializerRegistry.DINO_LEVEL_CAT.get());
+    protected static final EntityDataAccessor<EnumMap<DinoLevelCategory, Double>> ATTRIBUTE_CACHE = SynchedEntityData.defineId(AlternaDinoEntity.class, DataSerializerRegistry.DINO_LEVEL_CAT.get());
 
     final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -81,12 +82,10 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
 
     void processLevel(int levels, boolean init, boolean replace){
         if (init) {
-            //FIXME: convert these to using suppliers
-            getAttributeCache().put(DinoLevelCategory.HEALTH, ((int) getAttributeBaseValue(Attributes.MAX_HEALTH)));
-            getAttributeCache().put(DinoLevelCategory.ATTACK, ((int) getAttributeBaseValue(Attributes.ATTACK_DAMAGE)));
-            getAttributeCache().put(DinoLevelCategory.SPEED, ((int) getAttributeBaseValue(Attributes.MOVEMENT_SPEED)));
+            getAttributeCache().put(DinoLevelCategory.HEALTH, attributeSupplier().getValue(Attributes.MAX_HEALTH));
+            getAttributeCache().put(DinoLevelCategory.ATTACK, attributeSupplier().getValue(Attributes.ATTACK_DAMAGE));
+            getAttributeCache().put(DinoLevelCategory.SPEED, attributeSupplier().getValue(Attributes.MOVEMENT_SPEED));
         }
-
         List<Integer> levelList = new ArrayList<>();
         for (int i = 0; i < levels; i++) {
             levelList.add(random.nextIntBetweenInclusive(0, 2));
@@ -99,6 +98,8 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(getAttributeLeveledAttribute(DinoLevelCategory.ATTACK));
         this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(getAttributeLeveledAttribute(DinoLevelCategory.SPEED));
     }
+
+    public abstract AttributeSupplier attributeSupplier();
 
     @Override
     public void tick() {
@@ -155,14 +156,14 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
         tag.putBoolean("NaturallySitting", this.isNaturallySitting());
         tag.putInt("KnockoutTime", this.getKnockout());
         var attributeLevel = new CompoundTag();
-        for (Map.Entry<DinoLevelCategory, Integer> dinoLevelCategoryIntegerEntry : getAttributeLevels().entrySet()) {
-            attributeLevel.putInt(String.valueOf(dinoLevelCategoryIntegerEntry.getKey().ordinal()), dinoLevelCategoryIntegerEntry.getValue());
+        for (Map.Entry<DinoLevelCategory, Double> dinoLevelCategoryIntegerEntry : getAttributeLevels().entrySet()) {
+            attributeLevel.putDouble(String.valueOf(dinoLevelCategoryIntegerEntry.getKey().ordinal()), dinoLevelCategoryIntegerEntry.getValue());
         }
         tag.put("attributeLevels", attributeLevel);
 
         var cache = new CompoundTag();
-        for (Map.Entry<DinoLevelCategory, Integer> cacheEntry : getAttributeLevels().entrySet()) {
-            cache.putInt(String.valueOf(cacheEntry.getKey().ordinal()), cacheEntry.getValue());
+        for (Map.Entry<DinoLevelCategory, Double> cacheEntry : getAttributeLevels().entrySet()) {
+            cache.putDouble(String.valueOf(cacheEntry.getKey().ordinal()), cacheEntry.getValue());
         }
         tag.put("cache", cache);
 
@@ -184,14 +185,14 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
             setOwner(tag.getCompound("ForgeData").getUUID("Owner"));
         }
         var attributeLevel = tag.getCompound("attributeLevels");
-        getAttributeLevels().put(DinoLevelCategory.HEALTH, attributeLevel.getInt("0"));
-        getAttributeLevels().put(DinoLevelCategory.ATTACK, attributeLevel.getInt("1"));
-        getAttributeLevels().put(DinoLevelCategory.SPEED, attributeLevel.getInt("2"));
+        getAttributeLevels().put(DinoLevelCategory.HEALTH, attributeLevel.getDouble("0"));
+        getAttributeLevels().put(DinoLevelCategory.ATTACK, attributeLevel.getDouble("1"));
+        getAttributeLevels().put(DinoLevelCategory.SPEED, attributeLevel.getDouble("2"));
 
         var cache = tag.getCompound("cache");
-        getAttributeCache().put(DinoLevelCategory.HEALTH, cache.getInt("0"));
-        getAttributeCache().put(DinoLevelCategory.ATTACK, cache.getInt("1"));
-        getAttributeCache().put(DinoLevelCategory.SPEED, cache.getInt("2"));
+        getAttributeCache().put(DinoLevelCategory.HEALTH, cache.getDouble("0"));
+        getAttributeCache().put(DinoLevelCategory.ATTACK, cache.getDouble("1"));
+        getAttributeCache().put(DinoLevelCategory.SPEED, cache.getDouble("2"));
     }
 
 
@@ -358,11 +359,11 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
     public boolean isSitting() {
         return this.entityData.get(SITTING);
     }
-    public EnumMap<DinoLevelCategory, Integer> getAttributeLevels(){
+    public EnumMap<DinoLevelCategory, Double> getAttributeLevels(){
         return this.entityData.get(ATTRIBUTE_LEVELS);
     }
 
-    public EnumMap<DinoLevelCategory, Integer> getAttributeCache(){
+    public EnumMap<DinoLevelCategory, Double> getAttributeCache(){
         return this.entityData.get(ATTRIBUTE_CACHE);
     }
     protected void setVariant(IVariant variant) {

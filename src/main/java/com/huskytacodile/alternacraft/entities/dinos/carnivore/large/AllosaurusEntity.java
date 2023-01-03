@@ -1,37 +1,23 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.large;
 
-import com.huskytacodile.alternacraft.entities.attackgoal.SpinosaurusMeleeAttackGoal;
-import com.huskytacodile.alternacraft.entities.variant.RarityVariant;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.DiurnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
+import com.huskytacodile.alternacraft.entities.attackgoal.SpinosaurusMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.dinos.LargeCarnivoreEntity;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
+import com.huskytacodile.alternacraft.entities.variant.RarityVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
-
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -39,6 +25,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class AllosaurusEntity extends LargeCarnivoreEntity {
     public AllosaurusEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
@@ -68,6 +56,11 @@ public class AllosaurusEntity extends LargeCarnivoreEntity {
     }
 
     @Override
+    public AttributeSupplier attributeSupplier() {
+        return AllosaurusEntity.attributes().build();
+    }
+
+    @Override
     public IVariant getVariant() {
         return RarityVariant.byId(this.getTypeVariant() & 255);
     }
@@ -84,6 +77,7 @@ public class AllosaurusEntity extends LargeCarnivoreEntity {
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
                 .add(Attributes.ATTACK_DAMAGE, 9.0D);
     }
+
 
     @Override
     protected void registerGoals() {

@@ -52,6 +52,15 @@ public class CarchaEntity extends LargeCarnivoreEntity {
     }
 
     @Override
+    public static AttributeSupplier.Builder attributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 86.00D)
+                .add(Attributes.MOVEMENT_SPEED, 0.2D)
+                .add(Attributes.FOLLOW_RANGE, 16.0D)
+                .add(Attributes.ATTACK_DAMAGE, 8.0D);
+    }
+
+    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
