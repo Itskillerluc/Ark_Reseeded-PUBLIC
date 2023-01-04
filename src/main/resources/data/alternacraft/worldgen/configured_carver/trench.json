@@ -7,20 +7,20 @@
         "Name": "minecraft:air"
       },
       "lava_state": {
-        "Name": "minecraft:lava"
+        "Name": "minecraft:gold_block"
       },
       "barrier_state": {
-        "Name": "minecraft:air"
+        "Name": "minecraft:iron_block"
       },
       "water_state": {
         "Name": "minecraft:air"
       }
     },
-    "probability": 0.001,
+    "probability": 0.1,
     "y": {
       "absolute": 1
     },
-    "yScale": 10,
+    "yScale": 15,
     "lava_level": {
       "above_bottom": 20
     },
@@ -34,10 +34,10 @@
       }
     },
     "shape": {
-      "distance_factor": 25,
-      "thickness": 10,
-      "width_smoothness": 15,
-      "horizontal_radius_factor": 2,
+      "distance_factor": 3,
+      "thickness": 2,
+      "width_smoothness": 3,
+      "horizontal_radius_factor": 5,
       "vertical_radius_default_factor": 2,
       "vertical_radius_center_factor": 2
     }

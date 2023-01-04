@@ -5,6 +5,7 @@ import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.RaptorMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.dinos.RaptorEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.entities.variant.QuadrupleVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
@@ -33,7 +34,10 @@ public class AtrociraptorEntity extends RaptorEntity {
         super(entityType, level);
         this.setTame(false);
     }
-
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return AtrociraptorEntity.attributes().build();
+    }
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 48.00D)

@@ -1,6 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.BaryMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.QuadrupleVariant;
 import com.huskytacodile.alternacraft.entities.variant.TripleVariant;
@@ -43,6 +44,10 @@ public class BaryonyxEntity extends SemiAquaticEntity {
     public BaryonyxEntity(EntityType<? extends TamableAnimal> p_i48575_1_, Level p_i48575_2_) {
         super(p_i48575_1_, p_i48575_2_);
         this.setTame(false);
+    }
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return BaryonyxEntity.attributes().build();
     }
 
     public static AttributeSupplier.Builder attributes() {

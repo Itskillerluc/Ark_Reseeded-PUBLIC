@@ -6,6 +6,7 @@ import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.IndoGen1MeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.dinos.HybridEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
@@ -34,6 +35,10 @@ public class IndoraptorEntity extends HybridEntity {
     public IndoraptorEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
         this.setTame(false);
+    }
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return IndoraptorEntity.attributes().build();
     }
 
     public static AttributeSupplier.Builder attributes() {

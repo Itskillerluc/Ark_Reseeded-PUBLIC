@@ -48,6 +48,9 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.FIRE_WYVERN, 0xce2029, 0xff7900,
                     new Item.Properties()), CreativeModeTabs.ALTERNACRAFT_GROUP);
 
+    public static final RegistryObject<CryoPodItem> CRYO_POD = register("cryo_pod",
+            ()-> new CryoPodItem(new Item.Properties()), CreativeModeTabs.ALTERNACRAFT_GROUP);
+
     public static final RegistryObject<ForgeSpawnEggItem> OXALIA_SPAWN_EGG = register("oxalaia_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.OXALAIA, 0xDFCC8F, 0x2D2611,
                     new Item.Properties()), CreativeModeTabs.ALTERNACRAFT_GROUP);
@@ -229,7 +232,7 @@ public class ModItems {
                 () -> new DinoEggItem(new Item.Properties()), CreativeModeTabs.DNA_SYRINGES);
 
     private static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item, CreativeModeTabs tab){
-        var object = ITEMS.<T>register(name, item);
+        var object = ITEMS.register(name, item);
         tab.list.add(object);
         return object;
     }

@@ -4,6 +4,7 @@ import com.huskytacodile.alternacraft.entities.ai.DiurnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.SpinosaurusMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.dinos.LargeCarnivoreEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
@@ -31,7 +32,10 @@ public class TheriEntity extends LargeCarnivoreEntity {
     public TheriEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
     }
-
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return TheriEntity.attributes().build();
+    }
     @Override
     protected SoundEvent getAmbientSound() {
         return this.isAsleep() ? null : ModSoundEvents.ACRO_GROWL.get();

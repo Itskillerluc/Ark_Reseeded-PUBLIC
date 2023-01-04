@@ -42,16 +42,10 @@ public class CarchaEntity extends LargeCarnivoreEntity {
         super(entityType, level);
         this.setTame(false);
     }
-
-    public static AttributeSupplier.Builder attributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 86.00D)
-                .add(Attributes.MOVEMENT_SPEED, 0.2D)
-                .add(Attributes.FOLLOW_RANGE, 16.0D)
-                .add(Attributes.ATTACK_DAMAGE, 8.0D);
-    }
-
     @Override
+    public AttributeSupplier attributeSupplier() {
+        return CarchaEntity.attributes().build();
+    }
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 86.00D)

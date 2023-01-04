@@ -2,6 +2,7 @@ package com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.OxalaiaMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.ScorpiusMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,7 +48,10 @@ public class ScorpiusEntity extends HybridEntity {
         super(entityType, level);
         this.setTame(false);
     }
-
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return ScorpiusEntity.attributes().build();
+    }
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 140.00D)

@@ -1,6 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.small;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.CompyMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoNocturnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.smalldinoai.SmallDinoSleepingRandomLookAroundGoal;
@@ -41,7 +42,10 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 		super(entityType, level);
 		this.setTame(false);
 	}
-
+	@Override
+	public AttributeSupplier attributeSupplier() {
+		return CompsognathusEntity.attributes().build();
+	}
 	public static AttributeSupplier.Builder attributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 12.00D)
@@ -104,10 +108,6 @@ public class CompsognathusEntity extends SmallCarnivoreEntity {
 		return "compsognathus";
 	}
 
-	@Override
-	protected Item getTamingItem() {
-		return Items.BEEF;
-	}
 
 	@Nullable
 	@Override

@@ -1,6 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.semiaquatic;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.OxalaiaMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import net.minecraft.world.entity.ai.goal.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -40,6 +41,11 @@ public class SuchomimusEntity extends SemiAquaticEntity {
         super(p_i48575_1_, p_i48575_2_);
         this.setTame(false);
     }
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return SuchomimusEntity.attributes().build();
+    }
+
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 94.00D)

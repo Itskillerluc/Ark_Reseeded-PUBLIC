@@ -1,6 +1,7 @@
 package com.huskytacodile.alternacraft.entities.dinos.carnivore.medium.raptor;
 
 import com.huskytacodile.alternacraft.entities.attackgoal.RaptorMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.DuodecupleVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import net.minecraft.Util;
@@ -41,7 +42,10 @@ public class VelociraptorEntity extends RaptorEntity {
         super(entityType, level);
         this.setTame(false);
     }
-
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return VelociraptorEntity.attributes().build();
+    }
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 46.00D)

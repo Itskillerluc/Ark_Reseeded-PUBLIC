@@ -2,12 +2,14 @@ package com.huskytacodile.alternacraft.client.render.entity;
 
 import com.huskytacodile.alternacraft.entities.dinos.AlternaDinoEntity;
 import com.huskytacodile.alternacraft.util.Utils;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import org.joml.Matrix4f;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.util.FormattedCharSequence;
 import org.joml.Vector3f;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -49,5 +51,9 @@ public abstract class AlternaDinoRenderer <T extends AlternaDinoEntity & GeoAnim
         }
     }
 
-
+    @Override
+    public void actuallyRender(PoseStack poseStack, T animatable, BakedGeoModel model, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        super.actuallyRender(poseStack, animatable, model, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+        getFont().drawInBatch(FormattedCharSequence.forward("test", Style.EMPTY.withColor(TextColor.fromRgb(0x23395d)).withFont(Style.DEFAULT_FONT)), 0f, 1f, 0x23395d, false, poseStack.last().pose(), bufferSource, false, 0, packedLight);
+    }
 }

@@ -5,6 +5,7 @@ import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.RaptorMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.dinos.RaptorEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
@@ -33,7 +34,10 @@ public class DeinonychusEntity extends RaptorEntity {
         super(entityType, level);
         this.setTame(false);
     }
-
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return DeinonychusEntity.attributes().build();
+    }
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 38.00D)

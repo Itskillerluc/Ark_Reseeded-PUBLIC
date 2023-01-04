@@ -2,6 +2,7 @@ package com.huskytacodile.alternacraft.entities.dinos.carnivore.large.hybrid;
 
 import com.huskytacodile.alternacraft.entities.ModEntityTypes;
 import com.huskytacodile.alternacraft.entities.attackgoal.IndoGen2MeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import net.minecraft.world.entity.ai.goal.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,7 +43,10 @@ public class IndoraptorGen2Entity extends HybridEntity {
         super(entityType, level);
         this.setTame(false);
     }
-
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return IndoraptorGen2Entity.attributes().build();
+    }
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 135.00D)

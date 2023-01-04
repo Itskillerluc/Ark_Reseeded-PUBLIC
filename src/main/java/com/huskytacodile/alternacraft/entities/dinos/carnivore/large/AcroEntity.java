@@ -65,6 +65,10 @@ public class AcroEntity extends LargeCarnivoreEntity {
         return "acrocanthosaurus";
     }
 
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return AcroEntity.attributes().build();
+    }
     public static AttributeSupplier.Builder attributes() {
         return TamableAnimal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 95.00D)

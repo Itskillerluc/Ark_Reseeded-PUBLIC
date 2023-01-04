@@ -72,11 +72,9 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
     @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
         var random = this.random.nextIntBetweenInclusive(1,150);
-        System.out.println("1");
-        System.out.println(level.isClientSide() ? "client" : "server");
-
         setDinoLevel(random);
         processLevel(random, true, false);
+        this.setHealth(getMaxHealth());
         return super.finalizeSpawn(world, difficulty, mobSpawnType, groupData, tag);
     }
 
@@ -470,10 +468,8 @@ public abstract class AlternaDinoEntity extends TamableAnimal implements PlayerR
 
     public double getAttributeLeveledAttribute(DinoLevelCategory category){
         if (getAttributeLevels().size() == 0 || getAttributeCache().size() == 0){
-            System.out.println("2");
-            System.out.println(level.isClientSide() ? "client" : "server");
             LogManager.getLogger().warn("attributeLevels and/or AttributeCache is not loaded. This can be caused by loading a world with a previous version of the reseeded protocol." +
-                    " If this problem persists and you keep seeing this warning, please report it to the mod author.");
+                    " If this problem persists and you keep seeing this warning, please report it to the mod author. \n entity:" + this.getName());
 
             processLevel(getDinoLevel(), true, true);
         }

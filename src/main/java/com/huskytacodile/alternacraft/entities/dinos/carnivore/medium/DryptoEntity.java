@@ -5,6 +5,7 @@ import com.huskytacodile.alternacraft.entities.ai.NocturnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.DryptoMeleeAttackGoal;
 import com.huskytacodile.alternacraft.entities.dinos.MediumCarnivoreEntity;
+import com.huskytacodile.alternacraft.entities.dinos.carnivore.large.AllosaurusEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
 import com.huskytacodile.alternacraft.util.ModSoundEvents;
@@ -34,7 +35,10 @@ public class DryptoEntity extends MediumCarnivoreEntity {
 		super(entityType, level);
 		this.setTame(false);
 	}
-
+	@Override
+	public AttributeSupplier attributeSupplier() {
+		return DryptoEntity.attributes().build();
+	}
 	public static AttributeSupplier.Builder attributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 52.00D)

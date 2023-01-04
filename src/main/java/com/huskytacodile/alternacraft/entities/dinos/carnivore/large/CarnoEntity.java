@@ -4,6 +4,7 @@ import com.huskytacodile.alternacraft.entities.ai.DinoSittingGoal;
 import com.huskytacodile.alternacraft.entities.ai.DiurnalSleepGoal;
 import com.huskytacodile.alternacraft.entities.ai.SleepingRandomLookAroundGoal;
 import com.huskytacodile.alternacraft.entities.attackgoal.SpinosaurusMeleeAttackGoal;
+import com.huskytacodile.alternacraft.entities.dinos.CarnivoreEntity;
 import com.huskytacodile.alternacraft.entities.dinos.LargeCarnivoreEntity;
 import com.huskytacodile.alternacraft.entities.variant.GenderVariant;
 import com.huskytacodile.alternacraft.entities.variant.IVariant;
@@ -33,6 +34,10 @@ public class CarnoEntity extends LargeCarnivoreEntity {
         super(entityType, level);
     }
 
+    @Override
+    public AttributeSupplier attributeSupplier() {
+        return CarnoEntity.attributes().build();
+    }
     @Override
     protected SoundEvent getAmbientSound() {
         return this.isAsleep() ? null : ModSoundEvents.ACRO_GROWL.get();
