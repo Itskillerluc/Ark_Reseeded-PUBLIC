@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           repository: itskillerluc/Ark_Reseeded-PUBLIC    
       - run: git remote add upstream https://github.com/Itskillerluc/ark_reseeded
       - run: git pull upstream master
