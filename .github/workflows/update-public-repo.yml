@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo $(ls)
-      - run: cd
+      - run: cd /
       - run: ls
       - run: echo $(ls)
