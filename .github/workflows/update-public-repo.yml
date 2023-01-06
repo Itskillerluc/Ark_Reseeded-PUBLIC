@@ -8,7 +8,9 @@ jobs:
   update-public-repo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $(ls)
-      - run: cd /
-      - run: ls
-      - run: echo $(ls)
+      - uses: actions/checkout@v3
+      - with:
+          repository: itskillerluc/Ark_Reseeded-PUBLIC
+      - run: git remote add upstream https://github.com/Itskillerluc/ark_reseeded
+      - run: git pull upstream master
+      - run: git push
