@@ -53,5 +53,7 @@
   "carvers": {
     "air": "alternacraft:trench"
   },
-  "features": []
+  "features": [
+    "alternacraft:test.json"
+  ]
 }

@@ -35,7 +35,7 @@
     },
     "shape": {
       "distance_factor": 3,
-      "thickness": 2,
+      "thickness": 1,
       "width_smoothness": 3,
       "horizontal_radius_factor": 5,
       "vertical_radius_default_factor": 2,
