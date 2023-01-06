@@ -6,11 +6,10 @@ on:
       - master
 jobs:
   update-public-repo:
-    name: update repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - with:
+        with:
           repository: itskillerluc/Ark_Reseeded-PUBLIC
       - run: git remote add upstream https://github.com/Itskillerluc/ark_reseeded
       - run: git pull upstream master
