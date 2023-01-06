@@ -8,4 +8,4 @@ jobs:
   update-public-repo:
     runs-on: ubuntu-latest
     steps:
-      - run: git ls
+      - run: ls
